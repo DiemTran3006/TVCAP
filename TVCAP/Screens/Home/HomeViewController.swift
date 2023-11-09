@@ -8,7 +8,6 @@
 import UIKit
 
 class HomeViewController: BaseViewController {
-    let airplayManager = AirplayManager.shared
     
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var mirrorView: UIView!
@@ -32,14 +31,13 @@ class HomeViewController: BaseViewController {
         headerView.layer.insertSublayer(gradient, at: 0)
     }
     
-    func showAirplay() {
-        airplayManager.showAirplay(view: self.view)
-    }
-    
     // MARK: - Action
     @IBAction func actionPushVideoLibrary(_ sender: Any) {
         let vc = VideoLibraryViewController(nibName: "VideoLibraryViewController", bundle: nil)
         self.navigationController?.pushViewController(vc , animated: true)
+    }
+    @IBAction func actionPushPhotoLibrary(_ sender: Any) {
+        
     }
     
     @IBAction func actionStartMirroring(_ sender: Any) {

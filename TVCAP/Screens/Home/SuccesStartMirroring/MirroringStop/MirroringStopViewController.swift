@@ -30,6 +30,9 @@ final class MirroringStopViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
 
+    @IBAction func actionDissmis(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     // MARK: - Function
     
     private func cornerRadiusTopView() {

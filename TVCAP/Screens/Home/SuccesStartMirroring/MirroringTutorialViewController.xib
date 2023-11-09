@@ -38,6 +38,7 @@
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="One more step!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m6H-Xi-bXL">
                                     <rect key="frame" x="0.0" y="0.0" width="313" height="28.666666666666668"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                    <color key="textColor" name="TextColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <view contentMode="scaleToFill" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="CLO-Oj-iov" userLabel="ViewLabel">

@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -54,7 +55,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Connect device to mirroring" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cpa-q1-oq0">
                                             <rect key="frame" x="10" y="0.0" width="293" height="57.333333333333336"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
-                                            <nil key="textColor"/>
+                                            <color key="textColor" name="TextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -108,11 +109,6 @@
                         <constraint firstAttribute="bottom" secondItem="fqN-oC-8af" secondAttribute="bottom" id="obD-4k-cbj"/>
                         <constraint firstItem="fqN-oC-8af" firstAttribute="top" secondItem="SQx-YT-H1H" secondAttribute="top" constant="20" id="otp-t8-Stt"/>
                     </constraints>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="tr_cornerRadius">
-                            <real key="value" value="18"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
@@ -134,6 +130,9 @@
     </objects>
     <resources>
         <image name="icon.airplay" width="40" height="40"/>
+        <namedColor name="TextColor">
+            <color red="0.2196078431372549" green="0.25490196078431371" blue="0.38039215686274508" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

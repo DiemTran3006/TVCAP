@@ -12,9 +12,10 @@ import AVKit
 class VideoLibraryViewController: UIViewController {
     
     @IBOutlet weak var myCollection: UICollectionView!
-    var videos: [PHAsset] = []
-    let tableViewCellidentifier = "cell"
+    
+    var videos: [VideoModel] = []
     let photoPickerManager = PhotoPickerManager.shared
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,8 +23,6 @@ class VideoLibraryViewController: UIViewController {
         myCollection.delegate = self
         myCollection.register(cellType: VideoLibraryCollectionViewCell.self)
         
-    }
-    override func viewDidAppear(_ animated: Bool) {
         PHPhotoLibrary.requestAuthorization(for: .readWrite) { [weak self] status in
             if status == .restricted || status == .denied {
                 print("Status: Restricted or Denied")
@@ -32,13 +31,14 @@ class VideoLibraryViewController: UIViewController {
                 self?.fetchVideos()
                 print("Status: Limited")
             }
-            if status == .authorized
-            {
+            if status == .authorized {
                 self?.fetchVideos()
                 print("Status: Full access")
             }
         }
     }
+    
+    // MARK: - Function
     private func playVideo(_ video: AVAsset)
     {
         let playerItem = AVPlayerItem(asset: video)
@@ -50,56 +50,72 @@ class VideoLibraryViewController: UIViewController {
             playerViewController.player!.play()
         }
     }
-    func fetchVideos()
-    {
+    func fetchVideos() {
+        showCustomeIndicator()
+        let imageManager = PHImageManager.default()
+        let imageRequestOptions = PHImageRequestOptions()
         let fetchResults = PHAsset.fetchAssets(with: PHAssetMediaType.video, options: nil)
-        fetchResults.enumerateObjects({ [weak self] (object, count, stop) in
-            
-            self?.videos.append(object)
+        
+        fetchResults.enumerateObjects({ [weak self] (phAsset, count, stop) in
+            var video = VideoModel()
+            imageManager.requestImage(for: phAsset,
+                                      targetSize: CGSize(width: 200, height: 200),
+                                      contentMode: .default,
+                                      options: imageRequestOptions) { (uiImage, _) in
+                video.thumbnailImage = uiImage!
+                video.asset = phAsset
+            }
+            self?.videos.append(video)
         })
+        
         DispatchQueue.main.async {
             self.myCollection.reloadData()
+            self.hideCustomeIndicator()
         }
     }
+    
+    // MARK: - Action
     @IBAction func actionPopHomeButton(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
 }
+
+// MARK: - UICollectionViewDataSource
 extension VideoLibraryViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return videos.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let videoAsset = videos[indexPath.row]
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VideoLibraryCollectionViewCell", for: indexPath) as? VideoLibraryCollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VideoLibraryCollectionViewCell",
+                                                            for: indexPath) as? VideoLibraryCollectionViewCell else {
             return UICollectionViewCell()
         }
-        PHCachingImageManager.default().requestImage(for: videoAsset,
-                                                     targetSize: CGSize(width: 106, height: 106),
-                                                     contentMode: .aspectFill,
-                                                     options: nil) { (photo, _) in
-            cell.imageView?.image = photo
-        }
+        cell.configCell(modol: videoAsset)
         return cell
     }
-    
 }
+
+// MARK: - UICollectionViewDelegate
 extension VideoLibraryViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let videoAsset = videos[indexPath.row]
-              
-              PHCachingImageManager.default().requestAVAsset(forVideo: videoAsset, options: nil) { [weak self] (video, _, _) in
-                  if let video = video
-                  {
-                      DispatchQueue.main.async {
-                          self?.playVideo(video)
-                      }
-                  }
-              }
+        guard let videoAsset = videos[indexPath.row].asset else { return }
+        
+        PHCachingImageManager.default().requestAVAsset(forVideo: videoAsset, options: nil) { [weak self] (video, _, _) in
+            if let video = video {
+                DispatchQueue.main.async {
+                    let vc = VideoCastViewController(nibName: "VideoCastViewController", bundle: nil)
+        
+                    self?.navigationController?.pushViewController(vc , animated: true)
+                    self?.playVideo(video)
+                }
+            }
+        }
     }
-}
+}// MARK: - UICollectionViewDelegateFlowLayout
 extension VideoLibraryViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
         let width = (UIScreen.main.bounds.size.width - 56 ) / 3
         return CGSize(width: width, height: width )
     }
@@ -110,6 +126,9 @@ extension VideoLibraryViewController: UICollectionViewDelegateFlowLayout {
         0
     }
 }
+
+// MARK: - Model
 struct VideoModel {
-    let image: UIImage?
+    var thumbnailImage: UIImage?
+    var asset: PHAsset?
 }

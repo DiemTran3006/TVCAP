@@ -30,9 +30,6 @@ class ConnectViewController: UIViewController {
     }
     
     @IBAction func actionSelectSeviceButton(_ sender: Any) {
-//        let vc = ErrorMirroringViewController(nibName: "ErrorMirroringViewController", bundle: nil)
-//        vc.modalPresentationStyle = .overFullScreen
-//        self.present(vc, animated: true, completion: nil)
         airplayManager.showAirplay(view: self.view)
     }
     

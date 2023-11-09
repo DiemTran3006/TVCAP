@@ -42,7 +42,7 @@ class MirroringTutorialViewController: UIViewController {
     private func styleContentLabel() {
         let attributedText = NSMutableAttributedString.getAttributedString(fromString: textContentLabel)
         attributedText.apply(color: R.color.textColor.callAsFunction()!, subString: textContentLabel)
-        attributedText.apply(font: .primary(), subString: "Access control center and tap Screen Mirroring. Choose your device to mirroring.")
+        attributedText.apply(font: .primary(), subString: textContentLabel)
         attributedText.apply(font: .important(), subString: "control center")
         attributedText.apply(font:.important(), subString: "Screen Mirroring.")
         contentLabel.attributedText = attributedText
