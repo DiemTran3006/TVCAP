@@ -23,20 +23,6 @@ extension UIView {
         
         return isVisible(in: view.superview)
     }
-    func gradient() {
-        let layer = CAGradientLayer()
-        layer.colors = [
-            UIColor(hexString: "A86ED4").cgColor,
-            UIColor(hexString: "F0A3BF").cgColor
-        ]
-        layer.locations = [0, 1]
-        layer.startPoint = CGPoint(x: 0.25, y: 0.5)
-        layer.endPoint = CGPoint(x: 0.75, y: 0.5)
-        layer.transform = CATransform3DMakeAffineTransform(CGAffineTransform(a: 1, b: 1, c: -1, d: 0.21, tx: 0.5, ty: -0.11))
-        layer.bounds = self.bounds.insetBy(dx: -0.5 * self.bounds.size.width, dy: -0.5 * self.bounds.size.height)
-        layer.position = self.center
-        self.layer.addSublayer(layer)
-    }
     
     @discardableResult
     func withBorder(width: CGFloat,
@@ -190,6 +176,19 @@ extension UIScrollView {
     func scrollToBottom() {
         let bottomOffset = CGPoint(x: 0, y: contentSize.height - bounds.size.height + contentInset.bottom)
         setContentOffset(bottomOffset, animated: true)
+    }
+    
+    var currentPage: Int {
+        return Int(round(self.contentOffset.x / self.bounds.size.width))
+    }
+}
+
+extension UIView {
+    func roundCorners(maskedCorners: CACornerMask = [.layerMinXMinYCorner, .layerMaxXMinYCorner],
+                      cornerRadius: CGFloat) {
+        layer.cornerRadius = cornerRadius
+        layer.maskedCorners = maskedCorners
+        layer.masksToBounds = true
     }
 }
 

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ErrorMirroringViewController" customModule="TVCAP" customModuleProvider="target">
+            <connections>
+                <outlet property="presentView" destination="SQx-YT-H1H" id="3wV-HH-P2k"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ih1-vp-DPm">
+                    <rect key="frame" x="0.0" y="59.000000000000028" width="393" height="469.66666666666674"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain"/>
+                    <connections>
+                        <action selector="actionDissmis:" destination="-1" eventType="touchUpInside" id="iaZ-ht-sB7"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SQx-YT-H1H" userLabel="PresentView">
+                    <rect key="frame" x="0.0" y="528.66666666666663" width="393" height="323.33333333333337"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="fqN-oC-8af">
+                            <rect key="frame" x="40" y="20" width="313" height="303.33333333333331"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="izQ-Fc-96C">
+                                    <rect key="frame" x="0.0" y="0.0" width="313" height="42"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T4d-hp-yza">
+                                            <rect key="frame" x="135.66666666666666" y="0.0" width="41.666666666666657" height="42"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" image="icon.airplay"/>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="T4d-hp-yza" secondAttribute="bottom" id="TDa-0u-elB"/>
+                                        <constraint firstItem="T4d-hp-yza" firstAttribute="top" secondItem="izQ-Fc-96C" secondAttribute="top" id="jxD-aO-eab"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="cGN-6C-bYV">
+                                    <rect key="frame" x="0.0" y="57" width="313" height="57.333333333333343"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Connect device to mirroring" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cpa-q1-oq0">
+                                            <rect key="frame" x="10" y="0.0" width="293" height="57.333333333333336"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstItem="cpa-q1-oq0" firstAttribute="leading" secondItem="cGN-6C-bYV" secondAttribute="leading" constant="10" id="Ge2-Wl-ejC"/>
+                                        <constraint firstAttribute="bottom" secondItem="cpa-q1-oq0" secondAttribute="bottom" id="WOg-P2-T4Y"/>
+                                        <constraint firstItem="cpa-q1-oq0" firstAttribute="top" secondItem="cGN-6C-bYV" secondAttribute="top" id="hUN-vM-Zvk"/>
+                                        <constraint firstAttribute="trailing" secondItem="cpa-q1-oq0" secondAttribute="trailing" constant="10" id="mN6-v1-mRH"/>
+                                    </constraints>
+                                </view>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Make sure your phone and TV device connected to the same Wifi-Network." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9yF-q7-Nx2">
+                                    <rect key="frame" x="0.0" y="129.33333333333337" width="313" height="28.666666666666657"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <color key="textColor" red="0.31372549020000001" green="0.34509803919999998" blue="0.4549019608" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gF3-L4-b9x">
+                                    <rect key="frame" x="0.0" y="173" width="313" height="54.666666666666657"/>
+                                    <color key="backgroundColor" red="0.27450980390000002" green="0.63529411759999999" blue="0.99215686270000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title="Select Device">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="tr_cornerRadius">
+                                            <real key="value" value="20"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="actionSelectButton:" destination="-1" eventType="touchUpInside" id="2cq-lB-Fs2"/>
+                                    </connections>
+                                </button>
+                                <view contentMode="scaleToFill" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="XIw-Kl-Vnv">
+                                    <rect key="frame" x="0.0" y="242.66666666666671" width="313" height="60.666666666666657"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="T4d-hp-yza" firstAttribute="centerX" secondItem="fqN-oC-8af" secondAttribute="centerX" id="B43-eR-C8C"/>
+                            </constraints>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="fqN-oC-8af" secondAttribute="trailing" constant="40" id="2Gr-qc-p0O"/>
+                        <constraint firstItem="gF3-L4-b9x" firstAttribute="height" secondItem="SQx-YT-H1H" secondAttribute="height" multiplier="52/308" id="L4F-CZ-o1N"/>
+                        <constraint firstItem="fqN-oC-8af" firstAttribute="leading" secondItem="SQx-YT-H1H" secondAttribute="leading" constant="40" id="dgF-dH-631"/>
+                        <constraint firstAttribute="bottom" secondItem="fqN-oC-8af" secondAttribute="bottom" id="obD-4k-cbj"/>
+                        <constraint firstItem="fqN-oC-8af" firstAttribute="top" secondItem="SQx-YT-H1H" secondAttribute="top" constant="20" id="otp-t8-Stt"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="tr_cornerRadius">
+                            <real key="value" value="18"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="T4d-hp-yza" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="40/812" id="95M-P7-5B8"/>
+                <constraint firstItem="SQx-YT-H1H" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="308/812" id="F5V-7j-MNF"/>
+                <constraint firstItem="Ih1-vp-DPm" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="TPu-wa-9Q3"/>
+                <constraint firstItem="Ih1-vp-DPm" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="UPK-JK-ZMs"/>
+                <constraint firstAttribute="bottom" secondItem="SQx-YT-H1H" secondAttribute="bottom" id="VuC-6j-a0C"/>
+                <constraint firstItem="SQx-YT-H1H" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Zvo-QL-933"/>
+                <constraint firstItem="SQx-YT-H1H" firstAttribute="top" secondItem="Ih1-vp-DPm" secondAttribute="bottom" id="h8o-mE-2D8"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="SQx-YT-H1H" secondAttribute="trailing" id="hDA-pC-HSy"/>
+                <constraint firstItem="T4d-hp-yza" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="40/375" id="n8P-Ks-46c"/>
+                <constraint firstItem="Ih1-vp-DPm" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="u1c-bS-TP2"/>
+            </constraints>
+            <point key="canvasLocation" x="5.343511450381679" y="20.422535211267608"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon.airplay" width="40" height="40"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
