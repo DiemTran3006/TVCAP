@@ -33,7 +33,12 @@ class SettingViewController: UIViewController {
         myTable.separatorStyle = .none
         myTable.register(cellType: SettingTableViewCell.self)
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = true
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = false
+    }
 // MARK: - Action
     @IBAction func actionPopHomeButton(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)

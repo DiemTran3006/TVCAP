@@ -25,7 +25,7 @@
                     </constraints>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain" title="Select Device">
-                        <color key="baseForegroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </buttonConfiguration>
                     <connections>
                         <action selector="handleSelect:" destination="-1" eventType="touchUpInside" id="RSV-rF-TIZ"/>
@@ -66,7 +66,7 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="qGE-x3-eVg" secondAttribute="bottom" constant="24" id="q7P-Ye-spN"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="HVh-9U-tOH" secondAttribute="trailing" constant="48" id="voL-cp-zNS"/>
             </constraints>
-            <point key="canvasLocation" x="-34" y="21"/>
+            <point key="canvasLocation" x="318" y="15"/>
         </view>
     </objects>
     <resources>
