@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TutorialWithStepViewController" customModule="TVCAP" customModuleProvider="target">
+            <connections>
+                <outlet property="labelStepOne" destination="wDP-Ji-33y" id="Yel-uz-XRl"/>
+                <outlet property="labelStepTwo" destination="sml-Ej-7cX" id="tEg-JQ-ksv"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Just a few more steps!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jmv-MI-nIq">
+                    <rect key="frame" x="40" y="91" width="313" height="28.666666666666671"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                    <color key="textColor" red="0.2196078431372549" green="0.25490196078431371" blue="0.38039215686274508" alpha="0.84705882352941175" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Access Control Center and tap Screen Mirroring. " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wDP-Ji-33y">
+                    <rect key="frame" x="84" y="139.66666666666666" width="269" height="38.333333333333343"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" red="0.31372549019607843" green="0.34509803921568627" blue="0.45490196078431372" alpha="0.84705882352941175" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Y9n-tq-x89">
+                    <rect key="frame" x="40" y="144" width="32" height="30.666666666666686"/>
+                    <color key="tintColor" red="0.31372549019607843" green="0.34509803921568627" blue="0.45490196078431372" alpha="0.84705882352941175" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="32" id="o0h-cK-buZ"/>
+                        <constraint firstAttribute="height" constant="32" id="o2W-PL-eBj"/>
+                    </constraints>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="2.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="xMF-qp-S4O">
+                    <rect key="frame" x="40" y="202.33333333333334" width="32" height="30.666666666666657"/>
+                    <color key="tintColor" red="0.31372549020000001" green="0.34509803919999998" blue="0.4549019608" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="32" id="e4h-ss-IqB"/>
+                        <constraint firstAttribute="width" constant="32" id="pgV-6R-XRU"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose your device then back to app." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sml-Ej-7cX">
+                    <rect key="frame" x="84" y="198" width="269" height="38.333333333333343"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" red="0.31372549020000001" green="0.34509803919999998" blue="0.4549019608" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mirrorScreeningIcon" translatesAutoresizingMaskIntoConstraints="NO" id="gM7-v5-qmD">
+                    <rect key="frame" x="40" y="268.33333333333331" width="313" height="275.99999999999994"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="276" id="GgK-cN-TYt"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ccU-lX-QGE" customClass="GradientButton" customModule="TVCAP" customModuleProvider="target">
+                    <rect key="frame" x="40" y="568.33333333333337" width="313" height="52"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="52" id="hwK-B4-NOx"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Got it!">
+                        <fontDescription key="titleFontDescription" type="system" pointSize="16"/>
+                        <color key="baseForegroundColor" red="0.99215686270000003" green="0.98823529409999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+                    </buttonConfiguration>
+                    <connections>
+                        <action selector="handleGotIt:" destination="-1" eventType="touchUpInside" id="mGs-cF-gMJ"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="gM7-v5-qmD" secondAttribute="trailing" constant="40" id="0MK-Y0-RQL"/>
+                <constraint firstItem="sml-Ej-7cX" firstAttribute="leading" secondItem="xMF-qp-S4O" secondAttribute="trailing" constant="12" id="4se-cZ-aO3"/>
+                <constraint firstItem="Jmv-MI-nIq" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="40" id="7gX-Hi-jCu"/>
+                <constraint firstItem="gM7-v5-qmD" firstAttribute="top" secondItem="sml-Ej-7cX" secondAttribute="bottom" constant="32" id="FsY-ye-BBu"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ccU-lX-QGE" secondAttribute="trailing" constant="40" id="Jrg-JC-5YX"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="wDP-Ji-33y" secondAttribute="trailing" constant="40" id="M6y-Vn-czA"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="ccU-lX-QGE" secondAttribute="bottom" priority="250" constant="20" id="MeF-RM-zhY"/>
+                <constraint firstItem="Y9n-tq-x89" firstAttribute="centerY" secondItem="wDP-Ji-33y" secondAttribute="centerY" id="T8p-Dy-SRD"/>
+                <constraint firstItem="Y9n-tq-x89" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="40" id="TN5-PR-vvv"/>
+                <constraint firstItem="gM7-v5-qmD" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="40" id="UFy-uX-hB2"/>
+                <constraint firstItem="wDP-Ji-33y" firstAttribute="top" secondItem="Jmv-MI-nIq" secondAttribute="bottom" constant="20" id="US4-hC-skM"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Jmv-MI-nIq" secondAttribute="trailing" constant="40" id="VwJ-fy-eWU"/>
+                <constraint firstItem="xMF-qp-S4O" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="40" id="W8Q-ut-pgJ"/>
+                <constraint firstItem="xMF-qp-S4O" firstAttribute="centerY" secondItem="sml-Ej-7cX" secondAttribute="centerY" id="ccU-QZ-lC9"/>
+                <constraint firstItem="sml-Ej-7cX" firstAttribute="top" secondItem="wDP-Ji-33y" secondAttribute="bottom" constant="20" id="h2U-1w-Ufm"/>
+                <constraint firstItem="Jmv-MI-nIq" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="32" id="j0Q-RD-Jd9"/>
+                <constraint firstItem="wDP-Ji-33y" firstAttribute="leading" secondItem="Y9n-tq-x89" secondAttribute="trailing" constant="12" id="nZh-Up-8pb"/>
+                <constraint firstItem="ccU-lX-QGE" firstAttribute="top" secondItem="gM7-v5-qmD" secondAttribute="bottom" constant="24" id="tN5-Kd-bW5"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="sml-Ej-7cX" secondAttribute="trailing" constant="40" id="vV7-qx-xSY"/>
+                <constraint firstItem="ccU-lX-QGE" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="40" id="y9f-3d-WHP"/>
+            </constraints>
+            <point key="canvasLocation" x="-34" y="21"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="1.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="2.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="mirrorScreeningIcon" width="295" height="276.33334350585938"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

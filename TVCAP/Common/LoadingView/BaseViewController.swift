@@ -29,6 +29,7 @@ class BaseViewController: UIViewController {
     
     // MARK: - Setup UI
     func setupUI() {
+        view.backgroundColor = UIColor(hexString: "#FDFCF6")
     }
     
     // MARK: - Navigation Bar

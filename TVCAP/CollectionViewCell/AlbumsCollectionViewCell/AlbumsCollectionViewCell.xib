@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="AlbumsCollectionViewCell" customModule="TVCAP" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="286" height="466"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="286" height="466"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZKn-bb-Sif">
+                        <rect key="frame" x="0.0" y="0.0" width="286" height="286"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="tr_cornerRadius">
+                                <real key="value" value="16"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recent" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WjV-z5-DWE">
+                        <rect key="frame" x="0.0" y="294" width="286" height="19.333333333333314"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                        <color key="textColor" red="0.094117647058823528" green="0.098039215686274508" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="489 Photos" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p7a-VK-XLk">
+                        <rect key="frame" x="0.0" y="317.33333333333331" width="286" height="14.333333333333314"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.29019607843137252" green="0.29803921568627451" blue="0.30196078431372547" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="p7a-VK-XLk" secondAttribute="trailing" id="2G5-7V-cCr"/>
+                <constraint firstItem="p7a-VK-XLk" firstAttribute="top" secondItem="WjV-z5-DWE" secondAttribute="bottom" constant="4" id="370-LB-e8y"/>
+                <constraint firstAttribute="trailing" secondItem="WjV-z5-DWE" secondAttribute="trailing" id="CQA-c8-ETZ"/>
+                <constraint firstItem="p7a-VK-XLk" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="IHs-6o-lXF"/>
+                <constraint firstItem="WjV-z5-DWE" firstAttribute="top" secondItem="ZKn-bb-Sif" secondAttribute="bottom" constant="8" id="ITk-lI-wVe"/>
+                <constraint firstAttribute="trailing" secondItem="ZKn-bb-Sif" secondAttribute="trailing" id="LOd-fj-mGR"/>
+                <constraint firstItem="ZKn-bb-Sif" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="RDh-tc-0F4"/>
+                <constraint firstItem="ZKn-bb-Sif" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="cft-wF-mMq"/>
+                <constraint firstItem="WjV-z5-DWE" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="n9E-X5-yGu"/>
+                <constraint firstItem="ZKn-bb-Sif" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="width" id="uej-oF-1a5"/>
+            </constraints>
+            <size key="customSize" width="286" height="466"/>
+            <connections>
+                <outlet property="imageAlbums" destination="ZKn-bb-Sif" id="L2l-em-SQD"/>
+                <outlet property="nameAlbums" destination="WjV-z5-DWE" id="Ls1-d7-4bg"/>
+                <outlet property="numberPhotos" destination="p7a-VK-XLk" id="2Ry-vx-Fmh"/>
+            </connections>
+            <point key="canvasLocation" x="143.5114503816794" y="166.90140845070422"/>
+        </collectionViewCell>
+    </objects>
+</document>

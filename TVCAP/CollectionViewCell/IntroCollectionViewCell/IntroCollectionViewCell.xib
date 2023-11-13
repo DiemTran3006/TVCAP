@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="IntroCollectionViewCell" customModule="TVCAP" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="347" height="722"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="347" height="722"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Let’s share your favorite moments to TV!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pHJ-Oa-wyh">
+                        <rect key="frame" x="36" y="685" width="275" height="17"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                        <color key="textColor" red="0.31372549019607843" green="0.34509803921568627" blue="0.45490196078431372" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" text="Mirror your screen to TV devices" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xo5-gq-Eux">
+                        <rect key="frame" x="36" y="607.66666666666663" width="275" height="57.333333333333371"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="24"/>
+                        <color key="textColor" red="0.2196078431372549" green="0.25490196078431371" blue="0.38039215686274508" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="intro1" translatesAutoresizingMaskIntoConstraints="NO" id="BoB-aa-sFB">
+                        <rect key="frame" x="0.0" y="0.0" width="347" height="597.66666666666663"/>
+                    </imageView>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="pHJ-Oa-wyh" secondAttribute="trailing" constant="36" id="1Vk-0K-1vr"/>
+                <constraint firstItem="BoB-aa-sFB" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="3Me-Zv-VQj"/>
+                <constraint firstItem="Xo5-gq-Eux" firstAttribute="top" secondItem="BoB-aa-sFB" secondAttribute="bottom" constant="10" id="4vb-y5-pSK"/>
+                <constraint firstAttribute="bottom" secondItem="pHJ-Oa-wyh" secondAttribute="bottom" constant="20" id="BE0-cY-9aC"/>
+                <constraint firstItem="BoB-aa-sFB" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="J5z-kl-jCQ"/>
+                <constraint firstAttribute="trailing" secondItem="BoB-aa-sFB" secondAttribute="trailing" id="L39-iO-s8m"/>
+                <constraint firstItem="pHJ-Oa-wyh" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="36" id="Q6Z-WQ-AON"/>
+                <constraint firstItem="pHJ-Oa-wyh" firstAttribute="top" secondItem="Xo5-gq-Eux" secondAttribute="bottom" constant="20" id="a8d-Nn-6fk"/>
+                <constraint firstItem="Xo5-gq-Eux" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="36" id="aZL-5Z-ZQw"/>
+                <constraint firstAttribute="trailing" secondItem="Xo5-gq-Eux" secondAttribute="trailing" constant="36" id="mYd-bI-kGJ"/>
+            </constraints>
+            <size key="customSize" width="347" height="722"/>
+            <connections>
+                <outlet property="imageIntro" destination="BoB-aa-sFB" id="hmJ-uG-R5Z"/>
+                <outlet property="subtitleIntro" destination="pHJ-Oa-wyh" id="XHO-es-PjK"/>
+                <outlet property="titleIntro" destination="Xo5-gq-Eux" id="CZa-iZ-kdC"/>
+            </connections>
+            <point key="canvasLocation" x="231.29770992366412" y="-34.507042253521128"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="intro1" width="375" height="556"/>
+    </resources>
+</document>

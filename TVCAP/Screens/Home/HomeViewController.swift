@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Photos
 
 class HomeViewController: BaseViewController {
     
@@ -14,7 +15,7 @@ class HomeViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.title = "Home"
         hideNavigationBar()
     }
     
@@ -33,11 +34,26 @@ class HomeViewController: BaseViewController {
     
     // MARK: - Action
     @IBAction func actionPushVideoLibrary(_ sender: Any) {
-        let vc = VideoLibraryViewController(nibName: "VideoLibraryViewController", bundle: nil)
-        self.navigationController?.pushViewController(vc , animated: true)
+        PHPhotoLibrary.requestAuthorization(for: .readWrite) { _ in
+            DispatchQueue.main.async {
+                let vc = VideoLibraryViewController(nibName: "VideoLibraryViewController", bundle: nil)
+                self.navigationController?.pushViewController(vc , animated: true)
+            }
+        }
+        
     }
     @IBAction func actionPushPhotoLibrary(_ sender: Any) {
-        
+        PHPhotoLibrary.requestAuthorization(for: .readWrite) { _ in
+            DispatchQueue.main.async {
+                let vc = PhotoViewController()
+                self.navigationController?.pushViewController(vc , animated: true)
+            }
+        }
+    }
+    
+    @IBAction func actionPushBrowser(_ sender: Any) {
+        let vc = BrowserViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func actionStartMirroring(_ sender: Any) {
