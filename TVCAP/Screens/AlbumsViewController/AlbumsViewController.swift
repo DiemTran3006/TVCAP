@@ -100,10 +100,6 @@ extension AlbumsViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(with: AlbumsCollectionViewCell.self, for: indexPath)!
         cell.nameAlbums.text = listAlbums[indexPath.row].name
         cell.numberPhotos.text = "\(listAlbums[indexPath.row].count) photos"
-<<<<<<< HEAD
-=======
-
->>>>>>> origin
         cell.imageAlbums.addTapGesture { [weak self] in
             
             guard let self = self else { return }
@@ -111,14 +107,8 @@ extension AlbumsViewController: UICollectionViewDataSource {
             cancelTapped()
         }
         if let firstObject = listAlbums[indexPath.row].photoAssets.firstObject {
-<<<<<<< HEAD
-            cell.imageAlbums.fetchImage(asset: firstObject, contentMode: .aspectFill, targetSize: cell.imageAlbums.frame.size)
-        }
-        
-=======
               cell.imageAlbums.fetchImage(asset: firstObject, contentMode: .aspectFill, targetSize: cell.imageAlbums.frame.size)
             }
->>>>>>> origin
         return cell
     }
 }
