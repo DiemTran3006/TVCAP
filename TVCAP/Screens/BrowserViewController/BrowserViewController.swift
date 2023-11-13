@@ -9,6 +9,8 @@ import UIKit
 import WebKit
 
 class BrowserViewController: UIViewController {
+    @IBOutlet weak var moreButton: UIButton!
+    @IBOutlet weak var emptyHistory: UIView!
     @IBOutlet weak var buttonPrev: UIImageView! {
         didSet {
             buttonPrev.addTapGesture {
@@ -103,6 +105,14 @@ class BrowserViewController: UIViewController {
     
     private var textSearch = ""
     
+    private var listHistory: [HistoryBrowserModel] = [] {
+        didSet {
+            self.emptyHistory.isHidden = !listHistory.isEmpty
+            self.moreButton.isHidden = listHistory.count <= 5
+            recentsTableView.reloadData()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Browser"
@@ -116,6 +126,13 @@ class BrowserViewController: UIViewController {
 //        hideKeyboardWhenTappedAround()
         
         keyboardNotifier = KeyboardNotifier(parentView: view, constraint: bottomConstraint)
+        
+        let defaults = UserDefaults.standard
+        if let data = defaults.data(forKey: "SavedHistoryArray") {
+            self.listHistory = try! PropertyListDecoder().decode([HistoryBrowserModel].self, from: data)
+        } else {
+            self.listHistory = []
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -185,7 +202,7 @@ class BrowserViewController: UIViewController {
 extension BrowserViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == recentsTableView {
-            return 4
+            return min(5, listHistory.count)
         } else {
             return listHintSearch.count
         }
@@ -194,6 +211,7 @@ extension BrowserViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == recentsTableView {
             let cell = tableView.dequeueReusableCell(with: BrowserTableViewCell.self, for: indexPath)!
+            cell.configure(historyModel: listHistory[indexPath.row])
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(with: HistorySearchTableViewCell.self, for: indexPath)!
@@ -327,6 +345,27 @@ extension BrowserViewController: WKNavigationDelegate {
         searchBar.text = webView.url?.absoluteString
         let newPosition = searchBar.searchTextField.beginningOfDocument
         searchBar.searchTextField.selectedTextRange = searchBar.searchTextField.textRange(from: newPosition, to: newPosition)
+        
+        if webView.url?.absoluteString == "about:blank" { return }
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
+        let historyBrowser = HistoryBrowserModel(url: webView.url?.absoluteString ?? "", dateTime: dateFormatter.string(from: Date()))
+        let defaults = UserDefaults.standard
+        if let data = defaults.data(forKey: "SavedHistoryArray") {
+            var array = try! PropertyListDecoder().decode([HistoryBrowserModel].self, from: data)
+            array.append(historyBrowser)
+            self.listHistory.append(historyBrowser)
+            if let data = try? PropertyListEncoder().encode(array) {
+                UserDefaults.standard.set(data, forKey: "SavedHistoryArray")
+            }
+        } else {
+            var array: [HistoryBrowserModel] = []
+            array.append(historyBrowser)
+            self.listHistory.append(historyBrowser)
+            if let data = try? PropertyListEncoder().encode(array) {
+                UserDefaults.standard.set(data, forKey: "SavedHistoryArray")
+            }
+        }
     }
 }
 

@@ -9,6 +9,10 @@ import UIKit
 
 class BrowserTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var faviconImage: UIImageView!
+    @IBOutlet weak var titleURL: UILabel!
+    @IBOutlet weak var urlString: UILabel!
+    @IBOutlet weak var time: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -19,5 +23,9 @@ class BrowserTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
+    func configure(historyModel: HistoryBrowserModel) {
+        self.faviconImage.image = UIImage(data: historyModel.favicon)
+        self.titleURL.text = historyModel.title
+        self.urlString.text = historyModel.url
+    }
 }

@@ -66,6 +66,12 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="faviconImage" destination="LEo-0E-qRz" id="nul-be-b6m"/>
+                <outlet property="time" destination="Lwh-k6-afX" id="YyD-ak-TKo"/>
+                <outlet property="titleURL" destination="5Gi-3I-Ci7" id="Syz-vJ-tjF"/>
+                <outlet property="urlString" destination="xxY-wK-AOC" id="og6-Fk-MpS"/>
+            </connections>
             <point key="canvasLocation" x="180.91603053435114" y="24.647887323943664"/>
         </tableViewCell>
     </objects>

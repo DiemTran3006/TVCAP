@@ -16,7 +16,9 @@
                 <outlet property="buttonNext" destination="wid-30-dXB" id="77a-Ga-xJF"/>
                 <outlet property="buttonPrev" destination="f6V-yY-XYC" id="Iie-zP-WCN"/>
                 <outlet property="buttonReload" destination="j04-1m-4eh" id="9L7-dD-L6G"/>
+                <outlet property="emptyHistory" destination="AhY-Gp-KEw" id="JaY-f8-dif"/>
                 <outlet property="historySearchTableView" destination="jue-1L-gJl" id="Tv2-ta-mUD"/>
+                <outlet property="moreButton" destination="bYE-am-1QH" id="PiP-qP-RJp"/>
                 <outlet property="recentsTableView" destination="8JJ-ZH-dtJ" id="Aae-Wh-YUT"/>
                 <outlet property="searchBar" destination="lqm-hx-kEk" id="Gxc-3V-5s8"/>
                 <outlet property="socialCollectionView" destination="zoL-Fy-ghU" id="fF7-WB-Uxe"/>
