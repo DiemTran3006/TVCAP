@@ -15,10 +15,15 @@ class HomeViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Home"
-        hideNavigationBar()
+        title = "Home" 
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = true
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = false
+    }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
@@ -61,7 +66,7 @@ class HomeViewController: BaseViewController {
         vc.modalPresentationStyle = .overFullScreen
         self.present(vc, animated: true, completion: nil)
     }
-
+    
     @IBAction func actionPushAriplay(_ sender: Any) {
         let vc = ConnectViewController(nibName: "ConnectViewController", bundle: nil)
         vc.modalPresentationStyle = .overFullScreen
@@ -85,3 +90,4 @@ class HomeViewController: BaseViewController {
     }
     
 }
+

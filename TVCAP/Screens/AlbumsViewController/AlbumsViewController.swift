@@ -45,7 +45,7 @@ class AlbumsViewController: UIViewController {
         let options = PHFetchOptions()
         let recentObj = PHAssetCollection.fetchAssetCollections(with: .smartAlbum, subtype: .any, options: options).firstObject
         if let recentObj = recentObj {
-            let recentAlbum = AlbumModel(name: recentObj.localizedTitle ?? "Recents", count: recentObj.photosCount, photoAssets: PHAsset.fetchAssets(in: recentObj, options: nil))
+            let recentAlbum = AlbumModel(name: recentObj.localizedTitle ?? "Recents", count: recentObj.videoCount, photoAssets: PHAsset.fetchAssets(in: recentObj, options: nil))
             if recentAlbum.count != 0 {
                 listAlbums.append(recentAlbum)
             }
@@ -60,7 +60,10 @@ class AlbumsViewController: UIViewController {
                 fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
                 fetchOptions.predicate = NSPredicate(format: "mediaType = %d", PHAssetMediaType.image.rawValue)
                 let newAlbum = AlbumModel(name: obj.localizedTitle!, count: obj.estimatedAssetCount, photoAssets:PHAsset.fetchAssets(in: obj, options: nil))
-                listAlbums.append(newAlbum)
+                if newAlbum.count != 0 {
+                          listAlbums.append(newAlbum)
+                        }
+                
             }
         }
         
@@ -97,13 +100,16 @@ extension AlbumsViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(with: AlbumsCollectionViewCell.self, for: indexPath)!
         cell.nameAlbums.text = listAlbums[indexPath.row].name
         cell.numberPhotos.text = "\(listAlbums[indexPath.row].count) photos"
-        cell.imageAlbums.fetchImage(asset: listAlbums[indexPath.row].photoAssets.firstObject!, contentMode: .aspectFill, targetSize: cell.imageAlbums.frame.size)
+
         cell.imageAlbums.addTapGesture { [weak self] in
             
             guard let self = self else { return }
             self.photoDelegate?.selectedAlbums(title: listAlbums[indexPath.row].name, photoAssets: listAlbums[indexPath.row].photoAssets)
             cancelTapped()
         }
+        if let firstObject = listAlbums[indexPath.row].photoAssets.firstObject {
+              cell.imageAlbums.fetchImage(asset: firstObject, contentMode: .aspectFill, targetSize: cell.imageAlbums.frame.size)
+            }
         return cell
     }
 }

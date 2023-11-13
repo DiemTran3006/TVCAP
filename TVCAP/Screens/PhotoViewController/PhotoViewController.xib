@@ -77,9 +77,9 @@
                 <constraint firstItem="FUr-8h-t6R" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="GN8-2B-uOc"/>
                 <constraint firstItem="FUr-8h-t6R" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Lb9-hS-Sf1"/>
                 <constraint firstItem="R0a-Pj-cXy" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="RCf-8I-keL"/>
-                <constraint firstItem="FUr-8h-t6R" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Tp3-Dd-PS3"/>
                 <constraint firstItem="JQx-zU-TkB" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="c1O-JZ-PEL"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="FUr-8h-t6R" secondAttribute="bottom" id="dX7-Hn-zhO"/>
+                <constraint firstItem="FUr-8h-t6R" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="dk2-kZ-uu5"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="R0a-Pj-cXy" secondAttribute="bottom" id="geP-0U-XMd"/>
                 <constraint firstItem="JQx-zU-TkB" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="sPC-c9-MV0"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="R0a-Pj-cXy" secondAttribute="trailing" id="zzV-ya-Tld"/>
