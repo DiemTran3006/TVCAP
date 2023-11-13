@@ -11,6 +11,7 @@ class VideoLibraryCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var imageView: UIImageView!
     
+    @IBOutlet weak var timeLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -19,44 +20,15 @@ class VideoLibraryCollectionViewCell: UICollectionViewCell {
         imageView.layer.cornerRadius = 16
     }
     // MARK: - Function
-        func configCell(modol: VideoModel) {
-            if let image = modol.thumbnailImage {
-                imageView.image = image.imageResized(to: .init(width: 200, height: 200))
-            }
+    func configCell(modol: VideoModel) {
+        if let image = modol.thumbnailImage {
+            imageView.image = image.croppedImage(inRect: .init(x: 0, y: 0, width: 400, height: 400))
             print(modol.asset?.duration ?? 0)
         }
-        
-        func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage? {
-            let size = image.size
-            
-            let widthRatio  = targetSize.width  / size.width
-            let heightRatio = targetSize.height / size.height
-            
-            // Figure out what our orientation is, and use that to form the rectangle
-            var newSize: CGSize
-            if(widthRatio > heightRatio) {
-                newSize = CGSize(width: size.width * heightRatio, height: size.height * heightRatio)
-            } else {
-                newSize = CGSize(width: size.width * widthRatio, height: size.height * widthRatio)
-            }
-            
-            // This is the rect that we've calculated out and this is what is actually used below
-            let rect = CGRect(origin: .zero, size: newSize)
-            
-            // Actually do the resizing to the rect using the ImageContext stuff
-            UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
-            image.draw(in: rect)
-            let newImage = UIGraphicsGetImageFromCurrentImageContext()
-            UIGraphicsEndImageContext()
-            
-            return newImage
-        }
-    }
+        let time = modol.asset?.duration ?? 0
+        timeLabel.text = time.asString(style: .short)
 
-    extension UIImage {
-        func imageResized(to size: CGSize) -> UIImage {
-            return UIGraphicsImageRenderer(size: size).image { _ in
-                draw(in: CGRect(origin: .zero, size: size))
-            }
-        }
     }
+    
+}
+

@@ -43,10 +43,6 @@
 		6F4D01E52AFA1B0D00EC292F /* SettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F4D01E32AFA1B0D00EC292F /* SettingTableViewCell.xib */; };
 		6F51C53D2AFC803B0032A696 /* VideoLibraryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F51C53B2AFC803B0032A696 /* VideoLibraryCollectionViewCell.swift */; };
 		6F51C53E2AFC803B0032A696 /* VideoLibraryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F51C53C2AFC803B0032A696 /* VideoLibraryCollectionViewCell.xib */; };
-		6F51C5422AFCD2230032A696 /* VideoCastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F51C5402AFCD2230032A696 /* VideoCastViewController.swift */; };
-		6F51C5432AFCD2230032A696 /* VideoCastViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F51C5412AFCD2230032A696 /* VideoCastViewController.xib */; };
-		6F51C5472AFCDAB00032A696 /* VideoCastCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F51C5452AFCDAB00032A696 /* VideoCastCollectionViewCell.swift */; };
-		6F51C5482AFCDAB00032A696 /* VideoCastCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F51C5462AFCDAB00032A696 /* VideoCastCollectionViewCell.xib */; };
 		6F553BB02AFB7577004F67FF /* Inter-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6F553BA72AFB7573004F67FF /* Inter-Black.ttf */; };
 		6F553BB12AFB7577004F67FF /* Inter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6F553BA82AFB7573004F67FF /* Inter-Bold.ttf */; };
 		6F553BB22AFB7577004F67FF /* Inter-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6F553BA92AFB7574004F67FF /* Inter-ExtraLight.ttf */; };
@@ -60,6 +56,7 @@
 		6F553BC32AFB9ADB004F67FF /* ErrorMirroringViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F553BC12AFB9ADB004F67FF /* ErrorMirroringViewController.xib */; };
 		6F553BC62AFBDFFC004F67FF /* PhotoPickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F553BC52AFBDFFC004F67FF /* PhotoPickerManager.swift */; };
 		6F553BCA2AFBE02E004F67FF /* AirplayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F553BC92AFBE02E004F67FF /* AirplayManager.swift */; };
+		6F68657B2B0126EC004535DB /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F68657A2B0126EC004535DB /* UIImage+Extension.swift */; };
 		6F91D17C2AFA28AA00C115A0 /* ConnectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F91D17A2AFA28AA00C115A0 /* ConnectViewController.swift */; };
 		6F91D17D2AFA28AA00C115A0 /* ConnectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F91D17B2AFA28AA00C115A0 /* ConnectViewController.xib */; };
 		6F91D1822AFA2AA700C115A0 /* AppConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F91D1812AFA2AA700C115A0 /* AppConstant.swift */; };
@@ -118,10 +115,6 @@
 		6F4D01E32AFA1B0D00EC292F /* SettingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingTableViewCell.xib; sourceTree = "<group>"; };
 		6F51C53B2AFC803B0032A696 /* VideoLibraryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoLibraryCollectionViewCell.swift; sourceTree = "<group>"; };
 		6F51C53C2AFC803B0032A696 /* VideoLibraryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoLibraryCollectionViewCell.xib; sourceTree = "<group>"; };
-		6F51C5402AFCD2230032A696 /* VideoCastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCastViewController.swift; sourceTree = "<group>"; };
-		6F51C5412AFCD2230032A696 /* VideoCastViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoCastViewController.xib; sourceTree = "<group>"; };
-		6F51C5452AFCDAB00032A696 /* VideoCastCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCastCollectionViewCell.swift; sourceTree = "<group>"; };
-		6F51C5462AFCDAB00032A696 /* VideoCastCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoCastCollectionViewCell.xib; sourceTree = "<group>"; };
 		6F553BA72AFB7573004F67FF /* Inter-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Black.ttf"; sourceTree = "<group>"; };
 		6F553BA82AFB7573004F67FF /* Inter-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Bold.ttf"; sourceTree = "<group>"; };
 		6F553BA92AFB7574004F67FF /* Inter-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-ExtraLight.ttf"; sourceTree = "<group>"; };
@@ -135,6 +128,7 @@
 		6F553BC12AFB9ADB004F67FF /* ErrorMirroringViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ErrorMirroringViewController.xib; sourceTree = "<group>"; };
 		6F553BC52AFBDFFC004F67FF /* PhotoPickerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPickerManager.swift; sourceTree = "<group>"; };
 		6F553BC92AFBE02E004F67FF /* AirplayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirplayManager.swift; sourceTree = "<group>"; };
+		6F68657A2B0126EC004535DB /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		6F91D17A2AFA28AA00C115A0 /* ConnectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectViewController.swift; sourceTree = "<group>"; };
 		6F91D17B2AFA28AA00C115A0 /* ConnectViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConnectViewController.xib; sourceTree = "<group>"; };
 		6F91D1812AFA2AA700C115A0 /* AppConstant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConstant.swift; sourceTree = "<group>"; };
@@ -241,6 +235,7 @@
 				6F00FE8A2AF8BF0F000E1850 /* UIViewController+Extension.swift */,
 				6F00FE912AF8BF0F000E1850 /* ViewProtocol+Extension.swift */,
 				6F00FEC92AF93DB4000E1850 /* CAGradientLayer+Extension.swift */,
+				6F68657A2B0126EC004535DB /* UIImage+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -322,25 +317,6 @@
 			children = (
 				6F51C53B2AFC803B0032A696 /* VideoLibraryCollectionViewCell.swift */,
 				6F51C53C2AFC803B0032A696 /* VideoLibraryCollectionViewCell.xib */,
-			);
-			path = Cell;
-			sourceTree = "<group>";
-		};
-		6F51C53F2AFCD1F20032A696 /* VideoCast */ = {
-			isa = PBXGroup;
-			children = (
-				6F51C5442AFCDA810032A696 /* Cell */,
-				6F51C5402AFCD2230032A696 /* VideoCastViewController.swift */,
-				6F51C5412AFCD2230032A696 /* VideoCastViewController.xib */,
-			);
-			path = VideoCast;
-			sourceTree = "<group>";
-		};
-		6F51C5442AFCDA810032A696 /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				6F51C5452AFCDAB00032A696 /* VideoCastCollectionViewCell.swift */,
-				6F51C5462AFCDAB00032A696 /* VideoCastCollectionViewCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -464,7 +440,6 @@
 		6F9B1C682AFB433700DF584C /* VideoLibrary */ = {
 			isa = PBXGroup;
 			children = (
-				6F51C53F2AFCD1F20032A696 /* VideoCast */,
 				6F51C53A2AFC80220032A696 /* Cell */,
 				6F9B1C692AFB43D100DF584C /* VideoLibraryViewController.swift */,
 				6F9B1C6A2AFB43D100DF584C /* VideoLibraryViewController.xib */,
@@ -544,13 +519,11 @@
 				6F51C53E2AFC803B0032A696 /* VideoLibraryCollectionViewCell.xib in Resources */,
 				6F00FE7E2AF8BE9F000E1850 /* LaunchScreen.storyboard in Resources */,
 				6F553BB82AFB7577004F67FF /* Inter-SemiBold.ttf in Resources */,
-				6F51C5432AFCD2230032A696 /* VideoCastViewController.xib in Resources */,
 				6F9B1C6C2AFB43D100DF584C /* VideoLibraryViewController.xib in Resources */,
 				6F00FE7B2AF8BE9F000E1850 /* Assets.xcassets in Resources */,
 				6F553BB32AFB7577004F67FF /* Inter-Medium.ttf in Resources */,
 				6F553BB62AFB7577004F67FF /* Inter-Light.ttf in Resources */,
 				6F00FECE2AF9485A000E1850 /* TutorialViewController.xib in Resources */,
-				6F51C5482AFCDAB00032A696 /* VideoCastCollectionViewCell.xib in Resources */,
 				6F553BB02AFB7577004F67FF /* Inter-Black.ttf in Resources */,
 				6F91D1992AFA3B2B00C115A0 /* MirroringTutorialViewController.xib in Resources */,
 				6F4D01E52AFA1B0D00EC292F /* SettingTableViewCell.xib in Resources */,
@@ -631,12 +604,11 @@
 				6F553BC62AFBDFFC004F67FF /* PhotoPickerManager.swift in Sources */,
 				6F91D1982AFA3B2B00C115A0 /* MirroringTutorialViewController.swift in Sources */,
 				6F00FE9E2AF8BF0F000E1850 /* Int+Extension.swift in Sources */,
-				6F51C5472AFCDAB00032A696 /* VideoCastCollectionViewCell.swift in Sources */,
 				6F553BCA2AFBE02E004F67FF /* AirplayManager.swift in Sources */,
 				6F91D1922AFA2ABE00C115A0 /* ConfigurationBase.swift in Sources */,
-				6F51C5422AFCD2230032A696 /* VideoCastViewController.swift in Sources */,
 				6F00FE9A2AF8BF0F000E1850 /* UITableView+Extension.swift in Sources */,
 				6F00FECA2AF93DB4000E1850 /* CAGradientLayer+Extension.swift in Sources */,
+				6F68657B2B0126EC004535DB /* UIImage+Extension.swift in Sources */,
 				6F9B1C6B2AFB43D100DF584C /* VideoLibraryViewController.swift in Sources */,
 				6F00FE982AF8BF0F000E1850 /* UIViewController+Extension.swift in Sources */,
 				6F00FE962AF8BF0F000E1850 /* UITextView+Extension.swift in Sources */,
