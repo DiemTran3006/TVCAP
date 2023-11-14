@@ -7,6 +7,7 @@
 
 import UIKit
 import WebKit
+import RealmSwift
 
 class BrowserViewController: UIViewController {
     @IBOutlet weak var moreButton: UIButton!
@@ -109,7 +110,6 @@ class BrowserViewController: UIViewController {
         didSet {
             self.emptyHistory.isHidden = !listHistory.isEmpty
             self.moreButton.isHidden = listHistory.count <= 5
-            recentsTableView.reloadData()
         }
     }
     
@@ -126,13 +126,10 @@ class BrowserViewController: UIViewController {
 //        hideKeyboardWhenTappedAround()
         
         keyboardNotifier = KeyboardNotifier(parentView: view, constraint: bottomConstraint)
-        
-        let defaults = UserDefaults.standard
-        if let data = defaults.data(forKey: "SavedHistoryArray") {
-            self.listHistory = try! PropertyListDecoder().decode([HistoryBrowserModel].self, from: data)
-        } else {
-            self.listHistory = []
-        }
+        let realm = try! Realm()
+        let results = realm.objects(HistoryBrowserModel.self).toArray(ofType: HistoryBrowserModel.self)
+        listHistory = results
+        recentsTableView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -159,7 +156,6 @@ class BrowserViewController: UIViewController {
     
     @objc func airplayTapped() {
         print("Air play")
-        self.navigationController?.pushViewController(PhotoViewController(), animated: true)
     }
     
     func verifyUrl (urlString: String?) -> Bool {
@@ -242,6 +238,9 @@ extension BrowserViewController: UITableViewDelegate {
         if tableView == recentsTableView {
             let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (_, _, completionHandler) in
                 // delete the item here
+                self.listHistory[indexPath.row].toggleRealm()
+                self.listHistory.remove(at: indexPath.row)
+                self.recentsTableView.deleteRows(at: [indexPath], with: .automatic)
                 completionHandler(true)
             }
             deleteAction.image = UIImage(named: "trashIcon")?.withTintColor(.white)
@@ -350,22 +349,9 @@ extension BrowserViewController: WKNavigationDelegate {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
         let historyBrowser = HistoryBrowserModel(url: webView.url?.absoluteString ?? "", dateTime: dateFormatter.string(from: Date()))
-        let defaults = UserDefaults.standard
-        if let data = defaults.data(forKey: "SavedHistoryArray") {
-            var array = try! PropertyListDecoder().decode([HistoryBrowserModel].self, from: data)
-            array.append(historyBrowser)
-            self.listHistory.append(historyBrowser)
-            if let data = try? PropertyListEncoder().encode(array) {
-                UserDefaults.standard.set(data, forKey: "SavedHistoryArray")
-            }
-        } else {
-            var array: [HistoryBrowserModel] = []
-            array.append(historyBrowser)
-            self.listHistory.append(historyBrowser)
-            if let data = try? PropertyListEncoder().encode(array) {
-                UserDefaults.standard.set(data, forKey: "SavedHistoryArray")
-            }
-        }
+        historyBrowser.toggleRealm()
+        listHistory.append(historyBrowser)
+        recentsTableView.reloadData()
     }
 }
 

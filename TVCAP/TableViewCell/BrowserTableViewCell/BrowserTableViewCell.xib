@@ -24,13 +24,13 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How to use photo capture.." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Gi-3I-Ci7">
-                        <rect key="frame" x="44" y="11" width="259" height="17"/>
+                        <rect key="frame" x="44" y="8" width="259" height="17"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                         <color key="textColor" red="0.2196078431372549" green="0.25490196078431371" blue="0.38039215686274508" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="https://uiplace.com/ui-school/top-20-soci..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xxY-wK-AOC">
-                        <rect key="frame" x="44" y="28" width="259" height="12"/>
+                        <rect key="frame" x="44" y="25" width="259" height="12"/>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <color key="textColor" red="0.46666666666666667" green="0.49019607843137253" blue="0.56862745098039214" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -52,7 +52,7 @@
                 <constraints>
                     <constraint firstItem="xxY-wK-AOC" firstAttribute="top" secondItem="5Gi-3I-Ci7" secondAttribute="bottom" id="5LH-UN-zX9"/>
                     <constraint firstItem="Ddr-8D-0QO" firstAttribute="leading" secondItem="5Gi-3I-Ci7" secondAttribute="leading" id="8fJ-eo-hA1"/>
-                    <constraint firstItem="5Gi-3I-Ci7" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="9Cs-vQ-q85"/>
+                    <constraint firstItem="5Gi-3I-Ci7" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="9Cs-vQ-q85"/>
                     <constraint firstAttribute="bottom" secondItem="Ddr-8D-0QO" secondAttribute="bottom" id="DQl-vr-yxi"/>
                     <constraint firstItem="LEo-0E-qRz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="JLw-Qo-D52"/>
                     <constraint firstItem="LEo-0E-qRz" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="OXV-P8-jUD"/>

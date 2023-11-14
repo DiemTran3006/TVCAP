@@ -7,22 +7,30 @@
 
 import Foundation
 import UIKit
+import RealmSwift
 
-struct HistoryBrowserModel: Codable {
-    let favicon: Data
-    let title: String
-    let url: String
-    let dateTime: String
+class HistoryBrowserModel: Object {
+    @Persisted var id: String
+    @Persisted var favicon: Data
+    @Persisted var title: String
+    @Persisted var url: String
+    @Persisted var dateTime: String
+
+    override class func primaryKey() -> String? {
+        return "id"
+    }
     
-    init(url: String, dateTime: String) {
+    convenience init(url: String, dateTime: String) {
+        self.init()
+        self.id = UUID().uuidString
         self.url = url
         self.dateTime = dateTime
-        
-        let URLFavicon = URL(string: FavIcon(url)[.s])!
+
+        let URLFavicon = URL(string: FavIcon(url)[.m])!
         let data = try? Data(contentsOf: URLFavicon)
-        
+
         self.favicon = data!
-        
+
         let URL = URL(string: url)!
         if let content = try? String(contentsOf: URL, encoding: .utf8) {
             if let range = content.range(of: "<title>.*?</title>", options: .regularExpression, range: nil, locale: nil) {
@@ -34,6 +42,30 @@ struct HistoryBrowserModel: Codable {
             }
         } else {
             self.title = ""
+        }
+    }
+    
+    func isExistRealm() -> Bool {
+        let realm = try! Realm()
+        let results = realm.objects(Self.self).filter(NSPredicate(format: "id == %@", self.id))
+        if results.isEmpty {
+            return false
+        }
+        return true
+    }
+    
+    func toggleRealm() {
+        if self.isExistRealm() {
+            let realm = try! Realm()
+            let results = realm.objects(Self.self).filter(NSPredicate(format: "id == %@", self.id))
+            try! realm.write {
+                realm.delete(results)
+            }
+        } else {
+            let realm = try! Realm()
+            try! realm.write {
+                realm.add(self)
+            }
         }
     }
 }

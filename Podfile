@@ -15,6 +15,7 @@ target 'TVCAP' do
   pod 'FirebaseFirestore'
   pod 'Firebase/Storage'
   pod 'FirebaseAuth'
+  pod 'RealmSwift'
 
 end
 
