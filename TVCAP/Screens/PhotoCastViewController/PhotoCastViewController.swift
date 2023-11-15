@@ -10,7 +10,7 @@ import Photos
 
 class PhotoCastViewController: UIViewController {
     
-    @IBOutlet weak var stopCastView: StopCastView!
+    @IBOutlet weak var modalBottomView: ModalBottomView!
     @IBOutlet weak var photoCollectionView: UICollectionView!
     @IBOutlet weak var currentImage: UIImageView!
     @IBOutlet weak var overlayBackground: UIView!
@@ -43,7 +43,7 @@ class PhotoCastViewController: UIViewController {
         self.navigationController?.navigationBar.tintColor = UIColor(hexString: "#384161")
         
         setupCollectionView()
-        setupStopCastView()
+        setupModalBottomView()
         guard let asset = self.currentAsset else { return }
         self.currentImage.fetchImage(asset: asset, contentMode: .aspectFit, targetSize: self.currentImage.frame.size)
     }
@@ -73,10 +73,10 @@ class PhotoCastViewController: UIViewController {
         self.currentAsset = asset
     }
     
-    private func setupStopCastView() {
-        stopCastView.layer.cornerRadius = 24
-        stopCastView.layer.masksToBounds = true
-        stopCastView.delegate = self
+    private func setupModalBottomView() {
+        modalBottomView.layer.cornerRadius = 24
+        modalBottomView.layer.masksToBounds = true
+        modalBottomView.delegate = self
     }
     
     private func setupCollectionView() {
@@ -120,8 +120,8 @@ extension PhotoCastViewController: UICollectionViewDataSource {
     }
 }
 
-extension PhotoCastViewController: StopCastDelegate {
-    func handleStopCast() {
+extension PhotoCastViewController: ModalBottomDelegate {
+    func handleAccept() {
         self.navigationController?.popViewController(animated: true)
     }
     

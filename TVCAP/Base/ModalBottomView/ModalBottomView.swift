@@ -1,5 +1,5 @@
 //
-//  StopCastView.swift
+//  ModalBottomView.swift
 //  TVCAP
 //
 //  Created by Bui Trung Quan on 07/11/2023.
@@ -7,18 +7,18 @@
 
 import UIKit
 
-protocol StopCastDelegate: AnyObject {
-    func handleStopCast()
+protocol ModalBottomDelegate: AnyObject {
+    func handleAccept()
     func handleCancel()
 }
 
-class StopCastView: UIView {
+class ModalBottomView: UIView {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var buttonAccept: UIButton!
     
-    private let nibName = "StopCastView"
-    public weak var delegate: StopCastDelegate?
+    private let nibName = "ModalBottomView"
+    public weak var delegate: ModalBottomDelegate?
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -47,10 +47,10 @@ class StopCastView: UIView {
         self.buttonAccept.setTitle(buttonAccept, for: .normal)
     }
     
-    @IBAction func handleStopCast(_ sender: Any) {
-        self.delegate?.handleStopCast()
+    @IBAction func handleAccept(_ sender: Any) {
+        self.delegate?.handleAccept()
     }
-    @IBAction func handleCancelCast(_ sender: Any) {
+    @IBAction func handleCancel(_ sender: Any) {
         self.delegate?.handleCancel()
     }
 }

@@ -12,9 +12,9 @@
             <connections>
                 <outlet property="constraint" destination="ybO-yX-7Wt" id="hXz-un-3uC"/>
                 <outlet property="currentImage" destination="2Kw-Gw-cZc" id="50W-rZ-pzA"/>
+                <outlet property="modalBottomView" destination="Ire-EL-tSb" id="xTf-ro-nXx"/>
                 <outlet property="overlayBackground" destination="BQl-5S-dSO" id="xXj-rC-ljd"/>
                 <outlet property="photoCollectionView" destination="9I8-Ba-ekI" id="4jC-p7-uld"/>
-                <outlet property="stopCastView" destination="Ire-EL-tSb" id="xTf-ro-nXx"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -43,7 +43,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ire-EL-tSb" customClass="StopCastView" customModule="TVCAP" customModuleProvider="target">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ire-EL-tSb" customClass="ModalBottomView" customModule="TVCAP" customModuleProvider="target">
                     <rect key="frame" x="20" y="892" width="353" height="240"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>

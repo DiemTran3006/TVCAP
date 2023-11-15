@@ -14,7 +14,7 @@ protocol MoreRecentsDelegate: AnyObject {
 }
 
 class MoreRecentsViewController: UIViewController {
-    @IBOutlet weak var stopCastView: StopCastView!
+    @IBOutlet weak var modalBottomView: ModalBottomView!
     @IBOutlet weak var moreRecentTableView: UITableView!
     @IBOutlet weak var overlayBackground: UIView!
     @IBOutlet weak var constraint: NSLayoutConstraint!
@@ -59,15 +59,15 @@ class MoreRecentsViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = cancelButton
         
         setupTableView()
-        setupStopCastView()
+        setupModalBottomView()
         fetchHistoryRealm()
     }
     
-    private func setupStopCastView() {
-        stopCastView.layer.cornerRadius = 24
-        stopCastView.layer.masksToBounds = true
-        stopCastView.delegate = self
-        stopCastView.configure(title: "Clear Recent", subtitle: "Are you sure to clear all the recent site?", buttonAccept: "Clear all")
+    private func setupModalBottomView() {
+        modalBottomView.layer.cornerRadius = 24
+        modalBottomView.layer.masksToBounds = true
+        modalBottomView.delegate = self
+        modalBottomView.configure(title: "Clear Recent", subtitle: "Are you sure to clear all the recent site?", buttonAccept: "Clear all")
     }
     
     private func fetchHistoryRealm() {
@@ -157,8 +157,8 @@ extension MoreRecentsViewController: UITableViewDataSource {
     }
 }
 
-extension MoreRecentsViewController: StopCastDelegate {
-    func handleStopCast() {
+extension MoreRecentsViewController: ModalBottomDelegate {
+    func handleAccept() {
         self.moreRecentsDelegate?.onClearAll()
         self.navigationController?.dismiss(animated: true)
     }

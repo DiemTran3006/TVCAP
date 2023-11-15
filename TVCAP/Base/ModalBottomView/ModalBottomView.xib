@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StopCastView" customModule="TVCAP" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ModalBottomView" customModule="TVCAP" customModuleProvider="target">
             <connections>
                 <outlet property="buttonAccept" destination="slx-o1-cgZ" id="SkI-fn-x0L"/>
                 <outlet property="subtitleLabel" destination="sDR-jf-Ju9" id="VBh-ha-TIs"/>
@@ -47,7 +47,7 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
-                        <action selector="handleStopCast:" destination="-1" eventType="touchUpInside" id="BOr-j9-Deu"/>
+                        <action selector="handleAccept:" destination="-1" eventType="touchUpInside" id="BOr-j9-Deu"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eHY-gl-g8l">
@@ -66,7 +66,7 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
-                        <action selector="handleCancelCast:" destination="-1" eventType="touchUpInside" id="hlh-nw-QeA"/>
+                        <action selector="handleCancel:" destination="-1" eventType="touchUpInside" id="KzR-qL-PQ6"/>
                     </connections>
                 </button>
             </subviews>

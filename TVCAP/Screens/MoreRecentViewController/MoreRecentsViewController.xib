@@ -11,9 +11,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MoreRecentsViewController" customModule="TVCAP" customModuleProvider="target">
             <connections>
                 <outlet property="constraint" destination="CP3-47-NoP" id="wDT-bc-lwH"/>
+                <outlet property="modalBottomView" destination="aOm-oM-RcJ" id="93t-nv-BbE"/>
                 <outlet property="moreRecentTableView" destination="IYQ-PD-APz" id="xqP-oj-Lvn"/>
                 <outlet property="overlayBackground" destination="f0I-5a-BTK" id="rNf-rd-LRW"/>
-                <outlet property="stopCastView" destination="aOm-oM-RcJ" id="93t-nv-BbE"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -31,7 +31,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aOm-oM-RcJ" customClass="StopCastView" customModule="TVCAP" customModuleProvider="target">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aOm-oM-RcJ" customClass="ModalBottomView" customModule="TVCAP" customModuleProvider="target">
                     <rect key="frame" x="20" y="892" width="353" height="240"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>

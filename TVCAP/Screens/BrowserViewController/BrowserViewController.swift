@@ -428,10 +428,10 @@ extension BrowserViewController: WKNavigationDelegate {
 
 extension BrowserViewController: MoreRecentsDelegate {
     func onClearAll() {
-//        guard let realm = try? Realm() else { return }
-//        try? realm.write {
-//            realm.delete(self.listHistory)
-//        }
+        guard let realm = try? Realm() else { return }
+        try? realm.write {
+            realm.delete(self.listHistory)
+        }
         self.listHistory = []
         self.recentsTableView.reloadData()
     }

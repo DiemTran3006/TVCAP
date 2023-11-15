@@ -393,6 +393,9 @@ struct _R {
     /// Nib `MirroringTutorialViewController`.
     var mirroringTutorialViewController: RswiftResources.NibReference<UIKit.UIView> { .init(name: "MirroringTutorialViewController", bundle: bundle) }
 
+    /// Nib `ModalBottomView`.
+    var modalBottomView: RswiftResources.NibReference<UIKit.UIView> { .init(name: "ModalBottomView", bundle: bundle) }
+
     /// Nib `MoreRecentsViewController`.
     var moreRecentsViewController: RswiftResources.NibReference<UIKit.UIView> { .init(name: "MoreRecentsViewController", bundle: bundle) }
 
@@ -416,9 +419,6 @@ struct _R {
 
     /// Nib `SocialCollectionViewCell`.
     var socialCollectionViewCell: RswiftResources.NibReference<SocialCollectionViewCell> { .init(name: "SocialCollectionViewCell", bundle: bundle) }
-
-    /// Nib `StopCastView`.
-    var stopCastView: RswiftResources.NibReference<UIKit.UIView> { .init(name: "StopCastView", bundle: bundle) }
 
     /// Nib `TutorialView`.
     var tutorialView: RswiftResources.NibReference<UIKit.UIView> { .init(name: "TutorialView", bundle: bundle) }
