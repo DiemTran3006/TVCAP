@@ -58,16 +58,22 @@ struct _R {
     /// Color `AccentColor`.
     var accentColor: RswiftResources.ColorResource { .init(name: "AccentColor", path: [], bundle: bundle) }
 
-    /// Color `Color`.
-    var color: RswiftResources.ColorResource { .init(name: "Color", path: [], bundle: bundle) }
+    /// Color `ColorBottonTabbar`.
+    var colorBottonTabbar: RswiftResources.ColorResource { .init(name: "ColorBottonTabbar", path: [], bundle: bundle) }
 
     /// Color `TextColor`.
     var textColor: RswiftResources.ColorResource { .init(name: "TextColor", path: [], bundle: bundle) }
   }
 
-  /// This `_R.image` struct is generated, and contains static references to 53 images.
+  /// This `_R.image` struct is generated, and contains static references to 49 images.
   struct image {
     let bundle: Foundation.Bundle
+
+    /// Image `Arrow`.
+    var arrow: RswiftResources.ImageResource { .init(name: "Arrow", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `Asset 1@4x 1`.
+    var asset14x1: RswiftResources.ImageResource { .init(name: "Asset 1@4x 1", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
     /// Image `Icon.button.left.1`.
     var iconButtonLeft1: RswiftResources.ImageResource { .init(name: "Icon.button.left.1", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
@@ -132,21 +138,6 @@ struct _R {
     /// Image `iPhone 14 Pro 5`.
     var iPhone14Pro5: RswiftResources.ImageResource { .init(name: "iPhone 14 Pro 5", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
-    /// Image `icon.Indicator.1`.
-    var iconIndicator1: RswiftResources.ImageResource { .init(name: "icon.Indicator.1", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon.Indicator.2`.
-    var iconIndicator2: RswiftResources.ImageResource { .init(name: "icon.Indicator.2", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon.Indicator.3`.
-    var iconIndicator3: RswiftResources.ImageResource { .init(name: "icon.Indicator.3", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon.Indicator.4`.
-    var iconIndicator4: RswiftResources.ImageResource { .init(name: "icon.Indicator.4", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon.Indicator.5`.
-    var iconIndicator5: RswiftResources.ImageResource { .init(name: "icon.Indicator.5", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
     /// Image `icon.airplay`.
     var iconAirplay: RswiftResources.ImageResource { .init(name: "icon.airplay", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
@@ -161,9 +152,6 @@ struct _R {
 
     /// Image `icon.button.home`.
     var iconButtonHome: RswiftResources.ImageResource { .init(name: "icon.button.home", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
-
-    /// Image `icon.button.setting`.
-    var iconButtonSetting: RswiftResources.ImageResource { .init(name: "icon.button.setting", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
     /// Image `icon.button.tutorial`.
     var iconButtonTutorial: RswiftResources.ImageResource { .init(name: "icon.button.tutorial", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
@@ -350,7 +338,7 @@ struct _R {
     var interThinTtf: RswiftResources.FileResource { .init(name: "Inter-Thin", pathExtension: "ttf", bundle: bundle, locale: LocaleReference.none) }
   }
 
-  /// This `_R.nib` struct is generated, and contains static references to 27 nibs.
+  /// This `_R.nib` struct is generated, and contains static references to 26 nibs.
   struct nib {
     let bundle: Foundation.Bundle
 
@@ -410,9 +398,6 @@ struct _R {
 
     /// Nib `SelectDeviceViewController`.
     var selectDeviceViewController: RswiftResources.NibReference<UIKit.UIView> { .init(name: "SelectDeviceViewController", bundle: bundle) }
-
-    /// Nib `SettingTableViewCell`.
-    var settingTableViewCell: RswiftResources.NibReference<SettingTableViewCell> { .init(name: "SettingTableViewCell", bundle: bundle) }
 
     /// Nib `SettingViewController`.
     var settingViewController: RswiftResources.NibReference<UIKit.UIView> { .init(name: "SettingViewController", bundle: bundle) }
