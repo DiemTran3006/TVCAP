@@ -19,6 +19,20 @@ extension UIImage {
     }
 }
 
+extension PHAsset {
+    func toImage(contentMode: PHImageContentMode, targetSize: CGSize) -> UIImage {
+        let options = PHImageRequestOptions()
+        options.deliveryMode = .highQualityFormat
+        options.isSynchronous = false
+        var imageAsset = UIImage()
+        PHImageManager.default().requestImage(for: self, targetSize: targetSize, contentMode: contentMode, options: options) { image, _ in
+            guard let image = image as UIImage? else { return }
+            imageAsset = image
+        }
+        return imageAsset
+    }
+}
+
 extension UIImageView {
     func fetchImage(asset: PHAsset, contentMode: PHImageContentMode, targetSize: CGSize) {
         let options = PHImageRequestOptions()

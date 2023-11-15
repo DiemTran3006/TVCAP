@@ -122,6 +122,9 @@
                     <buttonConfiguration key="configuration" style="plain" title="More">
                         <fontDescription key="titleFontDescription" type="system" pointSize="14"/>
                     </buttonConfiguration>
+                    <connections>
+                        <action selector="handleMore:" destination="-1" eventType="touchUpInside" id="mUL-30-ML7"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recents" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XzQ-Vh-eDq">
                     <rect key="frame" x="20" y="219" width="76.666666666666671" height="24"/>

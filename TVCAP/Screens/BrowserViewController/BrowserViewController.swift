@@ -92,11 +92,38 @@ class BrowserViewController: UIViewController {
             guard let url = url else { return }
             let request = URLRequest(url: url, cachePolicy: .returnCacheDataElseLoad)
             webView.load(request)
+            self.webView.isHidden = false
         } else {
-            guard let url = URL(string: "https://www.google.com/search?q=\(searchBar.text ?? "")") else { return }
+            guard let url = URL(string: "https://www.google.com/search?q=\(searchBar.text?.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "")") else { return }
             let urlRequest = URLRequest(url: url)
             webView.load(urlRequest)
+            self.webView.isHidden = false
         }
+    }
+    
+    fileprivate func fetchHintSearch(query: String) {
+        let url = URL(string: "https://google.com/complete/search?client=firefox&q=\(query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? query)")
+        print(url)
+        guard let url = url else { return }
+        URLSession.shared.dataTask(with: url) {[weak self] data,response, error in
+            guard let self = self else { return }
+            if let data = data {
+                    let responseStrInISOLatin = String(data: data, encoding: String.Encoding.isoLatin1)
+                    guard let modifiedDataInUTF8Format = responseStrInISOLatin?.data(using: String.Encoding.utf8) else { return }
+                    do {
+                        guard let object = try JSONSerialization.jsonObject(with: modifiedDataInUTF8Format) as? [Any],
+                              let listHint = object[1] as? [String]
+                        else { return }
+                        
+                        self.listHintSearch = listHint
+                        DispatchQueue.main.async {
+                            self.historySearchTableView.reloadData()
+                        }
+                    } catch {
+                        print(error)
+                    }
+            }
+        }.resume()
     }
     
     private func fetchHistoryRealm() {
@@ -167,15 +194,14 @@ class BrowserViewController: UIViewController {
         recentsTableView.dataSource = self
         recentsTableView.estimatedRowHeight = 100
         recentsTableView.register(cellType: BrowserTableViewCell.self)
-        recentsTableView.allowsSelection = false
         recentsTableView.separatorStyle = .none
         
         historySearchTableView.delegate = self
         historySearchTableView.dataSource = self
         historySearchTableView.estimatedRowHeight = 40
         historySearchTableView.register(cellType: HistorySearchTableViewCell.self)
-        historySearchTableView.allowsSelection = false
         historySearchTableView.separatorStyle = .none
+        
     }
     
     private func verifyUrl (urlString: String?) -> Bool {
@@ -206,6 +232,13 @@ class BrowserViewController: UIViewController {
         listHistory.append(historyBrowser)
         recentsTableView.reloadData()
     }
+    
+    @IBAction func handleMore(_ sender: Any) {
+        let vc = MoreRecentsViewController()
+        vc.moreRecentsDelegate = self
+        let nav = BaseNavigationController(rootViewController: vc)
+        self.present(nav, animated: true)
+    }
 }
 
 extension BrowserViewController: UITableViewDataSource {
@@ -221,10 +254,12 @@ extension BrowserViewController: UITableViewDataSource {
         if tableView == recentsTableView {
             guard let cell = tableView.dequeueReusableCell(with: BrowserTableViewCell.self, for: indexPath) else { return BrowserTableViewCell()}
             cell.configure(historyModel: listHistory[indexPath.row])
+            cell.selectionStyle = .none
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(with: HistorySearchTableViewCell.self, for: indexPath) else { return HistorySearchTableViewCell()}
             cell.configureLabel(listHintSearch[indexPath.row], textSearch: self.textSearch)
+            cell.selectionStyle = .none
             return cell
         }
     }
@@ -244,6 +279,15 @@ extension BrowserViewController: UITableViewDataSource {
             
             let urlRequest = URLRequest(url: url)
             webView.load(urlRequest)
+            webView.isHidden = false
+        }
+        if tableView == recentsTableView {
+            guard let cell = tableView.cellForRow(at: indexPath) as? BrowserTableViewCell,
+                  let url = URL(string: cell.urlString.text ?? "")
+            else { return }
+            let urlRequest = URLRequest(url: url)
+            webView.load(urlRequest)
+            webView.isHidden = false
         }
     }
 }
@@ -257,7 +301,10 @@ extension BrowserViewController: UITableViewDelegate {
                 guard let self = self else { return }
                 self.listHistory[indexPath.row].toggleRealm()
                 self.listHistory.remove(at: indexPath.row)
-                self.recentsTableView.deleteRows(at: [indexPath], with: .automatic)
+                if self.listHistory.count <= 4 {
+                    recentsTableView.deleteRows(at: [indexPath], with: .automatic)
+                }
+                self.recentsTableView.reloadData()
                 completionHandler(true)
             }
             deleteAction.image = UIImage(named: "trashIcon")?.withTintColor(.white)
@@ -271,7 +318,17 @@ extension BrowserViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // delete your item here and reload table view
+//            self.listHistory.remove(at: indexPath.row)
+//            if self.listHistory.count <= 4 {
+//                recentsTableView.deleteRows(at: [indexPath], with: .automatic)
+//            }
+//            recentsTableView.reloadData()
+//
         }
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        true
     }
 }
 
@@ -306,6 +363,7 @@ extension BrowserViewController: UISearchBarDelegate {
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         UIView.animate(withDuration: 0.4) {
             self.bottomConstraintHistorySearch.priority = .init(1000)
+            self.webView.isHidden = true
             self.view.layoutIfNeeded()
         }
         return true
@@ -316,8 +374,8 @@ extension BrowserViewController: UISearchBarDelegate {
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        fetchHintSearch(query: searchText)
         self.textSearch = searchText
-        
         self.historySearchTableView.reloadData()
     }
     
@@ -362,6 +420,27 @@ extension BrowserViewController: WKNavigationDelegate {
         searchBar.searchTextField.selectedTextRange = searchBar.searchTextField.textRange(from: newPosition, to: newPosition)
         
         addHistoryBrowser()
+        
+        listHintSearch = []
+        historySearchTableView.reloadData()
+    }
+}
+
+extension BrowserViewController: MoreRecentsDelegate {
+    func onClearAll() {
+//        guard let realm = try? Realm() else { return }
+//        try? realm.write {
+//            realm.delete(self.listHistory)
+//        }
+        self.listHistory = []
+        self.recentsTableView.reloadData()
+    }
+    
+    func onSelectedURL(url: String) {
+        guard let url = URL(string: url) else { return }
+        let urlRequest = URLRequest(url: url)
+        webView.load(urlRequest)
+        webView.isHidden = false
     }
 }
 

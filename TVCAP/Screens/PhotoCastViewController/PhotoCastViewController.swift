@@ -9,7 +9,7 @@ import UIKit
 import Photos
 
 class PhotoCastViewController: UIViewController {
-
+    
     @IBOutlet weak var stopCastView: StopCastView!
     @IBOutlet weak var photoCollectionView: UICollectionView!
     @IBOutlet weak var currentImage: UIImageView!
@@ -103,6 +103,7 @@ extension PhotoCastViewController: UICollectionViewDelegateFlowLayout {
         let asset = allPhotos?.object(at: indexPath.row)
         guard let asset = asset else { return }
         self.currentImage.fetchImage(asset: asset, contentMode: .aspectFit, targetSize: self.currentImage.frame.size)
+        collectionView.scrollToItem(at: indexPath, at: .left, animated: true)
     }
 }
 

@@ -74,6 +74,8 @@
 		6F9B1C672AFB3E2E00DF584C /* MirroringStopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F9B1C652AFB3E2E00DF584C /* MirroringStopViewController.xib */; };
 		6F9B1C6B2AFB43D100DF584C /* VideoLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F9B1C692AFB43D100DF584C /* VideoLibraryViewController.swift */; };
 		6F9B1C6C2AFB43D100DF584C /* VideoLibraryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F9B1C6A2AFB43D100DF584C /* VideoLibraryViewController.xib */; };
+		74D9BCC42B04A83100B4FC36 /* MoreRecentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D9BCC22B04A83100B4FC36 /* MoreRecentsViewController.swift */; };
+		74D9BCC52B04A83100B4FC36 /* MoreRecentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74D9BCC32B04A83100B4FC36 /* MoreRecentsViewController.xib */; };
 		74FCD6532B01C793001348F9 /* AlbumModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FCD62A2B01C792001348F9 /* AlbumModel.swift */; };
 		74FCD6542B01C793001348F9 /* SocialModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FCD62B2B01C792001348F9 /* SocialModel.swift */; };
 		74FCD6552B01C793001348F9 /* PhotoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74FCD62E2B01C793001348F9 /* PhotoCollectionViewCell.xib */; };
@@ -185,6 +187,8 @@
 		6F9B1C652AFB3E2E00DF584C /* MirroringStopViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MirroringStopViewController.xib; sourceTree = "<group>"; };
 		6F9B1C692AFB43D100DF584C /* VideoLibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoLibraryViewController.swift; sourceTree = "<group>"; };
 		6F9B1C6A2AFB43D100DF584C /* VideoLibraryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoLibraryViewController.xib; sourceTree = "<group>"; };
+		74D9BCC22B04A83100B4FC36 /* MoreRecentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreRecentsViewController.swift; sourceTree = "<group>"; };
+		74D9BCC32B04A83100B4FC36 /* MoreRecentsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoreRecentsViewController.xib; sourceTree = "<group>"; };
 		74FCD62A2B01C792001348F9 /* AlbumModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumModel.swift; sourceTree = "<group>"; };
 		74FCD62B2B01C792001348F9 /* SocialModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialModel.swift; sourceTree = "<group>"; };
 		74FCD62E2B01C793001348F9 /* PhotoCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -329,6 +333,7 @@
 		6F00FEAE2AF8BFAD000E1850 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				74D9BCC12B04A80700B4FC36 /* MoreRecentViewController */,
 				74FCD6752B01C7B5001348F9 /* AlbumsViewController */,
 				74FCD6722B01C7B5001348F9 /* BrowserViewController */,
 				74FCD66C2B01C7B5001348F9 /* Intro */,
@@ -536,6 +541,15 @@
 				6F9B1C6A2AFB43D100DF584C /* VideoLibraryViewController.xib */,
 			);
 			path = VideoLibrary;
+			sourceTree = "<group>";
+		};
+		74D9BCC12B04A80700B4FC36 /* MoreRecentViewController */ = {
+			isa = PBXGroup;
+			children = (
+				74D9BCC22B04A83100B4FC36 /* MoreRecentsViewController.swift */,
+				74D9BCC32B04A83100B4FC36 /* MoreRecentsViewController.xib */,
+			);
+			path = MoreRecentViewController;
 			sourceTree = "<group>";
 		};
 		74FCD6292B01C792001348F9 /* Model */ = {
@@ -825,6 +839,7 @@
 				6F91D1992AFA3B2B00C115A0 /* MirroringTutorialViewController.xib in Resources */,
 				6F4D01E52AFA1B0D00EC292F /* SettingTableViewCell.xib in Resources */,
 				6F91D17D2AFA28AA00C115A0 /* ConnectViewController.xib in Resources */,
+				74D9BCC52B04A83100B4FC36 /* MoreRecentsViewController.xib in Resources */,
 				6F553BB52AFB7577004F67FF /* Inter-Regular.ttf in Resources */,
 				74FCD67C2B01C7B6001348F9 /* IntroViewController.xib in Resources */,
 				6F00FEB32AF8BFD7000E1850 /* HomeViewController.xib in Resources */,
@@ -941,6 +956,7 @@
 				6F00FE9C2AF8BF0F000E1850 /* UICollectionView+Extension.swift in Sources */,
 				6F00FE9D2AF8BF0F000E1850 /* UINavigation+Extension.swift in Sources */,
 				6F00FE6F2AF8BE9E000E1850 /* AppDelegate.swift in Sources */,
+				74D9BCC42B04A83100B4FC36 /* MoreRecentsViewController.swift in Sources */,
 				6F00FE952AF8BF0F000E1850 /* UIColor+Extension.swift in Sources */,
 				6F1A3B2C2AF95D6500606209 /* BaseView.swift in Sources */,
 				74FCD6882B01C903001348F9 /* PHAssetCollection+Extension.swift in Sources */,

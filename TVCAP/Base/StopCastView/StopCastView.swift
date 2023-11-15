@@ -13,6 +13,10 @@ protocol StopCastDelegate: AnyObject {
 }
 
 class StopCastView: UIView {
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var subtitleLabel: UILabel!
+    @IBOutlet weak var buttonAccept: UIButton!
+    
     private let nibName = "StopCastView"
     public weak var delegate: StopCastDelegate?
 
@@ -35,6 +39,12 @@ class StopCastView: UIView {
     private func loadViewFromNib() -> UIView? {
         let nib = UINib(nibName: nibName, bundle: nil)
         return nib.instantiate(withOwner: self, options: nil).first as? UIView
+    }
+    
+    func configure(title: String, subtitle: String, buttonAccept: String) {
+        self.titleLabel.text = title
+        self.subtitleLabel.text = subtitle
+        self.buttonAccept.setTitle(buttonAccept, for: .normal)
     }
     
     @IBAction func handleStopCast(_ sender: Any) {

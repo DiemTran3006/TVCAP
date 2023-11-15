@@ -350,7 +350,7 @@ struct _R {
     var interThinTtf: RswiftResources.FileResource { .init(name: "Inter-Thin", pathExtension: "ttf", bundle: bundle, locale: LocaleReference.none) }
   }
 
-  /// This `_R.nib` struct is generated, and contains static references to 26 nibs.
+  /// This `_R.nib` struct is generated, and contains static references to 27 nibs.
   struct nib {
     let bundle: Foundation.Bundle
 
@@ -392,6 +392,9 @@ struct _R {
 
     /// Nib `MirroringTutorialViewController`.
     var mirroringTutorialViewController: RswiftResources.NibReference<UIKit.UIView> { .init(name: "MirroringTutorialViewController", bundle: bundle) }
+
+    /// Nib `MoreRecentsViewController`.
+    var moreRecentsViewController: RswiftResources.NibReference<UIKit.UIView> { .init(name: "MoreRecentsViewController", bundle: bundle) }
 
     /// Nib `PhotoCastViewController`.
     var photoCastViewController: RswiftResources.NibReference<UIKit.UIView> { .init(name: "PhotoCastViewController", bundle: bundle) }

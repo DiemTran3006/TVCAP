@@ -28,5 +28,12 @@ class BrowserTableViewCell: UITableViewCell {
         self.faviconImage.image = UIImage(data: historyModel.favicon)
         self.titleURL.text = historyModel.title
         self.urlString.text = historyModel.url
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
+        let dateFormatted = dateFormatter.date(from: historyModel.dateTime)
+        dateFormatter.dateFormat = "HH:mm a"
+        guard let dateFormatted else { return }
+        let stringFormatted = dateFormatter.string(from: dateFormatted)
+        self.time.text = stringFormatted
     }
 }
