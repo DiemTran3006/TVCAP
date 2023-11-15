@@ -13,16 +13,9 @@ protocol StopCastDelegate: AnyObject {
 }
 
 class StopCastView: UIView {
-    let nibName = "StopCastView"
-    
-    weak var delegate: StopCastDelegate?
-    
-    @IBAction func handleStopCast(_ sender: Any) {
-        self.delegate?.handleStopCast()
-    }
-    @IBAction func handleCancelCast(_ sender: Any) {
-        self.delegate?.handleCancel()
-    }
+    private let nibName = "StopCastView"
+    public weak var delegate: StopCastDelegate?
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
@@ -42,6 +35,13 @@ class StopCastView: UIView {
     private func loadViewFromNib() -> UIView? {
         let nib = UINib(nibName: nibName, bundle: nil)
         return nib.instantiate(withOwner: self, options: nil).first as? UIView
+    }
+    
+    @IBAction func handleStopCast(_ sender: Any) {
+        self.delegate?.handleStopCast()
+    }
+    @IBAction func handleCancelCast(_ sender: Any) {
+        self.delegate?.handleCancel()
     }
 }
 

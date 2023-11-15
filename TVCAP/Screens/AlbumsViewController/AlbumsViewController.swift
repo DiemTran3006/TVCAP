@@ -9,8 +9,6 @@ import UIKit
 import Photos
 
 class AlbumsViewController: UIViewController {
-    weak var photoDelegate: PhotoDelegate?
-
     @IBOutlet weak var albumsCollectionView: UICollectionView! {
         didSet {
             albumsCollectionView.dataSource = self
@@ -19,6 +17,7 @@ class AlbumsViewController: UIViewController {
         }
     }
     
+    public weak var photoDelegate: PhotoDelegate?
     private var listAlbums: [AlbumModel] = [AlbumModel]() {
         didSet {
             albumsCollectionView.reloadData()
@@ -39,31 +38,27 @@ class AlbumsViewController: UIViewController {
         self.navigationController?.dismiss(animated: true)
     }
     
-    func getListAlbums() {
+    private func getListAlbums() {
         var listAlbums:[AlbumModel] = [AlbumModel]()
         
         let options = PHFetchOptions()
         let recentObj = PHAssetCollection.fetchAssetCollections(with: .smartAlbum, subtype: .any, options: options).firstObject
         if let recentObj = recentObj {
-            let recentAlbum = AlbumModel(name: recentObj.localizedTitle ?? "Recents", count: recentObj.videoCount, photoAssets: PHAsset.fetchAssets(in: recentObj, options: nil))
+            let recentAlbum = AlbumModel(name: recentObj.localizedTitle ?? "Recents", count: recentObj.photosCount, photoAssets: PHAsset.fetchAssets(in: recentObj, options: nil))
             if recentAlbum.count != 0 {
                 listAlbums.append(recentAlbum)
             }
         }
         
         let userAlbums = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .any, options: options)
-        userAlbums.enumerateObjects{ (object: AnyObject!, count: Int, stop: UnsafeMutablePointer) in
-            if object is PHAssetCollection {
-                let obj:PHAssetCollection = object as! PHAssetCollection
-                
-                let fetchOptions = PHFetchOptions()
-                fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
-                fetchOptions.predicate = NSPredicate(format: "mediaType = %d", PHAssetMediaType.image.rawValue)
-                let newAlbum = AlbumModel(name: obj.localizedTitle!, count: obj.estimatedAssetCount, photoAssets:PHAsset.fetchAssets(in: obj, options: nil))
-                if newAlbum.count != 0 {
-                          listAlbums.append(newAlbum)
-                        }
-                
+        userAlbums.enumerateObjects{ (object: AnyObject, count: Int, stop: UnsafeMutablePointer) in
+            guard let obj = object as? PHAssetCollection else { return }
+            let fetchOptions = PHFetchOptions()
+            fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+            fetchOptions.predicate = NSPredicate(format: "mediaType = %d", PHAssetMediaType.image.rawValue)
+            let newAlbum = AlbumModel(name: obj.localizedTitle!, count: obj.estimatedAssetCount, photoAssets:PHAsset.fetchAssets(in: obj, options: nil))
+            if newAlbum.count != 0 {
+                listAlbums.append(newAlbum)
             }
         }
         
@@ -97,7 +92,7 @@ extension AlbumsViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(with: AlbumsCollectionViewCell.self, for: indexPath)!
+        guard let cell = collectionView.dequeueReusableCell(with: AlbumsCollectionViewCell.self, for: indexPath) else { return AlbumsCollectionViewCell()}
         cell.nameAlbums.text = listAlbums[indexPath.row].name
         cell.numberPhotos.text = "\(listAlbums[indexPath.row].count) photos"
         cell.imageAlbums.addTapGesture { [weak self] in

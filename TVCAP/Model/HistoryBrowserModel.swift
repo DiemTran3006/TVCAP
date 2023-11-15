@@ -26,27 +26,26 @@ class HistoryBrowserModel: Object {
         self.url = url
         self.dateTime = dateTime
 
-        let URLFavicon = URL(string: FavIcon(url)[.m])!
-        let data = try? Data(contentsOf: URLFavicon)
+        guard let URLFavicon = URL(string: FavIcon(url)[.m]),
+              let data = try? Data(contentsOf: URLFavicon),
+              let URL = URL(string: url) else { return }
 
-        self.favicon = data!
-
-        let URL = URL(string: url)!
-        if let content = try? String(contentsOf: URL, encoding: .utf8) {
-            if let range = content.range(of: "<title>.*?</title>", options: .regularExpression, range: nil, locale: nil) {
-                let title = content[range].replacingOccurrences(of: "</?title>", with: "", options: .regularExpression, range: nil)
-                print(title) // prints "ios - Get Title when input URL on UITextField on swift 4 - Stack Overflow"
-                self.title = title
-            } else {
-                self.title = ""
-            }
-        } else {
+        self.favicon = data
+        
+        guard let content = try? String(contentsOf: URL, encoding: .utf8),
+              let range = content.range(of: "<title>.*?</title>", options: .regularExpression, range: nil, locale: nil)
+        else {
             self.title = ""
+            return
         }
+        let title = content[range].replacingOccurrences(of: "</?title>", with: "", options: .regularExpression, range: nil)
+        print(title) // prints "ios - Get Title when input URL on UITextField on swift 4 - Stack Overflow"
+        self.title = title
     }
     
-    func isExistRealm() -> Bool {
-        let realm = try! Realm()
+    func isExistRealm() -> Bool? {
+        let realm = try? Realm()
+        guard let realm = realm else { return nil}
         let results = realm.objects(Self.self).filter(NSPredicate(format: "id == %@", self.id))
         if results.isEmpty {
             return false
@@ -55,15 +54,17 @@ class HistoryBrowserModel: Object {
     }
     
     func toggleRealm() {
-        if self.isExistRealm() {
-            let realm = try! Realm()
+        if self.isExistRealm() == true {
+            let realm = try? Realm()
+            guard let realm = realm else { return }
             let results = realm.objects(Self.self).filter(NSPredicate(format: "id == %@", self.id))
-            try! realm.write {
+            try? realm.write {
                 realm.delete(results)
             }
-        } else {
-            let realm = try! Realm()
-            try! realm.write {
+        } else if self.isExistRealm() == false {
+            let realm = try? Realm()
+            guard let realm = realm else { return }
+            try? realm.write {
                 realm.add(self)
             }
         }

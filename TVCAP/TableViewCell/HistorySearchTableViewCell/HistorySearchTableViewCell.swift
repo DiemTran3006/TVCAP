@@ -8,8 +8,8 @@
 import UIKit
 
 class HistorySearchTableViewCell: UITableViewCell {
-
     @IBOutlet weak var labelSearch: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -21,7 +21,7 @@ class HistorySearchTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configureLabel(_ string: String, textSearch: String) {
+    public func configureLabel(_ string: String, textSearch: String) {
 //        labelSearch.text = string
         var arrayString: [NSString] = []
         arrayString.append(textSearch as NSString)

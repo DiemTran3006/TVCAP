@@ -13,15 +13,31 @@ class IntroViewController: BaseViewController {
     @IBOutlet weak var pageIndex1: UIView!
     @IBOutlet weak var pageIndex2: UIView!
     @IBOutlet weak var pageIndex3: UIView!
-    @IBOutlet weak var introCollectionView: UICollectionView! {
-        didSet {
-            introCollectionView.dataSource = self
-            introCollectionView.delegate = self
-            introCollectionView.register(cellType: IntroCollectionViewCell.self)
-        }
-    }
+    @IBOutlet weak var introCollectionView: UICollectionView!
     
     private var currentPage = 0
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setupCollectionView()
+    }
+    
+    private func setupCollectionView() {
+        introCollectionView.dataSource = self
+        introCollectionView.delegate = self
+        introCollectionView.register(cellType: IntroCollectionViewCell.self)
+    }
     
     @IBAction func handleContinue(_ sender: Any) {
         if currentPage == 2 {
@@ -46,20 +62,6 @@ class IntroViewController: BaseViewController {
             default:
                 break
         }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: animated)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: animated)
     }
 }
 
@@ -87,7 +89,7 @@ extension IntroViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(with: IntroCollectionViewCell.self, for: indexPath)!
+        guard let cell = collectionView.dequeueReusableCell(with: IntroCollectionViewCell.self, for: indexPath) else { return IntroCollectionViewCell()}
         switch indexPath.row {
             case 0:
                 cell.configure(image: UIImage(named: "intro1"), title: "Mirror your screen to TV devices", subtitle: "Let’s share your favorite moments to TV!", currentIndex: indexPath.row)
@@ -97,19 +99,6 @@ extension IntroViewController: UICollectionViewDataSource {
                 cell.configure(image: UIImage(named: "intro3"), title: "Keep in touch", subtitle: "Allow notification to stay updated on new features and special offers!", currentIndex: indexPath.row)
             default: break
         }
-        
-//        cell.closureButton = { [weak self] in
-//            guard let self = self else { return }
-//            if indexPath.row == 2 {
-//                PHPhotoLibrary.requestAuthorization(for: .readWrite) { _ in
-//                    DispatchQueue.main.async {
-//                        self.navigationController?.pushViewController(PhotoViewController(), animated: true)
-//                    }
-//                }
-//                return
-//            }
-//            self.introCollectionView.scrollToItem(at: IndexPath(row: indexPath.row + 1, section: indexPath.section), at: .left, animated: true)
-//        }
         
         return cell
     }

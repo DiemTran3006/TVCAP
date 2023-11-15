@@ -10,22 +10,11 @@ import Photos
 
 class PhotoCastViewController: UIViewController {
 
-    @IBOutlet weak var stopCastView: StopCastView! {
-        didSet {
-            stopCastView.layer.cornerRadius = 24
-            stopCastView.layer.masksToBounds = true
-            stopCastView.delegate = self
-        }
-    }
-    @IBOutlet weak var photoCollectionView: UICollectionView! {
-        didSet {
-            photoCollectionView.delegate = self
-            photoCollectionView.dataSource = self
-            photoCollectionView.register(cellType: PhotoCollectionViewCell.self)
-        }
-    }
+    @IBOutlet weak var stopCastView: StopCastView!
+    @IBOutlet weak var photoCollectionView: UICollectionView!
     @IBOutlet weak var currentImage: UIImageView!
     @IBOutlet weak var overlayBackground: UIView!
+    @IBOutlet weak var constraint: NSLayoutConstraint!
     
     private var currentAsset: PHAsset? = nil
     private var allPhotos: PHFetchResult<PHAsset>? = nil {
@@ -35,7 +24,12 @@ class PhotoCastViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var constraint: NSLayoutConstraint!
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        self.navigationController?.navigationBar.tintColor = .systemBlue
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -48,19 +42,13 @@ class PhotoCastViewController: UIViewController {
         self.navigationItem.rightBarButtonItems = [buttonFlip, buttonRotate]
         self.navigationController?.navigationBar.tintColor = UIColor(hexString: "#384161")
         
+        setupCollectionView()
+        setupStopCastView()
         guard let asset = self.currentAsset else { return }
         self.currentImage.fetchImage(asset: asset, contentMode: .aspectFit, targetSize: self.currentImage.frame.size)
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        self.navigationController?.navigationBar.tintColor = .systemBlue
-    }
-    
-    @objc func backTapped() {
-        
-//        self.navigationController?.popViewController(animated: true)
+    @objc private func backTapped() {
         UIView.animate(withDuration: 0.5) {
             self.constraint.priority = .init(250)
             self.view.layoutIfNeeded()
@@ -69,20 +57,32 @@ class PhotoCastViewController: UIViewController {
         }
     }
     
-    @objc func rotateTapped() {
+    @objc private func rotateTapped() {
         self.currentImage.image = self.currentImage.image?.rotate(radians: .pi/2)
     }
     
-    @objc func flipTapped() {
+    @objc private func flipTapped() {
         self.currentImage.image = self.currentImage.image?.flipHorizontally()
     }
     
-    func getAllPhotos(_ list: PHFetchResult<PHAsset>) {
+    public func getAllPhotos(_ list: PHFetchResult<PHAsset>) {
         self.allPhotos = list
     }
     
-    func getCurrentImage(asset: PHAsset) {
+    public func getCurrentImage(asset: PHAsset) {
         self.currentAsset = asset
+    }
+    
+    private func setupStopCastView() {
+        stopCastView.layer.cornerRadius = 24
+        stopCastView.layer.masksToBounds = true
+        stopCastView.delegate = self
+    }
+    
+    private func setupCollectionView() {
+        photoCollectionView.delegate = self
+        photoCollectionView.dataSource = self
+        photoCollectionView.register(cellType: PhotoCollectionViewCell.self)
     }
 }
 
@@ -101,7 +101,8 @@ extension PhotoCastViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let asset = allPhotos?.object(at: indexPath.row)
-        self.currentImage.fetchImage(asset: asset!, contentMode: .aspectFit, targetSize: self.currentImage.frame.size)
+        guard let asset = asset else { return }
+        self.currentImage.fetchImage(asset: asset, contentMode: .aspectFit, targetSize: self.currentImage.frame.size)
     }
 }
 
@@ -112,8 +113,8 @@ extension PhotoCastViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let asset = allPhotos?.object(at: indexPath.row)
-        let cell = collectionView.dequeueReusableCell(with: PhotoCollectionViewCell.self, for: indexPath)!
-        cell.photo.fetchImage(asset: asset!, contentMode: .aspectFill, targetSize: .init(width: 40, height: 48))
+        guard let asset = asset, let cell = collectionView.dequeueReusableCell(with: PhotoCollectionViewCell.self, for: indexPath) else { return PhotoCollectionViewCell()}
+        cell.photo.fetchImage(asset: asset, contentMode: .aspectFill, targetSize: .init(width: 40, height: 48))
         return cell
     }
 }

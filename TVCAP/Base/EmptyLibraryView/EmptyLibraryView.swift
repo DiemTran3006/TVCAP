@@ -16,13 +16,9 @@ class EmptyLibraryView: UIView {
     @IBOutlet weak var subtitleEmpty: UILabel!
     @IBOutlet weak var buttonAdd: GradientButton!
     
-    let nibName = "EmptyLibraryView"
+    private let nibName = "EmptyLibraryView"
+    public weak var delegate: EmptyLibraryDelegate?
     
-    weak var delegate: EmptyLibraryDelegate?
-    
-    @IBAction func handleButtonAdd(_ sender: Any) {
-        self.delegate?.handleButtonAdd()
-    }
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
@@ -48,5 +44,9 @@ class EmptyLibraryView: UIView {
         self.titleEmpty.text = "No Videos Available"
         self.subtitleEmpty.text = "Please add more videos."
         self.buttonAdd.setTitle("Add Videos", for: .normal)
+    }
+    
+    @IBAction func handleButtonAdd(_ sender: Any) {
+        self.delegate?.handleButtonAdd()
     }
 }

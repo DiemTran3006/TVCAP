@@ -12,10 +12,6 @@ class TutorialWithStepViewController: UIViewController {
     @IBOutlet weak var labelStepOne: UILabel!
     @IBOutlet weak var labelStepTwo: UILabel!
     
-    @IBAction func handleGotIt(_ sender: Any) {
-        self.dismiss(animated: true)
-    }
-    
     private var attrStringStepOne: NSAttributedString?
     private var attrStringStepTwo: NSAttributedString?
     override func viewDidLoad() {
@@ -42,5 +38,9 @@ class TutorialWithStepViewController: UIViewController {
     
     func configureLabelStepTwo(text: String, textToBold: [NSString]) {
         self.attrStringStepTwo = text.withBoldText(boldPartsOfString: textToBold, font: .systemFont(ofSize: 16), boldFont: .systemFont(ofSize: 16,weight: .bold))
+    }
+    
+    @IBAction func handleGotIt(_ sender: Any) {
+        self.dismiss(animated: true)
     }
 }

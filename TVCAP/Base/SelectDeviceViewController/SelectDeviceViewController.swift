@@ -9,15 +9,11 @@ import UIKit
 
 class SelectDeviceViewController: UIViewController {
 
-    @IBAction func handleSelect(_ sender: Any) {
-        self.dismiss(animated: true)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
-    func setDetentHeight(to height: CGFloat) {
+    public func setDetentHeight(to height: CGFloat) {
         let detent: UISheetPresentationController.Detent = .custom { context in
             return height
         }
@@ -26,5 +22,9 @@ class SelectDeviceViewController: UIViewController {
             presentationController.detents = [detent]
             presentationController.preferredCornerRadius = 24
         }
+    }
+    
+    @IBAction func handleSelect(_ sender: Any) {
+        self.dismiss(animated: true)
     }
 }

@@ -19,23 +19,11 @@ enum SelectPhoto {
 }
 
 class PhotoViewController: BaseViewController, PHPhotoLibraryChangeObserver {
-    @IBOutlet weak var emptyLibraryView: EmptyLibraryView! {
-        didSet {
-            emptyLibraryView.delegate = self
-        }
-    }
-    
-    @IBOutlet weak var photoCollectionView: UICollectionView! {
-        didSet {
-            photoCollectionView.dataSource = self
-            photoCollectionView.delegate = self
-            photoCollectionView.register(cellType: PhotoCollectionViewCell.self)
-        }
-    }
-    
+    @IBOutlet weak var emptyLibraryView: EmptyLibraryView!
+    @IBOutlet weak var photoCollectionView: UICollectionView!
     @IBOutlet weak var limitedView: UIView!
     
-    private var selectPhoto: SelectPhoto = .selectDevice
+    private var selectPhoto: SelectPhoto = .cast
     private var allPhotos: PHFetchResult<PHAsset>? = nil {
         didSet {
             if allPhotos?.count == 0 {
@@ -47,22 +35,18 @@ class PhotoViewController: BaseViewController, PHPhotoLibraryChangeObserver {
         }
     }
     
-    @IBAction func handleLimited(_ sender: Any) {
-        handleButtonAdd()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = "Recents"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Albums", style: .plain, target: self, action: #selector(albumsTapped))
-        let chevronBack = UIImage(systemName: "chevron.left")
+        let chevronBack = UIImage(named: "chevronLeft")
         self.navigationController?.navigationBar.backIndicatorImage = chevronBack
         self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = chevronBack
         
         let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor(hexString: "#384161")]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
-        
+        emptyLibraryView.delegate = self
         let authorizationStatus = PHPhotoLibrary.authorizationStatus(for: .readWrite)
 
         switch authorizationStatus {
@@ -74,6 +58,13 @@ class PhotoViewController: BaseViewController, PHPhotoLibraryChangeObserver {
             default:
                 break
         }
+        setupCollectionView()
+    }
+    
+    private func setupCollectionView() {
+        photoCollectionView.dataSource = self
+        photoCollectionView.delegate = self
+        photoCollectionView.register(cellType: PhotoCollectionViewCell.self)
     }
     
     private func fetchPhoto() {
@@ -81,11 +72,11 @@ class PhotoViewController: BaseViewController, PHPhotoLibraryChangeObserver {
         self.allPhotos = PHAsset.fetchAssets(with: .image, options: fetchOptions)
     }
     
-    @objc func backTapped() {
+    @objc private func backTapped() {
         self.navigationController?.popViewController(animated: true)
     }
     
-    @objc func albumsTapped() {
+    @objc private func albumsTapped() {
         let vc = AlbumsViewController()
         vc.photoDelegate = self
         let nav = UINavigationController(rootViewController: vc)
@@ -107,6 +98,10 @@ class PhotoViewController: BaseViewController, PHPhotoLibraryChangeObserver {
         }
         
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    }
+    
+    @IBAction func handleLimited(_ sender: Any) {
+        handleButtonAdd()
     }
 }
 
@@ -167,8 +162,8 @@ extension PhotoViewController: UICollectionViewDataSource {
         let asset = allPhotos?.object(at: indexPath.row)
         let size = Int((collectionView.frame.width-32-25)/3)
          
-        let cell = collectionView.dequeueReusableCell(with: PhotoCollectionViewCell.self, for: indexPath)!
-        cell.photo.fetchImage(asset: asset!, contentMode: .aspectFill, targetSize: .init(width: size, height: size))
+        guard let asset = asset,let cell = collectionView.dequeueReusableCell(with: PhotoCollectionViewCell.self, for: indexPath) else { return PhotoCollectionViewCell()}
+        cell.photo.fetchImage(asset: asset, contentMode: .aspectFill, targetSize: .init(width: size, height: size))
         return cell
     }
 }
@@ -185,8 +180,9 @@ extension PhotoViewController: EmptyLibraryDelegate {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         // Create your actions - take a look at different style attributes
-        let addAction = UIAlertAction(title: "Add Photos", style: .default) { (action) in
+        let addAction = UIAlertAction(title: "Add Photos", style: .default) {[weak self] (action) in
             // observe it in the buttons block, what button has been pressed
+            guard let self = self else { return }
             print("didPress Add")
             let authorizationStatus = PHPhotoLibrary.authorizationStatus(for: .readWrite)
             if authorizationStatus == .denied {

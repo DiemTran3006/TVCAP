@@ -12,124 +12,27 @@ import RealmSwift
 class BrowserViewController: UIViewController {
     @IBOutlet weak var moreButton: UIButton!
     @IBOutlet weak var emptyHistory: UIView!
-    @IBOutlet weak var buttonPrev: UIImageView! {
-        didSet {
-            buttonPrev.addTapGesture {
-                if self.webView.canGoBack {
-                    self.webView.goBack()
-                }
-            }
-        }
-    }
-    @IBOutlet weak var buttonNext: UIImageView! {
-        didSet {
-            buttonNext.addTapGesture {
-                if self.webView.canGoForward {
-                    self.webView.goForward()
-                }
-            }
-        }
-    }
-    @IBOutlet weak var buttonHome: UIImageView! {
-        didSet {
-            buttonHome.addTapGesture {
-                self.webView.isHidden = true
-                self.webView.load(URLRequest(url: URL(string: "about:blank")!))
-                self.webView.backForwardList.perform(Selector(("_removeAllItems")))
-            }
-        }
-    }
-    @IBOutlet weak var buttonReload: UIImageView! {
-        didSet {
-            buttonReload.addTapGesture {
-                self.webView.reload()
-            }
-        }
-    }
-    @IBOutlet weak var webView: WKWebView! {
-        didSet {
-            self.webView.isHidden = true
-            self.webView.navigationDelegate = self
-            self.webView.load(URLRequest(url: URL(string: "about:blank")!))
-        }
-    }
+    @IBOutlet weak var buttonPrev: UIImageView!
+    @IBOutlet weak var buttonNext: UIImageView!
+    @IBOutlet weak var buttonHome: UIImageView!
+    @IBOutlet weak var buttonReload: UIImageView!
+    @IBOutlet weak var webView: WKWebView!
     @IBOutlet weak var bottomConstraintHistorySearch: NSLayoutConstraint!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
-    @IBOutlet weak var recentsTableView: UITableView! {
-        didSet {
-            recentsTableView.delegate = self
-            recentsTableView.dataSource = self
-            recentsTableView.estimatedRowHeight = 100
-            recentsTableView.register(cellType: BrowserTableViewCell.self)
-            recentsTableView.allowsSelection = false
-            recentsTableView.separatorStyle = .none
-        }
-    }
-    @IBOutlet weak var historySearchTableView: UITableView! {
-        didSet {
-            historySearchTableView.delegate = self
-            historySearchTableView.dataSource = self
-            historySearchTableView.estimatedRowHeight = 40
-            historySearchTableView.register(cellType: HistorySearchTableViewCell.self)
-            historySearchTableView.allowsSelection = false
-            historySearchTableView.separatorStyle = .none
-        }
-    }
-    @IBOutlet weak var searchBar: UISearchBar! {
-        didSet {
-            searchBar.delegate = self
-            searchBar.searchTextField.tintColor = UIColor(hexString: "#505874")
-            searchBar.searchTextField.clearButtonMode = .whileEditing
-            searchBar.searchTextField.borderStyle = .none
-            searchBar.searchTextField.layer.cornerRadius = 12
-            searchBar.searchTextField.backgroundColor = .white
-            searchBar.layer.shadowColor = UIColor(hexString: "F0F1F2").cgColor
-            searchBar.layer.shadowOpacity = 1
-            searchBar.layer.shadowOffset = .zero
-            searchBar.layer.shadowRadius = 2
-            searchBar.setImage(UIImage(named: "searchIcon"), for: .search, state: .normal)
-            searchBar.setImage(UIImage(systemName: "multiply"), for: .clear, state: .normal)
-        }
-    }
-    @IBOutlet weak var socialCollectionView: UICollectionView! {
-        didSet {
-            socialCollectionView.delegate = self
-            socialCollectionView.dataSource = self
-            socialCollectionView.register(cellType: SocialCollectionViewCell.self)
-        }
-    }
+    @IBOutlet weak var recentsTableView: UITableView!
+    @IBOutlet weak var historySearchTableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var socialCollectionView: UICollectionView!
+    
     private var borderBottom: CALayer? = nil
-    
-    var keyboardNotifier: KeyboardNotifier!
-    
+    private var keyboardNotifier: KeyboardNotifier!
     private var listHintSearch: [String] = []
-    
     private var textSearch = ""
-    
     private var listHistory: [HistoryBrowserModel] = [] {
         didSet {
             self.emptyHistory.isHidden = !listHistory.isEmpty
             self.moreButton.isHidden = listHistory.count <= 5
         }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.title = "Browser"
-        
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "multiply"), style: .plain, target: self, action: #selector(backTapped))
-        
-        let buttonAirPlay = UIBarButtonItem.menuButton(self, action: #selector(airplayTapped), imageName: "airplayIcon")
-        
-        self.navigationItem.rightBarButtonItem = buttonAirPlay
-        
-//        hideKeyboardWhenTappedAround()
-        
-        keyboardNotifier = KeyboardNotifier(parentView: view, constraint: bottomConstraint)
-        let realm = try! Realm()
-        let results = realm.objects(HistoryBrowserModel.self).toArray(ofType: HistoryBrowserModel.self)
-        listHistory = results
-        recentsTableView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -150,21 +53,31 @@ class BrowserViewController: UIViewController {
         super.viewDidDisappear(animated)
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.title = "Browser"
+        
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "multiply"), style: .plain, target: self, action: #selector(backTapped))
+        
+        let buttonAirPlay = UIBarButtonItem.menuButton(self, action: #selector(airplayTapped), imageName: "airplayIcon")
+        
+        self.navigationItem.rightBarButtonItem = buttonAirPlay
+        
+        addTapGestureButtonTabBar()
+        setupCollectionView()
+        setupSearchBar()
+        setupWebView()
+        setupTableView()
+        keyboardNotifier = KeyboardNotifier(parentView: view, constraint: bottomConstraint)
+        fetchHistoryRealm()
+    }
+    
     @objc func backTapped() {
         self.navigationController?.popViewController(animated: true)
     }
     
     @objc func airplayTapped() {
         print("Air play")
-    }
-    
-    func verifyUrl (urlString: String?) -> Bool {
-        if let urlString = urlString {
-            if let url = NSURL(string: urlString) {
-                return UIApplication.shared.canOpenURL(url as URL)
-            }
-        }
-        return false
     }
     
     @objc func handleSearch(sender: UIButton?) {
@@ -175,23 +88,123 @@ class BrowserViewController: UIViewController {
             let urlHasHttpPrefix = urlString.hasPrefix("http://")
             let urlHasHttpsPrefix = urlString.hasPrefix("https://")
             let validUrlString = (urlHasHttpPrefix || urlHasHttpsPrefix) ? urlString : "https://\(urlString)"
-            let url = URL(string: "\(validUrlString)")!
+            let url = URL(string: "\(validUrlString)")
+            guard let url = url else { return }
             let request = URLRequest(url: url, cachePolicy: .returnCacheDataElseLoad)
             webView.load(request)
         } else {
-            let urlRequest = URLRequest(url: URL(string: "https://www.google.com/search?q=\(searchBar.text ?? "")")!)
+            guard let url = URL(string: "https://www.google.com/search?q=\(searchBar.text ?? "")") else { return }
+            let urlRequest = URLRequest(url: url)
             webView.load(urlRequest)
         }
     }
     
-    func drawBorderBottom(borderWidth: CGFloat, color: UIColor, margin: CGFloat) {
-        let frame = self.navigationController!.navigationBar.frame
+    private func fetchHistoryRealm() {
+        let realm = try? Realm()
+        guard let realm = realm else { return }
+        let results = realm.objects(HistoryBrowserModel.self).toArray(ofType: HistoryBrowserModel.self)
+        listHistory = results
+        recentsTableView.reloadData()
+    }
+    
+    private func addTapGestureButtonTabBar() {
+        buttonPrev.addTapGesture { [weak self] in
+            guard let self = self else { return }
+            if self.webView.canGoBack {
+                self.webView.goBack()
+            }
+        }
+        buttonNext.addTapGesture { [weak self] in
+            guard let self = self else { return }
+            if self.webView.canGoForward {
+                self.webView.goForward()
+            }
+        }
+        buttonHome.addTapGesture { [weak self] in
+            guard let self = self else { return }
+            self.webView.isHidden = true
+            if let url = URL(string: "about:blank") {
+                self.webView.load(URLRequest(url: url))
+            }
+            self.webView.backForwardList.perform(Selector(("_removeAllItems")))
+        }
+        buttonReload.addTapGesture { [weak self] in
+            guard let self = self else { return }
+            self.webView.reload()
+        }
+    }
+    
+    private func setupCollectionView() {
+        socialCollectionView.delegate = self
+        socialCollectionView.dataSource = self
+        socialCollectionView.register(cellType: SocialCollectionViewCell.self)
+    }
+    
+    private func setupSearchBar() {
+        searchBar.delegate = self
+        searchBar.searchTextField.tintColor = UIColor(hexString: "#505874")
+        searchBar.searchTextField.clearButtonMode = .whileEditing
+        searchBar.searchTextField.borderStyle = .none
+        searchBar.searchTextField.layer.cornerRadius = 12
+        searchBar.searchTextField.backgroundColor = .white
+        searchBar.layer.shadowColor = UIColor(hexString: "F0F1F2").cgColor
+        searchBar.layer.shadowOpacity = 1
+        searchBar.layer.shadowOffset = .zero
+        searchBar.layer.shadowRadius = 2
+        searchBar.setImage(UIImage(named: "searchIcon"), for: .search, state: .normal)
+        searchBar.setImage(UIImage(systemName: "multiply"), for: .clear, state: .normal)
+    }
+    
+    private func setupWebView() {
+        self.webView.isHidden = true
+        self.webView.navigationDelegate = self
+        guard let url = URL(string: "about:blank") else { return }
+        self.webView.load(URLRequest(url: url))
+    }
+    
+    private func setupTableView() {
+        recentsTableView.delegate = self
+        recentsTableView.dataSource = self
+        recentsTableView.estimatedRowHeight = 100
+        recentsTableView.register(cellType: BrowserTableViewCell.self)
+        recentsTableView.allowsSelection = false
+        recentsTableView.separatorStyle = .none
+        
+        historySearchTableView.delegate = self
+        historySearchTableView.dataSource = self
+        historySearchTableView.estimatedRowHeight = 40
+        historySearchTableView.register(cellType: HistorySearchTableViewCell.self)
+        historySearchTableView.allowsSelection = false
+        historySearchTableView.separatorStyle = .none
+    }
+    
+    private func verifyUrl (urlString: String?) -> Bool {
+        if let urlString = urlString {
+            if let url = NSURL(string: urlString) {
+                return UIApplication.shared.canOpenURL(url as URL)
+            }
+        }
+        return false
+    }
+    
+    private func drawBorderBottom(borderWidth: CGFloat, color: UIColor, margin: CGFloat) {
+        guard let frame = self.navigationController?.navigationBar.frame else { return }
         let borderLayer: CALayer = CALayer()
         borderLayer.borderColor = color.cgColor
         borderLayer.borderWidth = borderWidth
         borderLayer.frame = CGRect(x: margin, y: frame.height - borderWidth, width: frame.width - (margin*2), height: borderWidth)
         self.borderBottom = borderLayer
-        self.navigationController!.navigationBar.layer.addSublayer(borderLayer)
+        self.navigationController?.navigationBar.layer.addSublayer(borderLayer)
+    }
+    
+    private func addHistoryBrowser() {
+        if webView.url?.absoluteString == "about:blank" { return }
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
+        let historyBrowser = HistoryBrowserModel(url: webView.url?.absoluteString ?? "", dateTime: dateFormatter.string(from: Date()))
+        historyBrowser.toggleRealm()
+        listHistory.append(historyBrowser)
+        recentsTableView.reloadData()
     }
 }
 
@@ -206,11 +219,11 @@ extension BrowserViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == recentsTableView {
-            let cell = tableView.dequeueReusableCell(with: BrowserTableViewCell.self, for: indexPath)!
+            guard let cell = tableView.dequeueReusableCell(with: BrowserTableViewCell.self, for: indexPath) else { return BrowserTableViewCell()}
             cell.configure(historyModel: listHistory[indexPath.row])
             return cell
         } else {
-            let cell = tableView.dequeueReusableCell(with: HistorySearchTableViewCell.self, for: indexPath)!
+            guard let cell = tableView.dequeueReusableCell(with: HistorySearchTableViewCell.self, for: indexPath) else { return HistorySearchTableViewCell()}
             cell.configureLabel(listHintSearch[indexPath.row], textSearch: self.textSearch)
             return cell
         }
@@ -225,8 +238,11 @@ extension BrowserViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView == historySearchTableView {
-            let cell = tableView.cellForRow(at: indexPath) as! HistorySearchTableViewCell
-            let urlRequest = URLRequest(url: URL(string: "https://www.google.com/search?q=\(cell.labelSearch.text ?? "")")!)
+            guard let cell = tableView.cellForRow(at: indexPath) as? HistorySearchTableViewCell,
+                  let url = URL(string: "https://www.google.com/search?q=\(cell.labelSearch.text ?? "")")
+            else { return }
+            
+            let urlRequest = URLRequest(url: url)
             webView.load(urlRequest)
         }
     }
@@ -236,8 +252,9 @@ extension BrowserViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath)
     -> UISwipeActionsConfiguration? {
         if tableView == recentsTableView {
-            let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (_, _, completionHandler) in
+            let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { [weak self] (_, _, completionHandler) in
                 // delete the item here
+                guard let self = self else { return }
                 self.listHistory[indexPath.row].toggleRealm()
                 self.listHistory.remove(at: indexPath.row)
                 self.recentsTableView.deleteRows(at: [indexPath], with: .automatic)
@@ -278,7 +295,7 @@ extension BrowserViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(with: SocialCollectionViewCell.self, for: indexPath)!
+        guard let cell = collectionView.dequeueReusableCell(with: SocialCollectionViewCell.self, for: indexPath) else { return SocialCollectionViewCell()}
         cell.configureSocial(arraySocial[indexPath.row])
         cell.socialDelegate = self
         return cell
@@ -329,7 +346,8 @@ extension BrowserViewController: UISearchBarDelegate {
 
 extension BrowserViewController: SocialDelegate {
     func tapImageWithURL(_ url: String) {
-        let urlRequest = URLRequest(url: URL(string: url)!)
+        guard let url = URL(string: url) else { return }
+        let urlRequest = URLRequest(url: url)
         self.webView.load(urlRequest)
         self.webView.isHidden = false
     }
@@ -339,19 +357,11 @@ extension BrowserViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) { // triggers when loading is complete
         buttonPrev.tintColor = !webView.canGoBack ? UIColor(hexString: "#777D91") : UIColor(hexString: "#384161")
         buttonNext.tintColor = !webView.canGoForward ? UIColor(hexString: "#777D91") : UIColor(hexString: "#384161")
-//        buttonPrev.isHidden = !webView.canGoBack
-//        buttonNext.isHidden = !webView.canGoForward
         searchBar.text = webView.url?.absoluteString
         let newPosition = searchBar.searchTextField.beginningOfDocument
         searchBar.searchTextField.selectedTextRange = searchBar.searchTextField.textRange(from: newPosition, to: newPosition)
         
-        if webView.url?.absoluteString == "about:blank" { return }
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
-        let historyBrowser = HistoryBrowserModel(url: webView.url?.absoluteString ?? "", dateTime: dateFormatter.string(from: Date()))
-        historyBrowser.toggleRealm()
-        listHistory.append(historyBrowser)
-        recentsTableView.reloadData()
+        addHistoryBrowser()
     }
 }
 

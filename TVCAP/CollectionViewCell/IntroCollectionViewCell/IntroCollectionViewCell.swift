@@ -17,7 +17,7 @@ class IntroCollectionViewCell: UICollectionViewCell {
         // Initialization code
     }
     
-    func configure(image:UIImage?,title: String, subtitle: String,currentIndex: Int) {
+    public func configure(image:UIImage?,title: String, subtitle: String,currentIndex: Int) {
         imageIntro.image = image
         titleIntro.text = title
         subtitleIntro.text = subtitle

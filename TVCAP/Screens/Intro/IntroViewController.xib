@@ -69,17 +69,18 @@
                         <constraint firstAttribute="width" constant="56" id="au2-jO-00q"/>
                     </constraints>
                 </stackView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JjV-Fz-pKl" customClass="GradientButton" customModule="TVCAP" customModuleProvider="target">
+                <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JjV-Fz-pKl" customClass="GradientButton" customModule="TVCAP" customModuleProvider="target">
                     <rect key="frame" x="36" y="726" width="321" height="52"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="52" id="FHg-bU-9LX"/>
                     </constraints>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" imagePlacement="trailing" title="Continue" imagePadding="8">
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="8" maxY="0.0"/>
+                    <state key="normal" title="Continue">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <imageReference key="image" image="arrowIntro" symbolScale="small"/>
-                        <fontDescription key="titleFontDescription" style="UICTFontTextStyleBody"/>
-                        <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </buttonConfiguration>
+                    </state>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="tr_cornerRadius">
                             <real key="value" value="16"/>
