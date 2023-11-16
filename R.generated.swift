@@ -65,15 +65,15 @@ struct _R {
     var textColor: RswiftResources.ColorResource { .init(name: "TextColor", path: [], bundle: bundle) }
   }
 
-  /// This `_R.image` struct is generated, and contains static references to 49 images.
+  /// This `_R.image` struct is generated, and contains static references to 53 images.
   struct image {
     let bundle: Foundation.Bundle
 
     /// Image `Arrow`.
     var arrow: RswiftResources.ImageResource { .init(name: "Arrow", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
-    /// Image `Asset 1@4x 1`.
-    var asset14x1: RswiftResources.ImageResource { .init(name: "Asset 1@4x 1", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+    /// Image `Close (1)`.
+    var close1: RswiftResources.ImageResource { .init(name: "Close (1)", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
     /// Image `Icon.button.left.1`.
     var iconButtonLeft1: RswiftResources.ImageResource { .init(name: "Icon.button.left.1", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
@@ -86,6 +86,9 @@ struct _R {
 
     /// Image `Icon.button.left.4`.
     var iconButtonLeft4: RswiftResources.ImageResource { .init(name: "Icon.button.left.4", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `Volume`.
+    var volume: RswiftResources.ImageResource { .init(name: "Volume", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
     /// Image `airplayIcon`.
     var airplayIcon: RswiftResources.ImageResource { .init(name: "airplayIcon", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
@@ -153,6 +156,12 @@ struct _R {
     /// Image `icon.button.home`.
     var iconButtonHome: RswiftResources.ImageResource { .init(name: "icon.button.home", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
+    /// Image `icon.button.home.setting`.
+    var iconButtonHomeSetting: RswiftResources.ImageResource { .init(name: "icon.button.home.setting", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `icon.button.setting`.
+    var iconButtonSetting: RswiftResources.ImageResource { .init(name: "icon.button.setting", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
     /// Image `icon.button.tutorial`.
     var iconButtonTutorial: RswiftResources.ImageResource { .init(name: "icon.button.tutorial", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
@@ -212,6 +221,9 @@ struct _R {
 
     /// Image `trashIcon`.
     var trashIcon: RswiftResources.ImageResource { .init(name: "trashIcon", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `volume-high`.
+    var volumeHigh: RswiftResources.ImageResource { .init(name: "volume-high", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
     /// Image `youtubeIcon`.
     var youtubeIcon: RswiftResources.ImageResource { .init(name: "youtubeIcon", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
@@ -338,7 +350,7 @@ struct _R {
     var interThinTtf: RswiftResources.FileResource { .init(name: "Inter-Thin", pathExtension: "ttf", bundle: bundle, locale: LocaleReference.none) }
   }
 
-  /// This `_R.nib` struct is generated, and contains static references to 26 nibs.
+  /// This `_R.nib` struct is generated, and contains static references to 27 nibs.
   struct nib {
     let bundle: Foundation.Bundle
 
@@ -420,6 +432,9 @@ struct _R {
     /// Nib `VideoLibraryViewController`.
     var videoLibraryViewController: RswiftResources.NibReference<UIKit.UIView> { .init(name: "VideoLibraryViewController", bundle: bundle) }
 
+    /// Nib `VideoPlayerViewController`.
+    var videoPlayerViewController: RswiftResources.NibReference<UIKit.UIView> { .init(name: "VideoPlayerViewController", bundle: bundle) }
+
     func validate() throws {
       if UIKit.UIImage(named: "instagramIcon", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Image named 'instagramIcon' is used in nib 'BrowserTableViewCell', but couldn't be loaded.") }
       if UIKit.UIImage(named: "chevronLeft", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Image named 'chevronLeft' is used in nib 'BrowserViewController', but couldn't be loaded.") }
@@ -437,7 +452,7 @@ struct _R {
       if UIKit.UIImage(named: "searchIcon", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Image named 'searchIcon' is used in nib 'HistorySearchTableViewCell', but couldn't be loaded.") }
       if UIKit.UIImage(named: "icon.button.ariplay", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Image named 'icon.button.ariplay' is used in nib 'HomeViewController', but couldn't be loaded.") }
       if UIKit.UIImage(named: "icon.button.home", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Image named 'icon.button.home' is used in nib 'HomeViewController', but couldn't be loaded.") }
-      if UIKit.UIImage(named: "icon.button.setting", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Image named 'icon.button.setting' is used in nib 'HomeViewController', but couldn't be loaded.") }
+      if UIKit.UIImage(named: "icon.button.home.setting", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Image named 'icon.button.home.setting' is used in nib 'HomeViewController', but couldn't be loaded.") }
       if UIKit.UIImage(named: "icon.button.tutorial", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Image named 'icon.button.tutorial' is used in nib 'HomeViewController', but couldn't be loaded.") }
       if UIKit.UIImage(named: "icon.home.back.button", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Image named 'icon.home.back.button' is used in nib 'HomeViewController', but couldn't be loaded.") }
       if UIKit.UIImage(named: "image.botton.browser", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Image named 'image.botton.browser' is used in nib 'HomeViewController', but couldn't be loaded.") }
@@ -458,11 +473,11 @@ struct _R {
       if UIKit.UIImage(named: "Icon.button.left.4", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Image named 'Icon.button.left.4' is used in nib 'SettingViewController', but couldn't be loaded.") }
       if UIKit.UIImage(named: "bannerimage.setting", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Image named 'bannerimage.setting' is used in nib 'SettingViewController', but couldn't be loaded.") }
       if UIKit.UIImage(named: "icon.back.blue.button", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Image named 'icon.back.blue.button' is used in nib 'SettingViewController', but couldn't be loaded.") }
+      if UIKit.UIImage(named: "icon.button.setting", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Image named 'icon.button.setting' is used in nib 'SettingViewController', but couldn't be loaded.") }
       if UIKit.UIImage(named: "icon.next.button", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Image named 'icon.next.button' is used in nib 'SettingViewController', but couldn't be loaded.") }
-      if UIKit.UIImage(named: "image.tvcap", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Image named 'image.tvcap' is used in nib 'SettingViewController', but couldn't be loaded.") }
       if UIKit.UIImage(named: "instagramIcon", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Image named 'instagramIcon' is used in nib 'SocialCollectionViewCell', but couldn't be loaded.") }
       if UIKit.UIColor(named: "TextColor", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Color named 'TextColor' is used in nib 'TutorialView', but couldn't be loaded.") }
-      if UIKit.UIImage(named: "icon.back.button", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Image named 'icon.back.button' is used in nib 'TutorialViewController', but couldn't be loaded.") }
+      if UIKit.UIImage(named: "Arrow", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Image named 'Arrow' is used in nib 'TutorialViewController', but couldn't be loaded.") }
       if UIKit.UIImage(named: "icon.next.button", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Image named 'icon.next.button' is used in nib 'TutorialViewController', but couldn't be loaded.") }
       if UIKit.UIColor(named: "TextColor", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Color named 'TextColor' is used in nib 'TutorialViewController', but couldn't be loaded.") }
       if #available(iOS 13.0, *) { if UIKit.UIImage(systemName: "1.circle.fill") == nil { throw RswiftResources.ValidationError("[R.swift] System image named '1.circle.fill' is used in nib 'TutorialWithStepViewController', but couldn't be loaded.") } }
@@ -471,6 +486,10 @@ struct _R {
       if UIKit.UIImage(named: "icon.back.blue.button", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Image named 'icon.back.blue.button' is used in nib 'VideoLibraryViewController', but couldn't be loaded.") }
       if UIKit.UIColor(named: "AccentColor", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Color named 'AccentColor' is used in nib 'VideoLibraryViewController', but couldn't be loaded.") }
       if UIKit.UIColor(named: "TextColor", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Color named 'TextColor' is used in nib 'VideoLibraryViewController', but couldn't be loaded.") }
+      if UIKit.UIImage(named: "Close (1)", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Image named 'Close (1)' is used in nib 'VideoPlayerViewController', but couldn't be loaded.") }
+      if UIKit.UIImage(named: "Volume", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Image named 'Volume' is used in nib 'VideoPlayerViewController', but couldn't be loaded.") }
+      if UIKit.UIImage(named: "volume-high", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Image named 'volume-high' is used in nib 'VideoPlayerViewController', but couldn't be loaded.") }
+      if UIKit.UIColor(named: "TextColor", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Color named 'TextColor' is used in nib 'VideoPlayerViewController', but couldn't be loaded.") }
     }
   }
 

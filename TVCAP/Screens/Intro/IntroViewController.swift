@@ -41,7 +41,8 @@ class IntroViewController: BaseViewController {
     
     @IBAction func handleContinue(_ sender: Any) {
         if currentPage == 2 {
-            self.navigationController?.pushViewController(HomeViewController(), animated: true)
+            self.navigationController?.setRootViewController(viewController: HomeViewController(),
+                                                             controllerType: HomeViewController.self)
             return
         }
         self.introCollectionView.scrollToItem(at: IndexPath(row: currentPage + 1, section: 0), at: .left, animated: true)

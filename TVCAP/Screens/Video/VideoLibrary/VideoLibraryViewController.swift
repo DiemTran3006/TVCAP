@@ -10,37 +10,35 @@ import Photos
 import AVKit
 
 class VideoLibraryViewController: UIViewController {
+    
     @IBOutlet weak var myCollection: UICollectionView!
+    
     var videos: [VideoModel] = []
     let photoPickerManager = PhotoPickerManager.shared
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        myCollection.dataSource = self
-        myCollection.delegate = self
-        myCollection.register(cellType: VideoLibraryCollectionViewCell.self)
-        
-        fetchVideoFromDeviceLibary()
-    }
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
     }
-    override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.isNavigationBarHidden = false
-    }
-    // MARK: - Function
-    private func playVideo(_ video: AVAsset) {
-        let playerItem = AVPlayerItem(asset: video)
-        let player = AVPlayer(playerItem: playerItem)
-        let playerViewController = AVPlayerViewController()
-        playerViewController.player = player
-        
-        present(playerViewController, animated: true) {
-            playerViewController.player!.play()
-        }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setUpCollection()
+        fetchVideoFromDeviceLibary()
     }
     
-    func fetchVideoFromDeviceLibary() {
+    // MARK: - Action
+    @IBAction func actionPopHomeButton(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    // MARK: - Funcsion
+    private func setUpCollection() {
+        myCollection.dataSource = self
+        myCollection.delegate = self
+        myCollection.register(cellType: VideoLibraryCollectionViewCell.self)
+    }
+    
+    public func fetchVideoFromDeviceLibary() {
         showCustomeIndicator()
         photoPickerManager.fetchVideoFromDeviceLibary { [weak self] videos in
             guard let self = self else { return }
@@ -52,14 +50,9 @@ class VideoLibraryViewController: UIViewController {
             }
         }
     }
-    
-    // MARK: - Action
-    @IBAction func actionPopHomeButton(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
-    }
 }
 
-// MARK: - UICollectionViewDataSource
+// MARK: - Extension
 extension VideoLibraryViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView,
@@ -72,35 +65,43 @@ extension VideoLibraryViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(with: VideoLibraryCollectionViewCell.self,
                                                             for: indexPath) else {
             return UICollectionViewCell()
-            
         }
         cell.configCell(modol: videos[indexPath.row])
         return cell
     }
 }
 
-// MARK: - UICollectionViewDelegate
 extension VideoLibraryViewController: UICollectionViewDelegate {
+    
     func collectionView(_ collectionView: UICollectionView,
                         didSelectItemAt indexPath: IndexPath) {
         showCustomeIndicator()
+        videos.forEach { item in
+            item.isSelected = false
+        }
+        let currentVideo = videos[indexPath.row]
+        currentVideo.isSelected = true
         guard let videoAsset = videos[indexPath.row].asset else { return }
+        navigateToDetailVideo(videoAsset: videoAsset)
+    }
+    
+    private func navigateToDetailVideo(videoAsset: PHAsset) {
         let options = PHVideoRequestOptions()
         options.isNetworkAccessAllowed = true
         PHCachingImageManager.default().requestAVAsset(forVideo: videoAsset,
-                                                       options: options) { [weak self] (video, _, error) in
-            if let video = video {
-                DispatchQueue.main.async {
-                    self?.playVideo(video)
-                    print(videoAsset)
-                    self?.hideCustomeIndicator()
-                }
+                                                       options: options) { [weak self] (asset, _, error) in
+            guard let self = self, let asset = asset else { return }
+            DispatchQueue.main.async {
+                self.hideCustomeIndicator()
+                let vc = VideoPlayerViewController()
+                vc.videoAsset = asset
+                vc.listMedia = self.videos
+                self.navigationController?.pushViewController(vc, animated: true)
             }
         }
     }
 }
 
-// MARK: - UICollectionViewDelegateFlowLayout
 extension VideoLibraryViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView,

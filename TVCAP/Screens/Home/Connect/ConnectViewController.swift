@@ -13,15 +13,14 @@ class ConnectViewController: UIViewController {
     
     var airplayManager = AirplayManager.shared
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-       
-        view.backgroundColor = .black.withAlphaComponent(0.3)
-    }
-    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         cornerRadiusTopView()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .black.withAlphaComponent(0.3)
     }
     
     // MARK: - Action
@@ -34,7 +33,6 @@ class ConnectViewController: UIViewController {
     }
     
     // MARK: - Function
-    
     private func cornerRadiusTopView() {
         presentView.roundCorners(corners: [.topLeft, .topRight], radius: 20)
     }

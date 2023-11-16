@@ -13,15 +13,16 @@ class TutorialViewController: UIViewController  {
     @IBOutlet weak var pageViewContainer: UIStackView!
     @IBOutlet weak var pageControl: UIPageControl!
     @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var presentView: UIView!
     
     let tutorials: [TutorialModel] = [
         TutorialModel(title: "Connect to device",
-                      content: "At the home screen tap to ”Tap to connect” button.",
+                      content: "At the home screen tap to ”Tap to\nconnect” button.",
                       image: R.image.iPhone14Pro1.callAsFunction(),
-                      titleBold: ["Tap to connect"]),
+                      titleBold: ["Tap to\nconnect"]),
         TutorialModel(title: "Connect to device",
-                      content: "When bottom sheet appear, choose “Select Device” button.",
+                      content: "When bottom sheet appear, choose\n“Select Device” button.",
                       image: R.image.iPhone14Pro2.callAsFunction(),
                       titleBold: ["Select Device”"]),
         TutorialModel(title: "Select airplay device",
@@ -29,15 +30,20 @@ class TutorialViewController: UIViewController  {
                       image: R.image.iPhone14Pro3.callAsFunction(),
                       titleBold: []),
         TutorialModel(title: "Turn on Screen Mirroring",
-                      content: "Access control center and tap Screen Mirroring.",
+                      content: "Access control center and tap Screen\nMirroring.",
                       image: R.image.iPhone14Pro4.callAsFunction(),
-                      titleBold: ["control center", "Screen Mirroring."]),
+                      titleBold: ["control center", "Screen\nMirroring."]),
         TutorialModel(title: "How to disconnect",
-                      content: "Select “Screen Mirroring” then press “Stop Mirroring”.",
+                      content: "Select “Screen Mirroring” then press\n“Stop Mirroring”.",
                       image: R.image.iPhone14Pro5.callAsFunction(),
                       titleBold: ["Screen Mirroring", "Stop Mirroring"])
     ]
     private var currentIndex: Int = 0
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        cornerRadiusTopViewPresent()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,21 +51,6 @@ class TutorialViewController: UIViewController  {
         view.backgroundColor = .black.withAlphaComponent(0.3)
         
         updataPageControl()
-        
-        mainScrollView.delegate = self
-        tutorials.forEach { item in
-            let view = TutorialView(model: item)
-            pageViewContainer.addArrangedSubview(view)
-            view.translatesAutoresizingMaskIntoConstraints = false
-            NSLayoutConstraint.activate([
-                view.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width)
-            ])
-        }
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        cornerRadiusTopViewPresent()
     }
     
 // MARK: - Action
@@ -68,15 +59,7 @@ class TutorialViewController: UIViewController  {
     }
     
     @IBAction func preAction(_ sender: Any) {
-        print(mainScrollView.currentPage)
-        if currentIndex > 0 {
-            currentIndex -= 1
-            scrollToPage(page: currentIndex, animated: true)
-            updataPageControl()
-            undataButtonBack()
-        } else {
-            print("Khong the pop ve dc nua")
-        }
+        customViewTutorial()
     }
     
     @IBAction func nextAction(_ sender: Any) {
@@ -91,23 +74,45 @@ class TutorialViewController: UIViewController  {
     }
     
 // MARK: - Function
+    private func customViewTutorial() {
+        tutorials.forEach { item in
+            let view = TutorialView(model: item)
+            pageViewContainer.addArrangedSubview(view)
+            view.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                view.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width)
+            ])
+        }
+    }
+
     private func scrollToPage(page: Int, animated: Bool) {
         var frame: CGRect = self.mainScrollView.frame
         frame.origin.x = frame.size.width * CGFloat(page)
         frame.origin.y = 0
         self.mainScrollView.scrollRectToVisible(frame, animated: animated)
     }
+    
     private func updataPageControl() {
         pageControl.currentPage = currentIndex
     }
+    
     private func undataButtonNext() {
+        if currentIndex > 0 {
+            backButton.setTitleColor(UIColor(hexString: "#384161"), for: .normal)
+            backButton.setImage(UIImage(named: "icon.back.button"), for: .normal)
+        }
         if currentIndex == 4 {
             nextButton.setTitle("Done ", for: .normal)
             nextButton.setTitleColor(UIColor(hexString: "#1797FF"), for: .normal)
             nextButton.setImage(UIImage(named: "icon.check.button"), for: .normal)
         }
     }
+    
     private func undataButtonBack() {
+        if currentIndex < 1 {
+            backButton.setTitleColor(UIColor(hexString: "#979CB1"), for: .normal)
+            backButton.setImage(UIImage(named: "Arrow"), for: .normal)
+        }
         if currentIndex < 4 {
             nextButton.setTitle("Next ", for: .normal)
             nextButton.setTitleColor(UIColor(hexString: "#384161"), for: .normal)
@@ -119,9 +124,9 @@ class TutorialViewController: UIViewController  {
         presentView.roundCorners(corners: [.topLeft, .topRight], radius: 20)
     }
 }
+
 // MARK: - Extension
 extension TutorialViewController: UIScrollViewDelegate {
-    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         currentIndex = scrollView.currentPage
         pageControl.currentPage = scrollView.currentPage

@@ -64,7 +64,7 @@ Mirroring</string>
                                                         <constraint firstAttribute="height" constant="44" id="MZz-hZ-9k6"/>
                                                     </constraints>
                                                     <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="plain" image="icon.button.setting"/>
+                                                    <buttonConfiguration key="configuration" style="plain" image="icon.button.home.setting"/>
                                                     <connections>
                                                         <action selector="actionPushSettingButton:" destination="-1" eventType="touchUpInside" id="ie8-Gs-VGl"/>
                                                     </connections>
@@ -112,16 +112,16 @@ Mirroring</string>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cGd-Ua-gjn" userLabel="ContainerViewCenter">
-                    <rect key="frame" x="24" y="250.33333333333337" width="342" height="293"/>
+                    <rect key="frame" x="25" y="250.33333333333337" width="340" height="293"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X8o-Nx-Lo0">
-                            <rect key="frame" x="28" y="31.999999999999972" width="286" height="139"/>
+                            <rect key="frame" x="28" y="31.999999999999972" width="284" height="139"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8KQ-Bw-7hk" userLabel="ContainerViewLabel">
-                                    <rect key="frame" x="0.0" y="0.0" width="152" height="139"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="150" height="139"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mirror your screen to TV device!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="igJ-sG-epk">
-                                            <rect key="frame" x="0.0" y="20" width="152" height="119"/>
+                                            <rect key="frame" x="0.0" y="20" width="150" height="119"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="24"/>
                                             <color key="textColor" name="TextColor"/>
                                             <nil key="highlightedColor"/>
@@ -136,13 +136,13 @@ Mirroring</string>
                                     </constraints>
                                 </view>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image.tvcap" translatesAutoresizingMaskIntoConstraints="NO" id="gcP-w7-NGn">
-                                    <rect key="frame" x="152" y="0.0" width="134" height="139"/>
+                                    <rect key="frame" x="150" y="0.0" width="134" height="139"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </imageView>
                             </subviews>
                         </stackView>
-                        <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Voz-3a-x9v">
-                            <rect key="frame" x="28" y="208.99999999999997" width="286" height="54.000000000000028"/>
+                        <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Voz-3a-x9v" customClass="GradientButton" customModule="TVCAP" customModuleProvider="target">
+                            <rect key="frame" x="28" y="208.99999999999997" width="284" height="54.000000000000028"/>
                             <color key="backgroundColor" red="0.27450980392156865" green="0.63529411764705879" blue="0.99215686274509807" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -163,6 +163,7 @@ Mirroring</string>
                         <constraint firstItem="X8o-Nx-Lo0" firstAttribute="top" secondItem="cGd-Ua-gjn" secondAttribute="top" constant="32" id="JLI-Zd-1t7"/>
                         <constraint firstItem="X8o-Nx-Lo0" firstAttribute="leading" secondItem="cGd-Ua-gjn" secondAttribute="leading" constant="28" id="TPf-qi-E6a"/>
                         <constraint firstAttribute="trailing" secondItem="X8o-Nx-Lo0" secondAttribute="trailing" constant="28" id="VU0-yW-9Nr"/>
+                        <constraint firstAttribute="width" secondItem="cGd-Ua-gjn" secondAttribute="height" multiplier="327/282" id="Xre-C3-im5"/>
                         <constraint firstItem="Voz-3a-x9v" firstAttribute="leading" secondItem="cGd-Ua-gjn" secondAttribute="leading" constant="28" id="pjd-Iv-mK6"/>
                         <constraint firstAttribute="bottom" secondItem="Voz-3a-x9v" secondAttribute="bottom" constant="30" id="pjx-xW-FDp"/>
                     </constraints>
@@ -185,13 +186,13 @@ Mirroring</string>
                     <nil key="highlightedColor"/>
                 </label>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="QIM-hw-4ls">
-                    <rect key="frame" x="32" y="601.33333333333337" width="326" height="242.66666666666663"/>
+                    <rect key="frame" x="32" y="601.33333333333337" width="326" height="218.66666666666663"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O4z-Sz-r0n" userLabel="ContainerView">
-                            <rect key="frame" x="0.0" y="0.0" width="326" height="138"/>
+                            <rect key="frame" x="0.0" y="0.0" width="326" height="88.666666666666671"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Drx-oe-k9g">
-                                    <rect key="frame" x="0.0" y="0.0" width="66.666666666666671" height="138"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="66.666666666666671" height="88.666666666666671"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FYy-EU-Kwe">
                                             <rect key="frame" x="0.0" y="0.0" width="66.666666666666671" height="66.666666666666671"/>
@@ -202,7 +203,7 @@ Mirroring</string>
                                             </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Photos" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U9b-K7-eZ0">
-                                            <rect key="frame" x="0.0" y="71.666666666666629" width="66.666666666666671" height="66.333333333333314"/>
+                                            <rect key="frame" x="0.0" y="71.666666666666629" width="66.666666666666671" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -210,7 +211,7 @@ Mirroring</string>
                                     </subviews>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Ttu-il-eVD">
-                                    <rect key="frame" x="129.66666666666666" y="0.0" width="66.666666666666657" height="138"/>
+                                    <rect key="frame" x="129.66666666666666" y="0.0" width="66.666666666666657" height="88.666666666666671"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VcB-FE-8B3">
                                             <rect key="frame" x="0.0" y="0.0" width="66.666666666666671" height="66.666666666666671"/>
@@ -221,7 +222,7 @@ Mirroring</string>
                                             </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Videos" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qxe-QG-wUy">
-                                            <rect key="frame" x="0.0" y="71.666666666666629" width="66.666666666666671" height="66.333333333333314"/>
+                                            <rect key="frame" x="0.0" y="71.666666666666629" width="66.666666666666671" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -229,7 +230,7 @@ Mirroring</string>
                                     </subviews>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="eBc-EB-0Kb">
-                                    <rect key="frame" x="259.33333333333331" y="0.0" width="66.666666666666686" height="138"/>
+                                    <rect key="frame" x="259.33333333333331" y="0.0" width="66.666666666666686" height="88.666666666666671"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ux4-M7-MLj">
                                             <rect key="frame" x="0.0" y="0.0" width="66.666666666666671" height="66.666666666666671"/>
@@ -240,7 +241,7 @@ Mirroring</string>
                                             </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Browser" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MVQ-VR-klb">
-                                            <rect key="frame" x="0.0" y="71.666666666666629" width="66.666666666666671" height="66.333333333333314"/>
+                                            <rect key="frame" x="0.0" y="71.666666666666629" width="66.666666666666671" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -261,16 +262,31 @@ Mirroring</string>
                                 <constraint firstItem="Ttu-il-eVD" firstAttribute="centerX" secondItem="O4z-Sz-r0n" secondAttribute="centerX" id="ySo-e4-0MZ"/>
                             </constraints>
                         </view>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u06-hd-nCc">
-                            <rect key="frame" x="0.0" y="138" width="326" height="104.66666666666669"/>
-                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                            <state key="normal" title="  How to use?" image="icon.button.tutorial">
-                                <color key="titleColor" red="0.31372549019607843" green="0.34509803921568627" blue="0.45490196078431372" alpha="0.79793526785714286" colorSpace="custom" customColorSpace="displayP3"/>
-                            </state>
-                            <connections>
-                                <action selector="actionInstructButton:" destination="-1" eventType="touchUpInside" id="Lgt-Hw-6qg"/>
-                            </connections>
-                        </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qKt-4r-1qQ">
+                            <rect key="frame" x="0.0" y="88.666666666666629" width="326" height="108"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TuQ-pI-sps">
+                            <rect key="frame" x="0.0" y="196.66666666666663" width="326" height="22"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u06-hd-nCc">
+                                    <rect key="frame" x="99" y="0.0" width="128" height="22"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title="  How to use?" image="icon.button.tutorial">
+                                        <color key="titleColor" red="0.31372549019607843" green="0.34509803921568627" blue="0.45490196078431372" alpha="0.79793526785714286" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="actionInstructButton:" destination="-1" eventType="touchUpInside" id="Lgt-Hw-6qg"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="u06-hd-nCc" firstAttribute="top" secondItem="TuQ-pI-sps" secondAttribute="top" id="6u2-J8-3c3"/>
+                                <constraint firstItem="u06-hd-nCc" firstAttribute="centerX" secondItem="TuQ-pI-sps" secondAttribute="centerX" id="vu1-dS-Fry"/>
+                                <constraint firstAttribute="bottom" secondItem="u06-hd-nCc" secondAttribute="bottom" id="zTQ-Op-ecQ"/>
+                            </constraints>
+                        </view>
                     </subviews>
                 </stackView>
             </subviews>
@@ -281,16 +297,14 @@ Mirroring</string>
                 <constraint firstItem="ONP-sG-elk" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="5O6-ei-cAi"/>
                 <constraint firstItem="ONP-sG-elk" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="8XT-Ek-VWe"/>
                 <constraint firstItem="QwQ-se-D3x" firstAttribute="top" secondItem="cGd-Ua-gjn" secondAttribute="bottom" constant="16" id="8tO-Ei-a0L"/>
-                <constraint firstItem="cGd-Ua-gjn" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="24" id="Cu9-ee-I0Y"/>
                 <constraint firstItem="QIM-hw-4ls" firstAttribute="top" secondItem="QwQ-se-D3x" secondAttribute="bottom" constant="18" id="EEh-qI-iR5"/>
                 <constraint firstItem="FYy-EU-Kwe" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="64/375" id="H7J-ew-h8E"/>
                 <constraint firstItem="FYy-EU-Kwe" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="64/812" id="Iyw-MD-CDM"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="QwQ-se-D3x" secondAttribute="trailing" constant="32" id="LlW-Qg-J4j"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="cGd-Ua-gjn" secondAttribute="trailing" constant="24" id="Nji-E6-W1E"/>
-                <constraint firstItem="cGd-Ua-gjn" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="282/812" id="PaA-jy-ent"/>
                 <constraint firstItem="X8o-Nx-Lo0" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="134/812" id="PkN-ti-RXJ"/>
                 <constraint firstItem="Ux4-M7-MLj" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="64/375" id="QYz-Ny-8Kb"/>
                 <constraint firstItem="ONP-sG-elk" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="310/812" id="Shl-eL-XI5"/>
+                <constraint firstItem="cGd-Ua-gjn" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="TiZ-Ej-XSW"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ONP-sG-elk" secondAttribute="trailing" id="WE1-rI-oJM"/>
                 <constraint firstItem="5rR-eN-RGf" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="60/812" id="Z3d-es-JUz"/>
                 <constraint firstItem="cGd-Ua-gjn" firstAttribute="top" secondItem="ONP-sG-elk" secondAttribute="bottom" constant="-72" id="aQF-87-vmq"/>
@@ -298,9 +312,10 @@ Mirroring</string>
                 <constraint firstItem="gcP-w7-NGn" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="129/375" id="cHn-6Z-wyz"/>
                 <constraint firstItem="VcB-FE-8B3" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="64/375" id="dyQ-K8-AHz"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="QIM-hw-4ls" secondAttribute="trailing" constant="32" id="g1h-ar-y9Z"/>
+                <constraint firstItem="cGd-Ua-gjn" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="327/375" id="lRb-Qh-YUv"/>
                 <constraint firstItem="Voz-3a-x9v" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="52/812" id="mWa-Gk-vxe"/>
                 <constraint firstItem="QwQ-se-D3x" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="mcT-Go-8tq"/>
-                <constraint firstAttribute="bottom" secondItem="QIM-hw-4ls" secondAttribute="bottom" id="n3G-PT-ci2"/>
+                <constraint firstAttribute="bottom" secondItem="QIM-hw-4ls" secondAttribute="bottom" constant="24" id="n3G-PT-ci2"/>
                 <constraint firstItem="QIM-hw-4ls" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="why-Ju-QhB"/>
                 <constraint firstItem="VcB-FE-8B3" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="64/812" id="ybt-Ml-IfC"/>
             </constraints>
@@ -310,7 +325,7 @@ Mirroring</string>
     <resources>
         <image name="icon.button.ariplay" width="20" height="20"/>
         <image name="icon.button.home" width="44" height="44"/>
-        <image name="icon.button.setting" width="44" height="44"/>
+        <image name="icon.button.home.setting" width="44" height="44"/>
         <image name="icon.button.tutorial" width="20" height="20"/>
         <image name="icon.home.back.button" width="24" height="24"/>
         <image name="image.botton.browser" width="96" height="96"/>

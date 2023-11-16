@@ -14,15 +14,15 @@ class MirroringTutorialViewController: UIViewController {
     
     let textContentLabel: String = "Access control center and tap Screen Mirroring. Choose your device to mirroring."
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        cornerRadiusTopView()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         styleContentLabel()
         view.backgroundColor = .black.withAlphaComponent(0.3)
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        cornerRadiusTopView()
     }
     
     // MARK: - Action
@@ -38,7 +38,6 @@ class MirroringTutorialViewController: UIViewController {
     }
     
     // MARK: - Function
-    
     private func styleContentLabel() {
         let attributedText = NSMutableAttributedString.getAttributedString(fromString: textContentLabel)
         attributedText.apply(color: R.color.textColor.callAsFunction()!, subString: textContentLabel)
@@ -47,6 +46,7 @@ class MirroringTutorialViewController: UIViewController {
         attributedText.apply(font:.important(), subString: "Screen Mirroring.")
         contentLabel.attributedText = attributedText
     }
+    
     private func cornerRadiusTopView() {
         viewPresent.roundCorners(corners: [.topLeft, .topRight], radius: 20)
     }

@@ -25,7 +25,8 @@ class TutorialView: BaseView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-// MARK: - Function
+    
+    // MARK: - Function
     func styleContentLabel() {
         let attributedText = NSMutableAttributedString.getAttributedString(fromString: model.content)
         attributedText.apply(color: R.color.textColor.callAsFunction()!, subString: model.content)
@@ -38,7 +39,6 @@ class TutorialView: BaseView {
 }
 
 // MARK: - Model
-
 struct TutorialModel {
     let title: String
     let content: String

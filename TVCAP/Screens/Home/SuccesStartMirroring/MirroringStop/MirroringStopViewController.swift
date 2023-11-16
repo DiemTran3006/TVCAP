@@ -11,18 +11,18 @@ final class MirroringStopViewController: UIViewController {
     
     @IBOutlet weak var presentView: UIView!
     @IBOutlet weak var contentLabel: UILabel!
-    let textContenLabel: String = "Access control center again and tap Screen Mirroring. Then press “Stop Mirroring”."
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        styleContentLabel()
-        view.backgroundColor = .clear
-    }
+    let textContenLabel: String = "Access control center again and tap Screen Mirroring. Then press “Stop Mirroring”."
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         cornerRadiusTopView()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        styleContentLabel()
+        view.backgroundColor = .clear
     }
     
     // MARK: - Action
@@ -33,6 +33,7 @@ final class MirroringStopViewController: UIViewController {
     @IBAction func actionDissmis(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
+    
     // MARK: - Function
     
     private func cornerRadiusTopView() {

@@ -11,10 +11,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TutorialViewController" customModule="TVCAP" customModuleProvider="target">
             <connections>
-                <outlet property="mainScrollView" destination="Yd9-56-Gkg" id="vyp-tU-KcY"/>
+                <outlet property="backButton" destination="M3G-g5-www" id="er0-OQ-tze"/>
+                <outlet property="mainScrollView" destination="aMC-Lm-us9" id="Px7-N5-iX3"/>
                 <outlet property="nextButton" destination="JRc-3S-7bk" id="Yn8-oQ-fId"/>
                 <outlet property="pageControl" destination="tex-1d-Q5t" id="fwF-vT-CrM"/>
-                <outlet property="pageViewContainer" destination="g6a-8W-CzM" id="7OI-EV-GnC"/>
+                <outlet property="pageViewContainer" destination="e0v-Hh-31G" id="6Kz-ih-w9p"/>
                 <outlet property="presentView" destination="f5S-gb-wsz" id="KlN-jL-CBk"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -35,10 +36,10 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f5S-gb-wsz" userLabel="PresentView">
                     <rect key="frame" x="0.0" y="219.33333333333331" width="393" height="632.66666666666674"/>
                     <subviews>
-                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yd9-56-Gkg">
+                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aMC-Lm-us9">
                             <rect key="frame" x="0.0" y="0.0" width="393" height="632.66666666666663"/>
                             <subviews>
-                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="g6a-8W-CzM">
+                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="e0v-Hh-31G">
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="632.66666666666663"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="tr_borderWidth">
@@ -52,12 +53,12 @@
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="trailing" secondItem="g6a-8W-CzM" secondAttribute="trailing" id="BsO-I5-4Pl"/>
-                                <constraint firstItem="g6a-8W-CzM" firstAttribute="height" secondItem="Yd9-56-Gkg" secondAttribute="height" id="G9z-7h-vOc"/>
-                                <constraint firstItem="g6a-8W-CzM" firstAttribute="width" secondItem="Yd9-56-Gkg" secondAttribute="width" priority="250" id="RxP-s4-z3O"/>
-                                <constraint firstItem="g6a-8W-CzM" firstAttribute="top" secondItem="Yd9-56-Gkg" secondAttribute="top" id="Zla-L1-DRh"/>
-                                <constraint firstItem="g6a-8W-CzM" firstAttribute="leading" secondItem="Yd9-56-Gkg" secondAttribute="leading" id="vIg-h2-xmY"/>
-                                <constraint firstAttribute="bottom" secondItem="g6a-8W-CzM" secondAttribute="bottom" id="x6Y-nf-uBH"/>
+                                <constraint firstItem="e0v-Hh-31G" firstAttribute="top" secondItem="aMC-Lm-us9" secondAttribute="top" id="1rm-Cy-SzV"/>
+                                <constraint firstAttribute="trailing" secondItem="e0v-Hh-31G" secondAttribute="trailing" id="3Js-II-UUN"/>
+                                <constraint firstItem="e0v-Hh-31G" firstAttribute="width" secondItem="aMC-Lm-us9" secondAttribute="width" priority="250" id="BqK-R0-9tS"/>
+                                <constraint firstItem="e0v-Hh-31G" firstAttribute="height" secondItem="aMC-Lm-us9" secondAttribute="height" id="QaR-gh-FNx"/>
+                                <constraint firstItem="e0v-Hh-31G" firstAttribute="leading" secondItem="aMC-Lm-us9" secondAttribute="leading" id="n5e-iD-y4B"/>
+                                <constraint firstAttribute="bottom" secondItem="e0v-Hh-31G" secondAttribute="bottom" id="xZx-v7-Jvq"/>
                             </constraints>
                         </scrollView>
                         <view contentMode="scaleToFill" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="inn-dv-oDT" userLabel="ContainerViewBottom">
@@ -66,13 +67,12 @@
                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UHO-5h-CRv">
                                     <rect key="frame" x="10" y="30" width="373" height="42"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M3G-g5-www">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M3G-g5-www">
                                             <rect key="frame" x="0.0" y="0.0" width="88" height="42"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
                                             <color key="tintColor" systemColor="tintColor"/>
                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                            <state key="normal" title=" Back" image="icon.back.button">
-                                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <state key="normal" title=" Back" image="Arrow">
+                                                <color key="titleColor" red="0.59215686274509804" green="0.61176470588235299" blue="0.69411764705882351" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
                                             <connections>
                                                 <action selector="preAction:" destination="-1" eventType="touchUpInside" id="bhp-yE-OxJ"/>
@@ -95,12 +95,11 @@
                                                 <constraint firstAttribute="bottom" secondItem="tex-1d-Q5t" secondAttribute="bottom" id="zjh-1f-CpP"/>
                                             </constraints>
                                         </view>
-                                        <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JRc-3S-7bk">
+                                        <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JRc-3S-7bk">
                                             <rect key="frame" x="285" y="0.0" width="88" height="42"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                             <state key="normal" title="Next   " image="icon.next.button">
-                                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="titleColor" name="TextColor"/>
                                             </state>
                                             <connections>
                                                 <action selector="nextAction:" destination="-1" eventType="touchUpInside" id="pzp-bo-ljK"/>
@@ -119,18 +118,14 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstItem="aMC-Lm-us9" firstAttribute="leading" secondItem="f5S-gb-wsz" secondAttribute="leading" id="Cnl-of-8EW"/>
                         <constraint firstItem="inn-dv-oDT" firstAttribute="leading" secondItem="f5S-gb-wsz" secondAttribute="leading" id="Rdr-Qo-EXl"/>
-                        <constraint firstAttribute="bottom" secondItem="Yd9-56-Gkg" secondAttribute="bottom" id="ZKi-XN-p7R"/>
-                        <constraint firstAttribute="trailing" secondItem="Yd9-56-Gkg" secondAttribute="trailing" id="c4O-5G-5eH"/>
-                        <constraint firstItem="Yd9-56-Gkg" firstAttribute="leading" secondItem="f5S-gb-wsz" secondAttribute="leading" id="dk7-3O-kQP"/>
+                        <constraint firstAttribute="bottom" secondItem="aMC-Lm-us9" secondAttribute="bottom" id="Txa-yK-iV9"/>
+                        <constraint firstItem="aMC-Lm-us9" firstAttribute="top" secondItem="f5S-gb-wsz" secondAttribute="top" id="e3A-z1-nN3"/>
                         <constraint firstAttribute="trailing" secondItem="inn-dv-oDT" secondAttribute="trailing" id="oJg-iJ-Kyq"/>
+                        <constraint firstAttribute="trailing" secondItem="aMC-Lm-us9" secondAttribute="trailing" id="poR-K0-6Qh"/>
                         <constraint firstAttribute="bottom" secondItem="inn-dv-oDT" secondAttribute="bottom" id="yMd-Mm-8aj"/>
                     </constraints>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="tr_cornerRadius">
-                            <real key="value" value="18"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
@@ -148,13 +143,12 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="cba-Xo-zCF" secondAttribute="trailing" id="psM-GZ-5y8"/>
                 <constraint firstItem="cba-Xo-zCF" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="qE2-iV-HHm"/>
                 <constraint firstItem="JRc-3S-7bk" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="84/375" id="tcc-74-D42"/>
-                <constraint firstItem="Yd9-56-Gkg" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="603/812" id="yGp-ED-QeL"/>
             </constraints>
             <point key="canvasLocation" x="-22.137404580152669" y="-1.4084507042253522"/>
         </view>
     </objects>
     <resources>
-        <image name="icon.back.button" width="20" height="20"/>
+        <image name="Arrow" width="20" height="20"/>
         <image name="icon.next.button" width="20" height="20"/>
         <namedColor name="TextColor">
             <color red="0.2196078431372549" green="0.25490196078431371" blue="0.38039215686274508" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

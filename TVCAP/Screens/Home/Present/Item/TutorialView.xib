@@ -21,37 +21,29 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="AAc-Sa-Czf">
-                    <rect key="frame" x="24" y="20" width="465" height="1038"/>
+                    <rect key="frame" x="24" y="30" width="465" height="1028"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connect to device" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cmY-xA-yNJ">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Connect to device" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cmY-xA-yNJ">
                             <rect key="frame" x="0.0" y="0.0" width="465" height="28.666666666666668"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="24"/>
                             <color key="textColor" name="TextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lNv-Az-rHb" userLabel="ViewLabel">
-                            <rect key="frame" x="0.0" y="38.666666666666671" width="465" height="147.33333333333331"/>
-                            <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="At the home screen tap to ” Tap to connect” button." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="upr-c8-b4b">
-                                    <rect key="frame" x="20" y="0.0" width="425" height="147.33333333333334"/>
-                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
-                                    <nil key="textColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="At the home screen tap to ” Tap to connect” button." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="upr-c8-b4b">
+                            <rect key="frame" x="0.0" y="38.666666666666671" width="465" height="18.666666666666671"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="lNv-Az-rHb">
+                            <rect key="frame" x="0.0" y="67.333333333333314" width="465" height="126"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <constraints>
-                                <constraint firstItem="upr-c8-b4b" firstAttribute="leading" secondItem="lNv-Az-rHb" secondAttribute="leading" constant="20" id="5o5-kT-VjH"/>
-                                <constraint firstAttribute="trailing" secondItem="upr-c8-b4b" secondAttribute="trailing" constant="20" id="96D-1B-1zv"/>
-                                <constraint firstItem="upr-c8-b4b" firstAttribute="top" secondItem="lNv-Az-rHb" secondAttribute="top" id="Ehc-JN-0h7"/>
-                                <constraint firstAttribute="bottom" secondItem="upr-c8-b4b" secondAttribute="bottom" id="FHe-hA-CWm"/>
-                            </constraints>
                         </view>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9aq-Zp-Abt">
-                            <rect key="frame" x="0.0" y="195.99999999999994" width="465" height="701.66666666666652"/>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="9aq-Zp-Abt">
+                            <rect key="frame" x="0.0" y="203.33333333333331" width="465" height="684.33333333333348"/>
                         </imageView>
                         <view contentMode="scaleToFill" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="vSg-MX-sY0" userLabel="ViewBottom">
-                            <rect key="frame" x="0.0" y="907.66666666666663" width="465" height="130.33333333333337"/>
+                            <rect key="frame" x="0.0" y="897.66666666666663" width="465" height="130.33333333333337"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
                     </subviews>
@@ -66,7 +58,7 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="AAc-Sa-Czf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="7HU-NG-0Tx"/>
+                <constraint firstItem="AAc-Sa-Czf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="30" id="7HU-NG-0Tx"/>
                 <constraint firstItem="AAc-Sa-Czf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="24" id="LI0-km-B9F"/>
                 <constraint firstItem="vSg-MX-sY0" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="100/812" id="Qao-ce-E1K"/>
                 <constraint firstItem="9aq-Zp-Abt" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="390/603" priority="750" id="dvx-Hx-mcA"/>

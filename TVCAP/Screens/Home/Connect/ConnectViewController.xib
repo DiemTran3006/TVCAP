@@ -21,7 +21,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="thj-fa-rM2">
-                    <rect key="frame" x="0.0" y="58.999999999999972" width="393" height="503.33333333333326"/>
+                    <rect key="frame" x="0.0" y="59" width="393" height="539"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain"/>
@@ -30,10 +30,10 @@
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PqV-N8-Wxh" userLabel="PresentView">
-                    <rect key="frame" x="0.0" y="562.33333333333337" width="393" height="289.66666666666663"/>
+                    <rect key="frame" x="0.0" y="598" width="393" height="254"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="HcL-AJ-nlD">
-                            <rect key="frame" x="40" y="20" width="313" height="269.66666666666669"/>
+                            <rect key="frame" x="40" y="30" width="313" height="199"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9SG-gK-Tml">
                                     <rect key="frame" x="0.0" y="0.0" width="313" height="42"/>
@@ -62,8 +62,8 @@
                                     <color key="textColor" red="0.31372549019607843" green="0.34509803921568627" blue="0.45490196078431372" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d48-nK-Dts">
-                                    <rect key="frame" x="0.0" y="144.33333333333326" width="313" height="54.666666666666657"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d48-nK-Dts" customClass="GradientButton" customModule="TVCAP" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="144.33333333333337" width="313" height="54.666666666666657"/>
                                     <color key="backgroundColor" red="0.27450980392156865" green="0.63529411764705879" blue="0.99215686274509807" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -79,10 +79,6 @@
                                         <action selector="actionSelectSeviceButton:" destination="-1" eventType="touchUpInside" id="DD2-yb-pxc"/>
                                     </connections>
                                 </button>
-                                <view contentMode="scaleToFill" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="hey-e0-r0G">
-                                    <rect key="frame" x="0.0" y="214" width="313" height="55.666666666666686"/>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                </view>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
@@ -93,8 +89,8 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="HcL-AJ-nlD" firstAttribute="leading" secondItem="PqV-N8-Wxh" secondAttribute="leading" constant="40" id="1nN-mE-hUA"/>
-                        <constraint firstAttribute="bottom" secondItem="HcL-AJ-nlD" secondAttribute="bottom" id="4cS-aZ-R2H"/>
-                        <constraint firstItem="HcL-AJ-nlD" firstAttribute="top" secondItem="PqV-N8-Wxh" secondAttribute="top" constant="20" id="bsg-NL-VxE"/>
+                        <constraint firstAttribute="bottom" secondItem="HcL-AJ-nlD" secondAttribute="bottom" constant="25" id="4cS-aZ-R2H"/>
+                        <constraint firstItem="HcL-AJ-nlD" firstAttribute="top" secondItem="PqV-N8-Wxh" secondAttribute="top" constant="30" id="bsg-NL-VxE"/>
                         <constraint firstAttribute="trailing" secondItem="HcL-AJ-nlD" secondAttribute="trailing" constant="40" id="eiI-ZP-NAY"/>
                     </constraints>
                 </view>
@@ -111,7 +107,6 @@
                 <constraint firstItem="d48-nK-Dts" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="52/812" id="jb2-E4-khE"/>
                 <constraint firstItem="thj-fa-rM2" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="lgp-5d-0xX"/>
                 <constraint firstItem="PqV-N8-Wxh" firstAttribute="top" secondItem="thj-fa-rM2" secondAttribute="bottom" id="oua-nl-dqk"/>
-                <constraint firstItem="PqV-N8-Wxh" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="276/812" id="rUt-r0-a9a"/>
                 <constraint firstItem="thj-fa-rM2" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="zs2-xL-XmO"/>
             </constraints>
             <point key="canvasLocation" x="23.664122137404579" y="20.422535211267608"/>

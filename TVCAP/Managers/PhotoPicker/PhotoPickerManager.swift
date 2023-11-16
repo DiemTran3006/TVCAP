@@ -100,7 +100,9 @@ extension PhotoPickerManager: UIImagePickerControllerDelegate,
     }
 }
 
-struct VideoModel {
+class VideoModel {
     var thumbnailImage: UIImage?
     var asset: PHAsset?
-}
+    var isSelected: Bool? = false
+    }
+

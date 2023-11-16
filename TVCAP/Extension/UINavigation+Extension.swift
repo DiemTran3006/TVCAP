@@ -24,7 +24,7 @@ extension UINavigationController {
               let viewController = vc as? T else {
             fatalError("Could not instantiateViewController with identifier: \(controllerType)")
         }
-        window.rootViewController = UINavigationController.init(rootViewController: viewController)
+        window.rootViewController = BaseNavigationController(rootViewController: viewController)
         window.makeKeyAndVisible()
     }
 }
