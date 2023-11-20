@@ -16,6 +16,8 @@ class PhotoCastViewController: UIViewController {
     @IBOutlet weak var overlayBackground: UIView!
     @IBOutlet weak var constraint: NSLayoutConstraint!
     
+    var externalWindow: UIWindow?
+    var externalVC: ExternalScreenViewController?
     private var currentAsset: PHAsset? = nil
     private var allPhotos: PHFetchResult<PHAsset>? = nil {
         didSet {
@@ -46,14 +48,15 @@ class PhotoCastViewController: UIViewController {
         setupModalBottomView()
         guard let asset = self.currentAsset else { return }
         self.currentImage.fetchImage(asset: asset, contentMode: .aspectFit, targetSize: self.currentImage.frame.size)
+        registerForScreenNotifications()
+        setupScreen()
     }
     
     @objc private func backTapped() {
         UIView.animate(withDuration: 0.5) {
             self.constraint.priority = .init(250)
-            self.view.layoutIfNeeded()
-        } completion: { _ in
             self.overlayBackground.layer.opacity = 0.5
+            self.view.layoutIfNeeded()
         }
     }
     
@@ -84,6 +87,70 @@ class PhotoCastViewController: UIViewController {
         photoCollectionView.dataSource = self
         photoCollectionView.register(cellType: PhotoCollectionViewCell.self)
     }
+    
+    private func setupExternalScreen(screen: UIScreen, shouldRecurse: Bool = true) {
+        // For iOS13 find matching UIWindowScene
+        var matchingWindowScene: UIWindowScene? = nil
+        if #available(iOS 13.0, *) {
+            let scenes = UIApplication.shared.connectedScenes
+            for aScene in scenes {
+                if let windowScene = aScene as? UIWindowScene {
+                    // Look for UIWindowScene that has matching screen
+                    if (windowScene.screen == screen) {
+                        matchingWindowScene = windowScene
+                        break
+                    }
+                }
+            }
+            if matchingWindowScene == nil {
+                // UIWindowScene has not been created by iOS rendered yet
+                // Lets recall self after delay of two seconds
+                if true == shouldRecurse {
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
+                        self.setupExternalScreen(screen:screen, shouldRecurse: false)
+                    }
+                }
+                // Dont proceed furthure in iOS13
+                return
+            }
+        }
+        
+        guard externalWindow == nil else {
+            return
+        }
+        let vc = ExternalScreenViewController()
+        vc.currentAsset = self.currentAsset
+        externalVC = vc
+        externalWindow = UIWindow(frame: screen.bounds)
+        externalWindow!.rootViewController = vc
+        if #available(iOS 13.0, *) {
+            // Set windowScene here, no need to set screen
+            externalWindow!.windowScene = matchingWindowScene
+        } else {
+            // Set screen the traditional way
+            externalWindow!.screen = screen
+        }
+        externalWindow!.isHidden = false
+        
+    }
+    
+    func registerForScreenNotifications(){
+        NotificationCenter.default.addObserver(self, selector: #selector(PhotoCastViewController.setupScreen), name: UIScreen.didConnectNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(PhotoCastViewController.screenDisconnected), name: UIScreen.didDisconnectNotification, object: nil)
+    }
+    
+    @objc func setupScreen(){
+        if UIScreen.screens.count > 1{
+            let secondScreen = UIScreen.screens[1]
+            setupExternalScreen(screen: secondScreen, shouldRecurse: true)
+        }
+    }
+    
+    @objc func screenDisconnected(){
+        externalWindow = nil
+        externalVC = nil
+    }
 }
 
 extension PhotoCastViewController: UICollectionViewDelegateFlowLayout {
@@ -104,6 +171,8 @@ extension PhotoCastViewController: UICollectionViewDelegateFlowLayout {
         guard let asset = asset else { return }
         self.currentImage.fetchImage(asset: asset, contentMode: .aspectFit, targetSize: self.currentImage.frame.size)
         collectionView.scrollToItem(at: indexPath, at: .left, animated: true)
+        guard let externalVC else { return }
+        externalVC.photoImage.fetchImage(asset: asset, contentMode: .aspectFit, targetSize: externalVC.view.frame.size)
     }
 }
 
@@ -128,9 +197,8 @@ extension PhotoCastViewController: ModalBottomDelegate {
     func handleCancel() {
         UIView.animate(withDuration: 0.5) {
             self.constraint.priority = .init(1000)
-            self.view.layoutIfNeeded()
-        } completion: { _ in
             self.overlayBackground.layer.opacity = 0
+            self.view.layoutIfNeeded()
         }
     }
 }
