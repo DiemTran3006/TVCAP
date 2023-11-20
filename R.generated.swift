@@ -338,7 +338,7 @@ struct _R {
     var interThinTtf: RswiftResources.FileResource { .init(name: "Inter-Thin", pathExtension: "ttf", bundle: bundle, locale: LocaleReference.none) }
   }
 
-  /// This `_R.nib` struct is generated, and contains static references to 26 nibs.
+  /// This `_R.nib` struct is generated, and contains static references to 27 nibs.
   struct nib {
     let bundle: Foundation.Bundle
 
@@ -362,6 +362,9 @@ struct _R {
 
     /// Nib `ErrorMirroringViewController`.
     var errorMirroringViewController: RswiftResources.NibReference<UIKit.UIView> { .init(name: "ErrorMirroringViewController", bundle: bundle) }
+
+    /// Nib `ExternalScreenViewController`.
+    var externalScreenViewController: RswiftResources.NibReference<UIKit.UIView> { .init(name: "ExternalScreenViewController", bundle: bundle) }
 
     /// Nib `HistorySearchTableViewCell`.
     var historySearchTableViewCell: RswiftResources.NibReference<HistorySearchTableViewCell> { .init(name: "HistorySearchTableViewCell", bundle: bundle) }
