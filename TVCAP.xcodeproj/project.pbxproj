@@ -74,8 +74,8 @@
 		6F9B1C6C2AFB43D100DF584C /* VideoLibraryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F9B1C6A2AFB43D100DF584C /* VideoLibraryViewController.xib */; };
 		6FBD84682B052BF6002290DF /* VideoPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FBD84662B052BF6002290DF /* VideoPlayerViewController.swift */; };
 		6FBD84692B052BF6002290DF /* VideoPlayerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6FBD84672B052BF6002290DF /* VideoPlayerViewController.xib */; };
-		7419B4EF2B0B3B440097DE9D /* ExternalScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7419B4ED2B0B3B440097DE9D /* ExternalScreenViewController.swift */; };
 		7419B4F02B0B3B440097DE9D /* ExternalScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7419B4EE2B0B3B440097DE9D /* ExternalScreenViewController.xib */; };
+		743E7ED42B0B560C00193B8C /* ExternalScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743E7ED22B0B560C00193B8C /* ExternalScreenViewController.swift */; };
 		74D9BCC42B04A83100B4FC36 /* MoreRecentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D9BCC22B04A83100B4FC36 /* MoreRecentsViewController.swift */; };
 		74D9BCC52B04A83100B4FC36 /* MoreRecentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74D9BCC32B04A83100B4FC36 /* MoreRecentsViewController.xib */; };
 		74FCD6532B01C793001348F9 /* AlbumModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FCD62A2B01C792001348F9 /* AlbumModel.swift */; };
@@ -189,8 +189,8 @@
 		6F9B1C6A2AFB43D100DF584C /* VideoLibraryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoLibraryViewController.xib; sourceTree = "<group>"; };
 		6FBD84662B052BF6002290DF /* VideoPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewController.swift; sourceTree = "<group>"; };
 		6FBD84672B052BF6002290DF /* VideoPlayerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoPlayerViewController.xib; sourceTree = "<group>"; };
-		7419B4ED2B0B3B440097DE9D /* ExternalScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ExternalScreenViewController.swift; path = "../../../../../Library/Mobile Documents/com~apple~CloudDocs/.Trash/TVCAP2 13.17.10/TVCAP/Screens/ExternalScreenViewController/ExternalScreenViewController.swift"; sourceTree = "<group>"; };
 		7419B4EE2B0B3B440097DE9D /* ExternalScreenViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ExternalScreenViewController.xib; path = "../../../../../Library/Mobile Documents/com~apple~CloudDocs/.Trash/TVCAP2 13.17.10/TVCAP/Screens/ExternalScreenViewController/ExternalScreenViewController.xib"; sourceTree = "<group>"; };
+		743E7ED22B0B560C00193B8C /* ExternalScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalScreenViewController.swift; sourceTree = "<group>"; };
 		74D9BCC22B04A83100B4FC36 /* MoreRecentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreRecentsViewController.swift; sourceTree = "<group>"; };
 		74D9BCC32B04A83100B4FC36 /* MoreRecentsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoreRecentsViewController.xib; sourceTree = "<group>"; };
 		74FCD62A2B01C792001348F9 /* AlbumModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumModel.swift; sourceTree = "<group>"; };
@@ -559,8 +559,8 @@
 		7419B4EC2B0B3B360097DE9D /* ExternalScreenViewController */ = {
 			isa = PBXGroup;
 			children = (
-				7419B4ED2B0B3B440097DE9D /* ExternalScreenViewController.swift */,
 				7419B4EE2B0B3B440097DE9D /* ExternalScreenViewController.xib */,
+				743E7ED22B0B560C00193B8C /* ExternalScreenViewController.swift */,
 			);
 			path = ExternalScreenViewController;
 			sourceTree = "<group>";
@@ -940,7 +940,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F553BC62AFBDFFC004F67FF /* PhotoPickerManager.swift in Sources */,
-				7419B4EF2B0B3B440097DE9D /* ExternalScreenViewController.swift in Sources */,
 				74FCD6802B01C7B6001348F9 /* BrowserViewController.swift in Sources */,
 				6F91D1982AFA3B2B00C115A0 /* MirroringTutorialViewController.swift in Sources */,
 				6F00FE9E2AF8BF0F000E1850 /* Int+Extension.swift in Sources */,
@@ -973,6 +972,7 @@
 				6F4D01E02AFA0A5A00EC292F /* SettingViewController.swift in Sources */,
 				74FCD6692B01C793001348F9 /* ModalBottomView.swift in Sources */,
 				74FCD6672B01C793001348F9 /* EmptyLibraryView.swift in Sources */,
+				743E7ED42B0B560C00193B8C /* ExternalScreenViewController.swift in Sources */,
 				74FCD6872B01C903001348F9 /* UIBarButtonItem+Extension.swift in Sources */,
 				74FCD6612B01C793001348F9 /* SelectDeviceViewController.swift in Sources */,
 				6F9B1C662AFB3E2E00DF584C /* MirroringStopViewController.swift in Sources */,
