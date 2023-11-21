@@ -62,10 +62,12 @@ class PhotoCastViewController: UIViewController {
     
     @objc private func rotateTapped() {
         self.currentImage.image = self.currentImage.image?.rotate(radians: .pi/2)
+        self.externalVC?.photoImage.image = self.externalVC?.photoImage.image?.rotate(radians: .pi/2)
     }
     
     @objc private func flipTapped() {
         self.currentImage.image = self.currentImage.image?.flipHorizontally()
+        self.externalVC?.photoImage.image = self.externalVC?.photoImage.image?.flipHorizontally()
     }
     
     public func getAllPhotos(_ list: PHFetchResult<PHAsset>) {
@@ -171,9 +173,27 @@ extension PhotoCastViewController: UICollectionViewDelegateFlowLayout {
         guard let asset = asset else { return }
         self.currentImage.fetchImage(asset: asset, contentMode: .aspectFit, targetSize: self.currentImage.frame.size)
         collectionView.scrollToItem(at: indexPath, at: .left, animated: true)
+        
+        if let currentAsset,
+           let index = allPhotos?.index(of: currentAsset),
+           let cellCurrent = collectionView.cellForItem(at: IndexPath(item: index, section: 0)) as? PhotoCollectionViewCell {
+            cellCurrent.setupBorder(false)
+        }
+        
+        currentAsset = asset
+        
+        if let cell = collectionView.cellForItem(at: indexPath) as? PhotoCollectionViewCell {
+            cell.setupBorder(true)
+        }
+        
         guard let externalVC else { return }
         externalVC.photoImage.fetchImage(asset: asset, contentMode: .aspectFit, targetSize: externalVC.view.frame.size)
     }
+//
+//    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+//        guard let cell = collectionView.cellForItem(at: indexPath) as? PhotoCollectionViewCell else { return }
+//        cell.setupBorder(false)
+//    }
 }
 
 extension PhotoCastViewController: UICollectionViewDataSource {
@@ -185,6 +205,7 @@ extension PhotoCastViewController: UICollectionViewDataSource {
         let asset = allPhotos?.object(at: indexPath.row)
         guard let asset = asset, let cell = collectionView.dequeueReusableCell(with: PhotoCollectionViewCell.self, for: indexPath) else { return PhotoCollectionViewCell()}
         cell.photo.fetchImage(asset: asset, contentMode: .aspectFill, targetSize: .init(width: 40, height: 48))
+        cell.setupBorder(self.currentAsset == asset)
         return cell
     }
 }
