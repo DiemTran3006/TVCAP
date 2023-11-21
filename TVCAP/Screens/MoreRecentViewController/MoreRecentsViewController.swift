@@ -35,7 +35,7 @@ class MoreRecentsViewController: UIViewController {
             let dateString1 = dictionaryHistory[item1]?.first?.dateTime
             let dateString2 = dictionaryHistory[item2]?.first?.dateTime
             guard let dateString1,let dateString2 else { return item1 > item2 }
-            
+
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
             let date1 = dateFormatter.date(from: dateString1)

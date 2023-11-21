@@ -75,7 +75,7 @@ class PhotoPickerManager: NSObject {
         let fetchResults = PHAsset.fetchAssets(with: PHAssetMediaType.video, options: nil)
         
         fetchResults.enumerateObjects { phAsset, _, _ in
-            var video = VideoModel()
+            let video = VideoModel()
             imageManager.requestImage(for: phAsset,
                                       targetSize: CGSize(width: 400, height: 400),
                                       contentMode: .default,

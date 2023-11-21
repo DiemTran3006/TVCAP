@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -12,7 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VideoPlayerViewController" customModule="TVCAP" customModuleProvider="target">
             <connections>
                 <outlet property="countVideo" destination="EOl-gK-0Wk" id="N3F-jm-4nd"/>
-                <outlet property="mediaView" destination="0iG-Dd-V33" id="dnl-Lq-dPb"/>
+                <outlet property="mediaView" destination="0iG-Dd-V33" id="kgm-i3-lwM"/>
                 <outlet property="myCollectionView" destination="irH-qC-Eh6" id="GV1-QS-oSI"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="viewVolum" destination="z3S-jQ-lIc" id="aki-w6-2QW"/>
@@ -39,10 +39,10 @@
                                 <action selector="actionBack:" destination="-1" eventType="touchUpInside" id="avG-8W-cdx"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qiF-h0-69l">
-                            <rect key="frame" x="176" y="11.999999999999998" width="41.333333333333343" height="20.333333333333329"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MOV.33434" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qiF-h0-69l">
+                            <rect key="frame" x="150.66666666666666" y="11.999999999999998" width="92" height="20.333333333333329"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <nil key="textColor"/>
+                            <color key="textColor" name="TextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
@@ -58,11 +58,14 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z3S-jQ-lIc" userLabel="ViewVolum">
                     <rect key="frame" x="16" y="330" width="361" height="74"/>
                     <subviews>
-                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="-0.5" maxValue="1.5" continuous="NO" minimumValueImage="Volume" maximumValueImage="volume-high" translatesAutoresizingMaskIntoConstraints="NO" id="Kj9-8G-eLb">
+                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" continuous="NO" minimumValueImage="Volume" maximumValueImage="volume-high" translatesAutoresizingMaskIntoConstraints="NO" id="Kj9-8G-eLb">
                             <rect key="frame" x="8" y="35" width="345" height="31"/>
                             <color key="minimumTrackTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <color key="maximumTrackTintColor" red="0.31372549020000001" green="0.34509803919999998" blue="0.4549019608" alpha="1" colorSpace="calibratedRGB"/>
                             <color key="thumbTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="actionVolumSlider:" destination="-1" eventType="valueChanged" id="ukV-l1-Jgl"/>
+                            </connections>
                         </slider>
                     </subviews>
                     <color key="backgroundColor" name="TextColor"/>

@@ -49,17 +49,27 @@ class TutorialViewController: UIViewController  {
         super.viewDidLoad()
         
         view.backgroundColor = .black.withAlphaComponent(0.3)
-        
+        customViewTutorial()
         updataPageControl()
+        undataButtonNext()
+        undataButtonBack()
     }
     
-// MARK: - Action
+    // MARK: - Action
     @IBAction func actionDismiss(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func preAction(_ sender: Any) {
-        customViewTutorial()
+        if tutorials.count > 0 {
+            currentIndex = currentIndex - 1
+            if currentIndex < 0 {
+                currentIndex = 0
+            }
+            scrollToPage(page: currentIndex, animated: true)
+            updataPageControl()
+            undataButtonBack()
+        }
     }
     
     @IBAction func nextAction(_ sender: Any) {
@@ -73,7 +83,7 @@ class TutorialViewController: UIViewController  {
         }
     }
     
-// MARK: - Function
+    // MARK: - Function
     private func customViewTutorial() {
         tutorials.forEach { item in
             let view = TutorialView(model: item)
@@ -84,7 +94,7 @@ class TutorialViewController: UIViewController  {
             ])
         }
     }
-
+    
     private func scrollToPage(page: Int, animated: Bool) {
         var frame: CGRect = self.mainScrollView.frame
         frame.origin.x = frame.size.width * CGFloat(page)

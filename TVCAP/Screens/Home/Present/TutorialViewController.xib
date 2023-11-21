@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -67,13 +67,14 @@
                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UHO-5h-CRv">
                                     <rect key="frame" x="10" y="30" width="373" height="42"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M3G-g5-www">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M3G-g5-www">
                                             <rect key="frame" x="0.0" y="0.0" width="88" height="42"/>
                                             <color key="tintColor" systemColor="tintColor"/>
                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                            <state key="normal" title=" Back" image="Arrow">
-                                                <color key="titleColor" red="0.59215686274509804" green="0.61176470588235299" blue="0.69411764705882351" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </state>
+                                            <state key="normal" title=" Back" image="Arrow"/>
+                                            <buttonConfiguration key="configuration" style="plain" image="Arrow" title=" Back">
+                                                <color key="baseForegroundColor" red="0.59215686274509804" green="0.61176470588235299" blue="0.69411764705882351" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </buttonConfiguration>
                                             <connections>
                                                 <action selector="preAction:" destination="-1" eventType="touchUpInside" id="bhp-yE-OxJ"/>
                                             </connections>
@@ -95,12 +96,13 @@
                                                 <constraint firstAttribute="bottom" secondItem="tex-1d-Q5t" secondAttribute="bottom" id="zjh-1f-CpP"/>
                                             </constraints>
                                         </view>
-                                        <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JRc-3S-7bk">
+                                        <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JRc-3S-7bk">
                                             <rect key="frame" x="285" y="0.0" width="88" height="42"/>
                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                            <state key="normal" title="Next   " image="icon.next.button">
-                                                <color key="titleColor" name="TextColor"/>
-                                            </state>
+                                            <state key="normal" title="Next   " image="icon.next.button"/>
+                                            <buttonConfiguration key="configuration" style="plain" image="icon.next.button" title="Next   ">
+                                                <color key="baseForegroundColor" name="TextColor"/>
+                                            </buttonConfiguration>
                                             <connections>
                                                 <action selector="nextAction:" destination="-1" eventType="touchUpInside" id="pzp-bo-ljK"/>
                                             </connections>

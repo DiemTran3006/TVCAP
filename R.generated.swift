@@ -65,7 +65,7 @@ struct _R {
     var textColor: RswiftResources.ColorResource { .init(name: "TextColor", path: [], bundle: bundle) }
   }
 
-  /// This `_R.image` struct is generated, and contains static references to 53 images.
+  /// This `_R.image` struct is generated, and contains static references to 58 images.
   struct image {
     let bundle: Foundation.Bundle
 
@@ -150,6 +150,9 @@ struct _R {
     /// Image `icon.back.button`.
     var iconBackButton: RswiftResources.ImageResource { .init(name: "icon.back.button", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
+    /// Image `icon.back.playvideo`.
+    var iconBackPlayvideo: RswiftResources.ImageResource { .init(name: "icon.back.playvideo", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
     /// Image `icon.button.ariplay`.
     var iconButtonAriplay: RswiftResources.ImageResource { .init(name: "icon.button.ariplay", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
@@ -176,6 +179,15 @@ struct _R {
 
     /// Image `icon.next.button`.
     var iconNextButton: RswiftResources.ImageResource { .init(name: "icon.next.button", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `icon.next.playvideo`.
+    var iconNextPlayvideo: RswiftResources.ImageResource { .init(name: "icon.next.playvideo", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `icon.playvideo`.
+    var iconPlayvideo: RswiftResources.ImageResource { .init(name: "icon.playvideo", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `icon.stopvideo`.
+    var iconStopvideo: RswiftResources.ImageResource { .init(name: "icon.stopvideo", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
     /// Image `image.botton.browser`.
     var imageBottonBrowser: RswiftResources.ImageResource { .init(name: "image.botton.browser", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
@@ -206,6 +218,9 @@ struct _R {
 
     /// Image `netflixIcon`.
     var netflixIcon: RswiftResources.ImageResource { .init(name: "netflixIcon", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `oval`.
+    var oval: RswiftResources.ImageResource { .init(name: "oval", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
     /// Image `redirectIcon`.
     var redirectIcon: RswiftResources.ImageResource { .init(name: "redirectIcon", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
