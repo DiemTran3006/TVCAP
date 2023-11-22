@@ -12,17 +12,18 @@ class PhotoCastViewController: UIViewController {
     
     @IBOutlet weak var modalBottomView: ModalBottomView!
     @IBOutlet weak var photoCollectionView: UICollectionView!
-    @IBOutlet weak var currentImage: UIImageView!
     @IBOutlet weak var overlayBackground: UIView!
     @IBOutlet weak var constraint: NSLayoutConstraint!
+    @IBOutlet weak var photoAboveCollectionView: UICollectionView!
     
     var externalWindow: UIWindow?
     var externalVC: ExternalScreenViewController?
     private var currentAsset: PHAsset? = nil
     private var allPhotos: PHFetchResult<PHAsset>? = nil {
         didSet {
-            guard let photoCollectionView = photoCollectionView else { return }
+            guard let photoCollectionView,let photoAboveCollectionView else { return }
             photoCollectionView.reloadData()
+            photoAboveCollectionView.reloadData()
         }
     }
     
@@ -46,8 +47,12 @@ class PhotoCastViewController: UIViewController {
         
         setupCollectionView()
         setupModalBottomView()
-        guard let asset = self.currentAsset else { return }
-        self.currentImage.fetchImage(asset: asset, contentMode: .aspectFit, targetSize: self.currentImage.frame.size)
+        guard let asset = self.currentAsset, let index = allPhotos?.index(of: asset) else { return }
+        DispatchQueue.main.async {
+            self.photoAboveCollectionView.scrollToItem(at: IndexPath(row: index, section: 0), at: .centeredHorizontally, animated: true)
+            self.photoCollectionView.scrollToItem(at: IndexPath(row: index, section: 0), at: .left, animated: true)
+        }
+//        self.currentImage.fetchImage(asset: asset, contentMode: .aspectFit, targetSize: self.currentImage.frame.size)
         registerForScreenNotifications()
         setupScreen()
     }
@@ -61,12 +66,12 @@ class PhotoCastViewController: UIViewController {
     }
     
     @objc private func rotateTapped() {
-        self.currentImage.image = self.currentImage.image?.rotate(radians: .pi/2)
+//        self.currentImage.image = self.currentImage.image?.rotate(radians: .pi/2)
         self.externalVC?.photoImage.image = self.externalVC?.photoImage.image?.rotate(radians: .pi/2)
     }
     
     @objc private func flipTapped() {
-        self.currentImage.image = self.currentImage.image?.flipHorizontally()
+//        self.currentImage.image = self.currentImage.image?.flipHorizontally()
         self.externalVC?.photoImage.image = self.externalVC?.photoImage.image?.flipHorizontally()
     }
     
@@ -88,6 +93,10 @@ class PhotoCastViewController: UIViewController {
         photoCollectionView.delegate = self
         photoCollectionView.dataSource = self
         photoCollectionView.register(cellType: PhotoCollectionViewCell.self)
+        
+        photoAboveCollectionView.delegate = self
+        photoAboveCollectionView.dataSource = self
+        photoAboveCollectionView.register(cellType: PhotoCollectionViewCell.self)
     }
     
     private func setupExternalScreen(screen: UIScreen, shouldRecurse: Bool = true) {
@@ -157,37 +166,90 @@ class PhotoCastViewController: UIViewController {
 
 extension PhotoCastViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        .init(width: 40, height: 48)
+        if collectionView == photoCollectionView {
+            return .init(width: 40, height: 48)
+        }
+        return .init(width: collectionView.frame.width, height: collectionView.frame.height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        8
+        if collectionView == photoCollectionView {
+            return 8
+        }
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        if collectionView == photoCollectionView {
+            return 8
+        }
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        .init(top: 16, left: 16, bottom: 16, right: 16)
+        if collectionView == photoCollectionView {
+            return .init(top: 16, left: 16, bottom: 16, right: 16)
+        }
+        return .zero
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let asset = allPhotos?.object(at: indexPath.row)
-        guard let asset = asset else { return }
-        self.currentImage.fetchImage(asset: asset, contentMode: .aspectFit, targetSize: self.currentImage.frame.size)
-        collectionView.scrollToItem(at: indexPath, at: .left, animated: true)
-        
-        if let currentAsset,
-           let index = allPhotos?.index(of: currentAsset),
-           let cellCurrent = collectionView.cellForItem(at: IndexPath(item: index, section: 0)) as? PhotoCollectionViewCell {
-            cellCurrent.setupBorder(false)
+        if collectionView == photoCollectionView {
+            let asset = allPhotos?.object(at: indexPath.row)
+            guard let asset = asset else { return }
+//            self.currentImage.fetchImage(asset: asset, contentMode: .aspectFit, targetSize: self.currentImage.frame.size)
+            collectionView.scrollToItem(at: indexPath, at: .left, animated: true)
+            photoAboveCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+            
+            if let currentAsset,
+               let index = allPhotos?.index(of: currentAsset),
+               let cellCurrent = collectionView.cellForItem(at: IndexPath(item: index, section: 0)) as? PhotoCollectionViewCell {
+                cellCurrent.setupBorder(false)
+            }
+
+            currentAsset = asset
+
+            if let cell = collectionView.cellForItem(at: indexPath) as? PhotoCollectionViewCell {
+                cell.setupBorder(true)
+            }
+            
+            if let cellAbove = photoAboveCollectionView.cellForItem(at: indexPath) as? PhotoCollectionViewCell {
+                cellAbove.photo.fetchImage(asset: asset, contentMode: .aspectFit, targetSize: self.photoAboveCollectionView.frame.size)
+            }
+            
+            guard let externalVC else { return }
+            externalVC.photoImage.fetchImage(asset: asset, contentMode: .aspectFit, targetSize: externalVC.view.frame.size)
+        }
+    }
+    
+    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+        if scrollView == photoAboveCollectionView {
+            let x = scrollView.contentOffset.x
+            let w = scrollView.bounds.size.width
+            let currentPage = Int(ceil(x/w))
+            
+            if let currentAsset,
+               let index = allPhotos?.index(of: currentAsset),
+               let cellCurrent = photoCollectionView.cellForItem(at: IndexPath(item: index, section: 0)) as? PhotoCollectionViewCell {
+                cellCurrent.setupBorder(false)
+            }
+        }
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if scrollView == photoAboveCollectionView {
+            let x = scrollView.contentOffset.x
+            let w = scrollView.bounds.size.width
+            let currentPage = Int(ceil(x/w))
+            photoCollectionView.scrollToItem(at: IndexPath(row: currentPage, section: 0), at: .left, animated: true)
+            
+            if let cell = photoCollectionView.cellForItem(at: IndexPath(row: currentPage, section: 0)) as? PhotoCollectionViewCell {
+                cell.setupBorder(true)
+            }
+            let asset = allPhotos?.object(at: currentPage)
+            currentAsset = asset
         }
         
-        currentAsset = asset
-        
-        if let cell = collectionView.cellForItem(at: indexPath) as? PhotoCollectionViewCell {
-            cell.setupBorder(true)
-        }
-        
-        guard let externalVC else { return }
-        externalVC.photoImage.fetchImage(asset: asset, contentMode: .aspectFit, targetSize: externalVC.view.frame.size)
     }
 //
 //    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
@@ -204,8 +266,13 @@ extension PhotoCastViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let asset = allPhotos?.object(at: indexPath.row)
         guard let asset = asset, let cell = collectionView.dequeueReusableCell(with: PhotoCollectionViewCell.self, for: indexPath) else { return PhotoCollectionViewCell()}
-        cell.photo.fetchImage(asset: asset, contentMode: .aspectFill, targetSize: .init(width: 40, height: 48))
-        cell.setupBorder(self.currentAsset == asset)
+        if collectionView == photoCollectionView {
+            cell.setupBorder(self.currentAsset == asset)
+            cell.photo.fetchImage(asset: asset, contentMode: .aspectFill, targetSize: .init(width: 40, height: 48))
+        } else {
+            cell.removeCornerRadius()
+            cell.photo.fetchImage(asset: asset, contentMode: .aspectFit, targetSize: .init(width: collectionView.frame.width, height: collectionView.frame.height))
+        }
         return cell
     }
 }
