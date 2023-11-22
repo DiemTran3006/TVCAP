@@ -54,7 +54,7 @@ class PhotoCastViewController: UIViewController {
         }
 //        self.currentImage.fetchImage(asset: asset, contentMode: .aspectFit, targetSize: self.currentImage.frame.size)
         registerForScreenNotifications()
-        setupScreen()
+        setupScreen(inDidLoad: true)
     }
     
     @objc private func backTapped() {
@@ -107,7 +107,7 @@ class PhotoCastViewController: UIViewController {
         photoAboveCollectionView.register(cellType: PhotoCollectionViewCell.self)
     }
     
-    private func setupExternalScreen(screen: UIScreen, shouldRecurse: Bool = true) {
+    private func setupExternalScreen(screen: UIScreen, shouldRecurse: Bool = true, inDidLoad: Bool = false) {
         // For iOS13 find matching UIWindowScene
         var matchingWindowScene: UIWindowScene? = nil
         if #available(iOS 13.0, *) {
@@ -138,9 +138,12 @@ class PhotoCastViewController: UIViewController {
             return
         }
         let vc = ExternalScreenViewController()
-        
-        if let cell = photoAboveCollectionView.visibleCells.first as? PhotoCollectionViewCell {
-            vc.currentImage = cell.photo.image
+        if inDidLoad {
+            vc.currentAsset = currentAsset
+        } else {
+            if let cell = photoAboveCollectionView.visibleCells.first as? PhotoCollectionViewCell {
+                vc.currentImage = cell.photo.image
+            }
         }
         externalVC = vc
         externalWindow = UIWindow(frame: screen.bounds)
@@ -162,10 +165,10 @@ class PhotoCastViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(PhotoCastViewController.screenDisconnected), name: UIScreen.didDisconnectNotification, object: nil)
     }
     
-    @objc func setupScreen(){
+    @objc func setupScreen(inDidLoad: Bool = false){
         if UIScreen.screens.count > 1{
             let secondScreen = UIScreen.screens[1]
-            setupExternalScreen(screen: secondScreen, shouldRecurse: true)
+            setupExternalScreen(screen: secondScreen, shouldRecurse: true, inDidLoad: inDidLoad)
         }
     }
     

@@ -11,11 +11,19 @@ import Photos
 class ExternalScreenViewController: UIViewController {
     @IBOutlet weak var photoImage: UIImageView!
     
+    var currentAsset: PHAsset? = nil
     var currentImage: UIImage? = nil
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard let currentImage else { return }
-        photoImage.image = currentImage
+        if let currentImage {
+            photoImage.image = currentImage
+            self.currentImage = nil
+        } else if let currentAsset {
+            photoImage.fetchImage(asset: currentAsset, contentMode: .aspectFit, targetSize: self.view.frame.size)
+            self.currentAsset = nil
+        }
+        
+        
     }
 }
