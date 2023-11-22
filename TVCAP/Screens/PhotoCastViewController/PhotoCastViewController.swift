@@ -67,10 +67,18 @@ class PhotoCastViewController: UIViewController {
     
     @objc private func rotateTapped() {
 //        self.currentImage.image = self.currentImage.image?.rotate(radians: .pi/2)
+        let cell = photoAboveCollectionView.visibleCells.first
+        if let cell = cell as? PhotoCollectionViewCell {
+            cell.photo.image =  cell.photo.image?.rotate(radians: .pi/2)
+        }
         self.externalVC?.photoImage.image = self.externalVC?.photoImage.image?.rotate(radians: .pi/2)
     }
     
     @objc private func flipTapped() {
+        let cell = photoAboveCollectionView.visibleCells.first
+        if let cell = cell as? PhotoCollectionViewCell {
+            cell.photo.image =  cell.photo.image?.flipHorizontally()
+        }
 //        self.currentImage.image = self.currentImage.image?.flipHorizontally()
         self.externalVC?.photoImage.image = self.externalVC?.photoImage.image?.flipHorizontally()
     }
@@ -130,7 +138,10 @@ class PhotoCastViewController: UIViewController {
             return
         }
         let vc = ExternalScreenViewController()
-        vc.currentAsset = self.currentAsset
+        
+        if let cell = photoAboveCollectionView.visibleCells.first as? PhotoCollectionViewCell {
+            vc.currentImage = cell.photo.image
+        }
         externalVC = vc
         externalWindow = UIWindow(frame: screen.bounds)
         externalWindow!.rootViewController = vc
@@ -240,14 +251,32 @@ extension PhotoCastViewController: UICollectionViewDelegateFlowLayout {
         if scrollView == photoAboveCollectionView {
             let x = scrollView.contentOffset.x
             let w = scrollView.bounds.size.width
-            let currentPage = Int(ceil(x/w))
+            let currentPage = max(min(Int(ceil(x/w)), (allPhotos?.count ?? .max) - 1), 0)
             photoCollectionView.scrollToItem(at: IndexPath(row: currentPage, section: 0), at: .left, animated: true)
             
             if let cell = photoCollectionView.cellForItem(at: IndexPath(row: currentPage, section: 0)) as? PhotoCollectionViewCell {
                 cell.setupBorder(true)
             }
+            
+            if currentPage != 0 {
+                if let assetPrev = allPhotos?.object(at: currentPage - 1),
+                   let cellPrev = photoAboveCollectionView.cellForItem(at: IndexPath(row: currentPage - 1, section: 0)) as? PhotoCollectionViewCell {
+                    cellPrev.photo.fetchImage(asset: assetPrev, contentMode: .aspectFit, targetSize: photoAboveCollectionView.frame.size)
+                }
+            }
+            
+            if currentPage != (allPhotos?.count ?? .max) - 1 {
+                if let assetNext = allPhotos?.object(at: currentPage + 1),
+                   let cellNext = photoAboveCollectionView.cellForItem(at: IndexPath(row: currentPage + 1, section: 0)) as? PhotoCollectionViewCell {
+                    cellNext.photo.fetchImage(asset: assetNext, contentMode: .aspectFit, targetSize: photoAboveCollectionView.frame.size)
+                }
+            }
+            
             let asset = allPhotos?.object(at: currentPage)
             currentAsset = asset
+            guard let externalVC, let asset else { return }
+//            externalVC.currentAsset = asset
+            externalVC.photoImage.fetchImage(asset: asset, contentMode: .aspectFit, targetSize: externalVC.view.frame.size)
         }
         
     }
