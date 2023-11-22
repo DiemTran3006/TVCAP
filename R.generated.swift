@@ -365,7 +365,7 @@ struct _R {
     var interThinTtf: RswiftResources.FileResource { .init(name: "Inter-Thin", pathExtension: "ttf", bundle: bundle, locale: LocaleReference.none) }
   }
 
-  /// This `_R.nib` struct is generated, and contains static references to 28 nibs.
+  /// This `_R.nib` struct is generated, and contains static references to 29 nibs.
   struct nib {
     let bundle: Foundation.Bundle
 
@@ -434,6 +434,9 @@ struct _R {
 
     /// Nib `SocialCollectionViewCell`.
     var socialCollectionViewCell: RswiftResources.NibReference<SocialCollectionViewCell> { .init(name: "SocialCollectionViewCell", bundle: bundle) }
+
+    /// Nib `StopCastViewController`.
+    var stopCastViewController: RswiftResources.NibReference<UIKit.UIView> { .init(name: "StopCastViewController", bundle: bundle) }
 
     /// Nib `TutorialView`.
     var tutorialView: RswiftResources.NibReference<UIKit.UIView> { .init(name: "TutorialView", bundle: bundle) }

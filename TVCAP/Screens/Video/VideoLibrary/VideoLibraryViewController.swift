@@ -17,6 +17,7 @@ class VideoLibraryViewController: UIViewController {
     let photoPickerManager = PhotoPickerManager.shared
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
     }
     
@@ -82,10 +83,10 @@ extension VideoLibraryViewController: UICollectionViewDelegate {
         let currentVideo = videos[indexPath.row]
         currentVideo.isSelected = true
         guard let videoAsset = videos[indexPath.row].asset else { return }
-        navigateToDetailVideo(videoAsset: videoAsset)
+        navigateToDetailVideo(videoAsset: videoAsset, indexPath: indexPath)
     }
     
-    private func navigateToDetailVideo(videoAsset: PHAsset) {
+    private func navigateToDetailVideo(videoAsset: PHAsset, indexPath: IndexPath) {
         let options = PHVideoRequestOptions()
         options.isNetworkAccessAllowed = true
         PHCachingImageManager.default().requestAVAsset(forVideo: videoAsset,
@@ -93,8 +94,11 @@ extension VideoLibraryViewController: UICollectionViewDelegate {
             guard let self = self, let asset = asset else { return }
             DispatchQueue.main.async {
                 self.hideCustomeIndicator()
+                let currrentItem = self.videos[indexPath.row]
                 let vc = VideoPlayerViewController()
                 vc.videoAsset = asset
+                self.videos.remove(at: indexPath.row)
+                self.videos.insert(currrentItem, at: 0)
                 vc.listMedia = self.videos
                 self.navigationController?.pushViewController(vc, animated: true)
             }

@@ -19,6 +19,8 @@ class VideoPlayerViewController: BaseViewController {
     @IBOutlet weak var countVideo: UILabel!
     
     var videoAsset: AVAsset?
+    let viewController = AVPlayerViewController()
+
     var listMedia: [VideoModel] = []
     private var selectedIndexPath: IndexPath?
     private var isProgress: Bool = false
@@ -34,27 +36,38 @@ class VideoPlayerViewController: BaseViewController {
     let timelabelRight = UILabel()
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
     }
     
     override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
         player?.pause()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        stackView.isHidden = true
         setUpPlatVideo()
         setUpColectionView()
-        boderConnerRadius()
         setCountVideo()
         CustomPlayVideo()
         updatePlayerTime()
+        
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        boderConnerRadius()
+
     }
     
     // MARK: - Action
     @IBAction func actionBack(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
+        let vc = StopCastViewController(nibName: "StopCastViewController", bundle: nil)
+        vc.modalPresentationStyle = .overFullScreen
+        self.present(vc, animated: true, completion: nil)
     }
     
     @IBAction func actionVolumSlider(_ sender: Any) {
@@ -79,21 +92,29 @@ class VideoPlayerViewController: BaseViewController {
     }
     
     private func buildMediaView(asset: AVAsset) {
-        
-        let playerItem = AVPlayerItem(asset: asset)
-        player = AVPlayer(playerItem: playerItem)
-        let viewController = AVPlayerViewController()
-        viewController.player = player
         viewController.videoGravity = AVLayerVideoGravity.resizeAspectFill
         viewController.showsPlaybackControls = false
-        viewController.view.layer.borderWidth = 5
-        viewController.view.layer.borderColor = UIColor(named: "TextColor")?.cgColor
+        
+        viewController.view.clipsToBounds = true
+        viewController.view.layer.cornerRadius = 22
+        viewController.view.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
+        
+        mediaView.backgroundColor = UIColor(named: "TextColor")
+        viewController.view.addTapGesture(action: onPlayVideo)
         self.addChild(viewController)
         mediaView.addSubview(viewController.view)
         
         viewController.view.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.top.leading.equalToSuperview().offset(5)
+            make.bottom.trailing.equalToSuperview().offset(-5)
         }
+        self.settingPlayer(asset: asset)
+    }
+    
+    private func settingPlayer(asset: AVAsset) {
+        let playerItem = AVPlayerItem(asset: asset)
+        player = AVPlayer(playerItem: playerItem)
+        viewController.player = player
         player?.play()
         self.setObserverToPlayer()
     }
@@ -194,7 +215,6 @@ class VideoPlayerViewController: BaseViewController {
     }
     
     private func updatePlayerTime() {
-        
         guard let currentTime = self.player?.currentTime() else { return }
         guard let duration = self.player?.currentItem?.duration else { return }
         let currentTimeInSecond = CMTimeGetSeconds(currentTime)
@@ -253,6 +273,15 @@ class VideoPlayerViewController: BaseViewController {
             self.player?.play()
         }
     }
+
+    @objc private func onPlayVideo() {
+        if self.stackView.isHidden {
+            self.stackView.isHidden = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                self.stackView.isHidden = true
+            }
+        }
+    }
     
     @objc private func isProgressAction() {
         self.isProgress = true
@@ -288,34 +317,33 @@ extension VideoPlayerViewController: UICollectionViewDataSource {
         cell.configCell(modol: listMedia[indexPath.row])
         return cell
     }
-    
-    func collectionView(_ collectionView: UICollectionView, canMoveItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        // Xử lý di chuyển item
-        let item = listMedia.remove(at: sourceIndexPath.row)
-        listMedia.insert(item, at: destinationIndexPath.row)
-        // Cập nhật selectedIndexPath để đưa cell được chọn lên đầu tiên
-        selectedIndexPath = destinationIndexPath
-    }
 }
 
 extension VideoPlayerViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView,
                         didSelectItemAt indexPath: IndexPath) {
+        self.showCustomeIndicator()
+        let currrentItem = listMedia[indexPath.row]
+        listMedia.forEach { $0.isSelected = false }
+        listMedia[indexPath.row].isSelected = true
         
-        guard let cellVideo = listMedia[indexPath.row].asset else { return }
+        listMedia.remove(at: indexPath.row)
+        listMedia.insert(currrentItem, at: 0)
+        myCollectionView.reloadData()
+        guard let cellVideo = currrentItem.asset else { return }
         navigateToDetailVideo(cellVideo: cellVideo)
     }
+    
     func navigateToDetailVideo(cellVideo: PHAsset) {
         let options = PHVideoRequestOptions()
         options.isNetworkAccessAllowed = true
         PHCachingImageManager.default().requestAVAsset(forVideo: cellVideo,
-                                                       options: options) {(asset, _, error) in
-            self.videoAsset = asset
+                                                       options: options) { [weak self] asset, _, _ in
+            guard let self, let videoAsset = asset else { return }
+            self.videoAsset = videoAsset
+            self.settingPlayer(asset: videoAsset)
+            self.hideCustomeIndicator()
         }
     }
 }
