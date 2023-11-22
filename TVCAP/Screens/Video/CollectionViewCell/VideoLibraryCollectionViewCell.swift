@@ -19,7 +19,7 @@ class VideoLibraryCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: - Function
-    func configCell(modol: VideoModel) {
+    public func configCell(modol: VideoModel) {
         if let image = modol.thumbnailImage {
             imageView.image = image.croppedImage(inRect: .init(x: 0, y: 0, width: 400, height: 400))
         }

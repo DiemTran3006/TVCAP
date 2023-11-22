@@ -65,7 +65,7 @@ struct _R {
     var textColor: RswiftResources.ColorResource { .init(name: "TextColor", path: [], bundle: bundle) }
   }
 
-  /// This `_R.image` struct is generated, and contains static references to 58 images.
+  /// This `_R.image` struct is generated, and contains static references to 60 images.
   struct image {
     let bundle: Foundation.Bundle
 
@@ -95,6 +95,9 @@ struct _R {
 
     /// Image `arrowIntro`.
     var arrowIntro: RswiftResources.ImageResource { .init(name: "arrowIntro", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `banner.image.abumvideo`.
+    var bannerImageAbumvideo: RswiftResources.ImageResource { .init(name: "banner.image.abumvideo", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
     /// Image `bannerimage.1`.
     var bannerimage1: RswiftResources.ImageResource { .init(name: "bannerimage.1", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
@@ -140,6 +143,9 @@ struct _R {
 
     /// Image `iPhone 14 Pro 5`.
     var iPhone14Pro5: RswiftResources.ImageResource { .init(name: "iPhone 14 Pro 5", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `icon.add.button`.
+    var iconAddButton: RswiftResources.ImageResource { .init(name: "icon.add.button", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
     /// Image `icon.airplay`.
     var iconAirplay: RswiftResources.ImageResource { .init(name: "icon.airplay", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
@@ -365,9 +371,12 @@ struct _R {
     var interThinTtf: RswiftResources.FileResource { .init(name: "Inter-Thin", pathExtension: "ttf", bundle: bundle, locale: LocaleReference.none) }
   }
 
-  /// This `_R.nib` struct is generated, and contains static references to 29 nibs.
+  /// This `_R.nib` struct is generated, and contains static references to 30 nibs.
   struct nib {
     let bundle: Foundation.Bundle
+
+    /// Nib `AddAbumVideoViewController`.
+    var addAbumVideoViewController: RswiftResources.NibReference<UIKit.UIView> { .init(name: "AddAbumVideoViewController", bundle: bundle) }
 
     /// Nib `AlbumsCollectionViewCell`.
     var albumsCollectionViewCell: RswiftResources.NibReference<AlbumsCollectionViewCell> { .init(name: "AlbumsCollectionViewCell", bundle: bundle) }
@@ -457,6 +466,10 @@ struct _R {
     var videoPlayerViewController: RswiftResources.NibReference<UIKit.UIView> { .init(name: "VideoPlayerViewController", bundle: bundle) }
 
     func validate() throws {
+      if UIKit.UIImage(named: "banner.image.abumvideo", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Image named 'banner.image.abumvideo' is used in nib 'AddAbumVideoViewController', but couldn't be loaded.") }
+      if UIKit.UIImage(named: "icon.add.button", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Image named 'icon.add.button' is used in nib 'AddAbumVideoViewController', but couldn't be loaded.") }
+      if UIKit.UIColor(named: "ColorBottonTabbar", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Color named 'ColorBottonTabbar' is used in nib 'AddAbumVideoViewController', but couldn't be loaded.") }
+      if UIKit.UIColor(named: "TextColor", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Color named 'TextColor' is used in nib 'AddAbumVideoViewController', but couldn't be loaded.") }
       if UIKit.UIImage(named: "instagramIcon", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Image named 'instagramIcon' is used in nib 'BrowserTableViewCell', but couldn't be loaded.") }
       if UIKit.UIImage(named: "chevronLeft", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Image named 'chevronLeft' is used in nib 'BrowserViewController', but couldn't be loaded.") }
       if UIKit.UIImage(named: "chevronRight", in: bundle, compatibleWith: nil) == nil { throw RswiftResources.ValidationError("[R.swift] Image named 'chevronRight' is used in nib 'BrowserViewController', but couldn't be loaded.") }

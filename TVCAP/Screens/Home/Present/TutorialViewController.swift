@@ -49,6 +49,7 @@ class TutorialViewController: UIViewController  {
         super.viewDidLoad()
         
         view.backgroundColor = .black.withAlphaComponent(0.3)
+        mainScrollView.delegate = self
         customViewTutorial()
         updataPageControl()
         undataButtonNext()
@@ -108,6 +109,7 @@ class TutorialViewController: UIViewController  {
     
     private func undataButtonNext() {
         if currentIndex > 0 {
+            backButton.setTitle("Back", for: .normal)
             backButton.setTitleColor(UIColor(hexString: "#384161"), for: .normal)
             backButton.setImage(UIImage(named: "icon.back.button"), for: .normal)
         }
@@ -142,5 +144,6 @@ extension TutorialViewController: UIScrollViewDelegate {
         pageControl.currentPage = scrollView.currentPage
         undataButtonBack()
         undataButtonNext()
+        updataPageControl()
     }
 }

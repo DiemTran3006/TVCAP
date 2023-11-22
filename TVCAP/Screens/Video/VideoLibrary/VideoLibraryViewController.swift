@@ -32,6 +32,12 @@ class VideoLibraryViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
+    @IBAction func actionAbumVideo(_ sender: Any) {
+        let vc = AddAbumVideoViewController()
+        vc.modalPresentationStyle = .overFullScreen
+        self.present(vc, animated: true, completion: nil)
+    }
+    
     // MARK: - Funcsion
     private func setUpCollection() {
         myCollection.dataSource = self
@@ -47,7 +53,6 @@ class VideoLibraryViewController: UIViewController {
             self.hideCustomeIndicator()
             DispatchQueue.main.async {
                 self.myCollection.reloadData()
-                
             }
         }
     }

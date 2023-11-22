@@ -45,6 +45,11 @@ class VideoPlayerViewController: BaseViewController {
         player?.pause()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        boderConnerRadius()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -54,19 +59,21 @@ class VideoPlayerViewController: BaseViewController {
         setCountVideo()
         CustomPlayVideo()
         updatePlayerTime()
-        
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        boderConnerRadius()
-
     }
     
     // MARK: - Action
     @IBAction func actionBack(_ sender: Any) {
         let vc = StopCastViewController(nibName: "StopCastViewController", bundle: nil)
         vc.modalPresentationStyle = .overFullScreen
+        vc.stopCastDelegate = self
+        if self.stackView.isHidden {
+            self.stackView.isHidden = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                self.stackView.isHidden = true
+            }
+        }
+        self.player?.pause()
+        self.playPauseButton.setImage(UIImage(named: "icon.stopvideo"), for: .normal)
         self.present(vc, animated: true, completion: nil)
     }
     
@@ -94,11 +101,9 @@ class VideoPlayerViewController: BaseViewController {
     private func buildMediaView(asset: AVAsset) {
         viewController.videoGravity = AVLayerVideoGravity.resizeAspectFill
         viewController.showsPlaybackControls = false
-        
         viewController.view.clipsToBounds = true
         viewController.view.layer.cornerRadius = 22
         viewController.view.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
-        
         mediaView.backgroundColor = UIColor(named: "TextColor")
         viewController.view.addTapGesture(action: onPlayVideo)
         self.addChild(viewController)
@@ -170,8 +175,8 @@ class VideoPlayerViewController: BaseViewController {
         mediaView.addSubview(progressView)
         
         progressView.snp.makeConstraints { make in
-            make.left.equalTo(mediaView).offset(0)
-            make.right.equalTo(mediaView).offset(0)
+            make.left.equalTo(mediaView).offset(5)
+            make.right.equalTo(mediaView).offset(-5)
             make.bottom.equalTo(mediaView).offset(-5)
         }
         
@@ -222,6 +227,7 @@ class VideoPlayerViewController: BaseViewController {
         if self.isProgress == false {
             self.progressView.progress = Float(currentTimeInSecond/durationTimeInSecond)
         }
+        
         let value = Float64(self.progressView.progress) * CMTimeGetSeconds(duration)
         var mins =  (value / 60).truncatingRemainder(dividingBy: 60)
         var secs = value.truncatingRemainder(dividingBy: 60)
@@ -233,6 +239,7 @@ class VideoPlayerViewController: BaseViewController {
                let secsStr = timeformatter.string(from: NSNumber(value: secs)) else {
             return
         }
+        
         self.timeLabelLeft.text = "\(minsStr):\(secsStr)"
         mins = (durationTimeInSecond / 60).truncatingRemainder(dividingBy: 60)
         secs = durationTimeInSecond.truncatingRemainder(dividingBy: 60)
@@ -309,7 +316,6 @@ extension VideoPlayerViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         guard let cell = collectionView.dequeueReusableCell(with: VideoLibraryCollectionViewCell.self,
                                                             for: indexPath) else {
             return UICollectionViewCell()
@@ -327,7 +333,6 @@ extension VideoPlayerViewController: UICollectionViewDelegate {
         let currrentItem = listMedia[indexPath.row]
         listMedia.forEach { $0.isSelected = false }
         listMedia[indexPath.row].isSelected = true
-        
         listMedia.remove(at: indexPath.row)
         listMedia.insert(currrentItem, at: 0)
         myCollectionView.reloadData()
@@ -367,5 +372,11 @@ extension VideoPlayerViewController: UICollectionViewDelegateFlowLayout {
                         layout collectionViewLayout: UICollectionViewLayout,
                         minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         0
+    }
+}
+
+extension VideoPlayerViewController: StopCastDelegate {
+    func backButton() {
+        self.navigationController?.popViewController(animated: true)
     }
 }

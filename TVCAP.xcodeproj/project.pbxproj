@@ -36,6 +36,8 @@
 		6F00FECE2AF9485A000E1850 /* TutorialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F00FECC2AF9485A000E1850 /* TutorialViewController.xib */; };
 		6F0F42962B0D98C00033A983 /* StopCastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0F42942B0D98C00033A983 /* StopCastViewController.swift */; };
 		6F0F42972B0D98C00033A983 /* StopCastViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F0F42952B0D98C00033A983 /* StopCastViewController.xib */; };
+		6F0F429D2B0DF26E0033A983 /* AddAbumVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0F429B2B0DF26E0033A983 /* AddAbumVideoViewController.swift */; };
+		6F0F429E2B0DF26E0033A983 /* AddAbumVideoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F0F429C2B0DF26E0033A983 /* AddAbumVideoViewController.xib */; };
 		6F1A3B282AF95CBC00606209 /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1A3B272AF95CBC00606209 /* TutorialView.swift */; };
 		6F1A3B2A2AF95CD800606209 /* TutorialView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F1A3B292AF95CD800606209 /* TutorialView.xib */; };
 		6F1A3B2C2AF95D6500606209 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1A3B2B2AF95D6500606209 /* BaseView.swift */; };
@@ -153,6 +155,8 @@
 		6F00FECC2AF9485A000E1850 /* TutorialViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TutorialViewController.xib; sourceTree = "<group>"; };
 		6F0F42942B0D98C00033A983 /* StopCastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopCastViewController.swift; sourceTree = "<group>"; };
 		6F0F42952B0D98C00033A983 /* StopCastViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StopCastViewController.xib; sourceTree = "<group>"; };
+		6F0F429B2B0DF26E0033A983 /* AddAbumVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAbumVideoViewController.swift; sourceTree = "<group>"; };
+		6F0F429C2B0DF26E0033A983 /* AddAbumVideoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddAbumVideoViewController.xib; sourceTree = "<group>"; };
 		6F1A3B272AF95CBC00606209 /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
 		6F1A3B292AF95CD800606209 /* TutorialView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TutorialView.xib; sourceTree = "<group>"; };
 		6F1A3B2B2AF95D6500606209 /* BaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
@@ -348,6 +352,7 @@
 				74FCD66C2B01C7B5001348F9 /* Intro */,
 				74FCD66F2B01C7B5001348F9 /* PhotoCastViewController */,
 				74FCD6782B01C7B6001348F9 /* PhotoViewController */,
+				6F0F42992B0DF2290033A983 /* AbumVideo */,
 				6FBD84702B0546DB002290DF /* Video */,
 				6F00FEAF2AF8BFC8000E1850 /* Home */,
 			);
@@ -385,6 +390,23 @@
 				6F0F42952B0D98C00033A983 /* StopCastViewController.xib */,
 			);
 			path = ViewPresent;
+			sourceTree = "<group>";
+		};
+		6F0F42992B0DF2290033A983 /* AbumVideo */ = {
+			isa = PBXGroup;
+			children = (
+				6F0F429A2B0DF2400033A983 /* NoAbum */,
+			);
+			path = AbumVideo;
+			sourceTree = "<group>";
+		};
+		6F0F429A2B0DF2400033A983 /* NoAbum */ = {
+			isa = PBXGroup;
+			children = (
+				6F0F429B2B0DF26E0033A983 /* AddAbumVideoViewController.swift */,
+				6F0F429C2B0DF26E0033A983 /* AddAbumVideoViewController.xib */,
+			);
+			path = NoAbum;
 			sourceTree = "<group>";
 		};
 		6F1A3B262AF95CAB00606209 /* Item */ = {
@@ -876,6 +898,7 @@
 				6F553BB02AFB7577004F67FF /* Inter-Black.ttf in Resources */,
 				6F91D1992AFA3B2B00C115A0 /* MirroringTutorialViewController.xib in Resources */,
 				6F91D17D2AFA28AA00C115A0 /* ConnectViewController.xib in Resources */,
+				6F0F429E2B0DF26E0033A983 /* AddAbumVideoViewController.xib in Resources */,
 				74D9BCC52B04A83100B4FC36 /* MoreRecentsViewController.xib in Resources */,
 				6F553BB52AFB7577004F67FF /* Inter-Regular.ttf in Resources */,
 				74FCD67C2B01C7B6001348F9 /* IntroViewController.xib in Resources */,
@@ -984,6 +1007,7 @@
 				74FCD6582B01C793001348F9 /* AlbumsCollectionViewCell.swift in Sources */,
 				74FCD6632B01C793001348F9 /* KeyboardNotifier.swift in Sources */,
 				6F553BC22AFB9ADB004F67FF /* ErrorMirroringViewController.swift in Sources */,
+				6F0F429D2B0DF26E0033A983 /* AddAbumVideoViewController.swift in Sources */,
 				74FCD66B2B01C793001348F9 /* TutorialWithStepViewController.swift in Sources */,
 				74FCD67E2B01C7B6001348F9 /* PhotoCastViewController.swift in Sources */,
 				6F4D01E02AFA0A5A00EC292F /* SettingViewController.swift in Sources */,

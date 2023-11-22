@@ -13,7 +13,6 @@ class ErrorMirroringViewController: UIViewController {
     @IBOutlet weak var presentView: UIView!
     
     var airplayManager = AirplayManager.shared
-    let conten = "Connect device to\nmirroring"
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -23,7 +22,7 @@ class ErrorMirroringViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black.withAlphaComponent(0.3)
-        contenLabel.text = conten
+        contenLabel.text = "Connect device to\nmirroring"
     }
 
     // MARK: - Action

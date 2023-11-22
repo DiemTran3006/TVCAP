@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -21,7 +21,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="thj-fa-rM2">
-                    <rect key="frame" x="0.0" y="59" width="393" height="539"/>
+                    <rect key="frame" x="0.0" y="59" width="393" height="530"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain"/>
@@ -29,6 +29,18 @@
                         <action selector="actionDismissPresent:" destination="-1" eventType="touchUpInside" id="9qb-iO-StM"/>
                     </connections>
                 </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SYl-56-6AH">
+                    <rect key="frame" x="177.66666666666666" y="589" width="37.666666666666657" height="6"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="6" id="8Zh-4c-g2h"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="tr_cornerRadius">
+                            <real key="value" value="3"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PqV-N8-Wxh" userLabel="PresentView">
                     <rect key="frame" x="0.0" y="598" width="393" height="254"/>
                     <subviews>
@@ -100,13 +112,16 @@
             <constraints>
                 <constraint firstItem="PqV-N8-Wxh" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="5Nz-eX-epA"/>
                 <constraint firstAttribute="bottom" secondItem="PqV-N8-Wxh" secondAttribute="bottom" id="6cr-1j-N1T"/>
+                <constraint firstItem="PqV-N8-Wxh" firstAttribute="top" secondItem="SYl-56-6AH" secondAttribute="bottom" constant="3" id="A7i-B8-Kgv"/>
                 <constraint firstItem="JEv-ea-D4E" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="40/375" id="CBe-5g-Hmz"/>
                 <constraint firstItem="9SG-gK-Tml" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="40/812" id="Qr4-MC-6Tk"/>
+                <constraint firstItem="SYl-56-6AH" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="36/375" id="S6F-dI-2sQ"/>
                 <constraint firstItem="thj-fa-rM2" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="XfM-XW-7rw"/>
+                <constraint firstItem="SYl-56-6AH" firstAttribute="top" secondItem="thj-fa-rM2" secondAttribute="bottom" id="dFy-qD-BCr"/>
                 <constraint firstAttribute="trailing" secondItem="PqV-N8-Wxh" secondAttribute="trailing" id="fo1-jm-vf8"/>
                 <constraint firstItem="d48-nK-Dts" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="52/812" id="jb2-E4-khE"/>
                 <constraint firstItem="thj-fa-rM2" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="lgp-5d-0xX"/>
-                <constraint firstItem="PqV-N8-Wxh" firstAttribute="top" secondItem="thj-fa-rM2" secondAttribute="bottom" id="oua-nl-dqk"/>
+                <constraint firstItem="SYl-56-6AH" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="syI-nR-1ss"/>
                 <constraint firstItem="thj-fa-rM2" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="zs2-xL-XmO"/>
             </constraints>
             <point key="canvasLocation" x="23.664122137404579" y="20.422535211267608"/>

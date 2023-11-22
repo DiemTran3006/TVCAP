@@ -31,13 +31,14 @@ class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = "Home"
     }
 
     // MARK: - Action
     @IBAction func actionPushVideoLibrary(_ sender: Any)  {
         PHPhotoLibrary.requestAuthorization(for: .readWrite) { [weak self] _ in
             DispatchQueue.main.async {
-                let vc = VideoLibraryViewController(nibName: "VideoLibraryViewController", bundle: nil)
+                let vc = VideoLibraryViewController()
                 self?.navigationController?.pushViewController(vc , animated: true)
             }
         }
@@ -58,30 +59,30 @@ class HomeViewController: BaseViewController {
     }
     
     @IBAction func actionStartMirroring(_ sender: Any) {
-        let vc = ErrorMirroringViewController(nibName: "ErrorMirroringViewController", bundle: nil)
+        let vc = ErrorMirroringViewController()
         vc.modalPresentationStyle = .overFullScreen
         self.present(vc, animated: true, completion: nil)
     }
     
     @IBAction func actionPushAriplay(_ sender: Any) {
-        let vc = ConnectViewController(nibName: "ConnectViewController", bundle: nil)
+        let vc = ConnectViewController()
         vc.modalPresentationStyle = .overFullScreen
         self.present(vc, animated: true, completion: nil)
     }
     
     @IBAction func actionInstructButton(_ sender: Any) {
-        let vc = TutorialViewController(nibName: "TutorialViewController", bundle: nil)
+        let vc = TutorialViewController()
         vc.modalPresentationStyle = .overFullScreen
         self.present(vc, animated: true, completion: nil)
     }
     
     @IBAction func actionPushSettingButton(_ sender: Any) {
-        let vc = SettingViewController(nibName: "SettingViewController", bundle: nil)
+        let vc = SettingViewController()
         self.navigationController?.pushViewController(vc , animated: true)
     }
     
     @IBAction func actionMirroringTutorialButton(_ sender: Any) {
-        let vc = MirroringTutorialViewController(nibName: "MirroringTutorialViewController", bundle: nil)
+        let vc = MirroringTutorialViewController()
         vc.modalPresentationStyle = .overFullScreen
         self.present(vc, animated: true, completion: nil)
     }
