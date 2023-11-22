@@ -24,4 +24,8 @@ class PhotoCollectionViewCell: UICollectionViewCell {
             self.layer.borderWidth = 0
         }
     }
+    
+    func removeCornerRadius() {
+        self.layer.cornerRadius = 0
+    }
 }
