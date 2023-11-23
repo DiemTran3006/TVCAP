@@ -33,9 +33,9 @@ class VideoLibraryViewController: UIViewController {
     }
     
     @IBAction func actionAbumVideo(_ sender: Any) {
-        let vc = AddAbumVideoViewController()
-        vc.modalPresentationStyle = .overFullScreen
-        self.present(vc, animated: true, completion: nil)
+//        let vc = AddAbumVideoViewController()
+//        vc.modalPresentationStyle = .overFullScreen
+//        self.present(vc, animated: true, completion: nil)
     }
     
     // MARK: - Funcsion
