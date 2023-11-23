@@ -20,15 +20,7 @@ class MoreRecentsViewController: UIViewController {
     @IBOutlet weak var constraint: NSLayoutConstraint!
     
     public weak var moreRecentsDelegate: MoreRecentsDelegate?
-    
-    private var listHistory: [HistoryBrowserModel] = [] {
-        didSet {
-            self.changeListToDictionaryHistory()
-        }
-    }
-    
     private var dictionaryHistory: [String: [HistoryBrowserModel]] = [:]
-    
     private var arrayKeySorted: [String] {
         return Array(dictionaryHistory.keys.sorted(by: { item1, item2 in
             
@@ -45,6 +37,11 @@ class MoreRecentsViewController: UIViewController {
             
             return date1>date2
         }))
+    }
+    private var listHistory: [HistoryBrowserModel] = [] {
+        didSet {
+            self.changeListToDictionaryHistory()
+        }
     }
     
     override func viewDidLoad() {

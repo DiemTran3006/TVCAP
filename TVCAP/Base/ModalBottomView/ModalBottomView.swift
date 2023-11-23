@@ -41,7 +41,7 @@ class ModalBottomView: UIView {
         return nib.instantiate(withOwner: self, options: nil).first as? UIView
     }
     
-    func configure(title: String, subtitle: String, buttonAccept: String) {
+    public func configure(title: String, subtitle: String, buttonAccept: String) {
         self.titleLabel.text = title
         self.subtitleLabel.text = subtitle
         self.buttonAccept.setTitle(buttonAccept, for: .normal)
@@ -50,6 +50,7 @@ class ModalBottomView: UIView {
     @IBAction func handleAccept(_ sender: Any) {
         self.delegate?.handleAccept()
     }
+    
     @IBAction func handleCancel(_ sender: Any) {
         self.delegate?.handleCancel()
     }

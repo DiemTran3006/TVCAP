@@ -40,7 +40,7 @@ class EmptyLibraryView: UIView {
         return nib.instantiate(withOwner: self, options: nil).first as? UIView
     }
     
-    func configureVideo() {
+    public func configureVideo() {
         self.titleEmpty.text = "No Videos Available"
         self.subtitleEmpty.text = "Please add more videos."
         self.buttonAdd.setTitle("Add Videos", for: .normal)

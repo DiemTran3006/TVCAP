@@ -14,6 +14,7 @@ class TutorialWithStepViewController: UIViewController {
     
     private var attrStringStepOne: NSAttributedString?
     private var attrStringStepTwo: NSAttributedString?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,7 +22,7 @@ class TutorialWithStepViewController: UIViewController {
         labelStepTwo.attributedText = self.attrStringStepTwo
     }
     
-    func setDetentWithImageHeight(equalTo height: CGFloat) {
+    public func setDetentWithImageHeight(equalTo height: CGFloat) {
         let detent: UISheetPresentationController.Detent = .custom { context in
             return 288+height
         }
@@ -32,11 +33,11 @@ class TutorialWithStepViewController: UIViewController {
         }
     }
     
-    func configureLabelStepOne(text: String, textToBold: [NSString]) {
+    public func configureLabelStepOne(text: String, textToBold: [NSString]) {
         self.attrStringStepOne = text.withBoldText(boldPartsOfString: textToBold, font: .systemFont(ofSize: 16), boldFont: .systemFont(ofSize: 16,weight: .bold))
     }
     
-    func configureLabelStepTwo(text: String, textToBold: [NSString]) {
+    public func configureLabelStepTwo(text: String, textToBold: [NSString]) {
         self.attrStringStepTwo = text.withBoldText(boldPartsOfString: textToBold, font: .systemFont(ofSize: 16), boldFont: .systemFont(ofSize: 16,weight: .bold))
     }
     

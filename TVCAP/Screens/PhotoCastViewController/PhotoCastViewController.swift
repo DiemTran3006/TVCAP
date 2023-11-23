@@ -16,8 +16,8 @@ class PhotoCastViewController: UIViewController {
     @IBOutlet weak var constraint: NSLayoutConstraint!
     @IBOutlet weak var photoAboveCollectionView: UICollectionView!
     
-    var externalWindow: UIWindow?
-    var externalVC: ExternalScreenViewController?
+    private var externalWindow: UIWindow?
+    private var externalVC: ExternalScreenViewController?
     private var currentAsset: PHAsset? = nil
     private var allPhotos: PHFetchResult<PHAsset>? = nil {
         didSet {

@@ -12,17 +12,13 @@ class HistorySearchTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     public func configureLabel(_ string: String, textSearch: String) {
-//        labelSearch.text = string
         var arrayString: [NSString] = []
         arrayString.append(textSearch as NSString)
         labelSearch.attributedText = string.withBoldText(boldPartsOfString: arrayString, font: .systemFont(ofSize: 16, weight: .bold), boldFont: .systemFont(ofSize: 16))

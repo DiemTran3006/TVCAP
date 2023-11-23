@@ -10,6 +10,7 @@ import UIKit
 class PhotoCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var photo: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.layer.cornerRadius = 12
@@ -17,7 +18,7 @@ class PhotoCollectionViewCell: UICollectionViewCell {
         self.layer.masksToBounds = true
     }
     
-    func setupBorder(_ bool: Bool) {
+    public func setupBorder(_ bool: Bool) {
         if bool {
             self.layer.borderWidth = 2.0
         } else {
@@ -25,7 +26,7 @@ class PhotoCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func removeCornerRadius() {
+    public func removeCornerRadius() {
         self.layer.cornerRadius = 0
     }
 }
